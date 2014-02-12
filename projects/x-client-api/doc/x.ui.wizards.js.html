@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: ui/core/x.ui.wizards.js - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default-fixed.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="x.date.newTime.html">newTime</a></li><li><a href="x.date.newTimeSpan.html">newTimeSpan</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.ui.pkg.tabs.newTabs.html">newTabs</a></li><li><a href="x.ui.pkg.tree.newTreeView.html">newTreeView</a></li><li><a href="x.ui.tooltip.newTooltip.html">newTooltip</a></li><li><a href="x.ui.tooltip.newWarnTooltip.html">newWarnTooltip</a></li><li><a href="x.ui.tree.newTreeNode.html">newTreeNode</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.browser.html">x.browser</a></li><li><a href="x.browser.features.html">x.browser.features</a></li><li><a href="x.color.html">x.color</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.dom.html">x.dom</a></li><li><a href="x.encoding.html">x.encoding</a></li><li><a href="x.encoding.html.html">x.encoding.html</a></li><li><a href="x.encoding.unicode.html">x.encoding.unicode</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.net.request.html">x.net.request</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.html">x.ui</a></li><li><a href="x.ui.animation.html">x.ui.animation</a></li><li><a href="x.ui.animation.tween.html">x.ui.animation.tween</a></li><li><a href="x.ui.animation.tween.back.html">x.ui.animation.tween.back</a></li><li><a href="x.ui.animation.tween.bounce.html">x.ui.animation.tween.bounce</a></li><li><a href="x.ui.animation.tween.circ.html">x.ui.animation.tween.circ</a></li><li><a href="x.ui.animation.tween.cubic.html">x.ui.animation.tween.cubic</a></li><li><a href="x.ui.animation.tween.elastic.html">x.ui.animation.tween.elastic</a></li><li><a href="x.ui.animation.tween.expo.html">x.ui.animation.tween.expo</a></li><li><a href="x.ui.animation.tween.quad.html">x.ui.animation.tween.quad</a></li><li><a href="x.ui.animation.tween.quart.html">x.ui.animation.tween.quart</a></li><li><a href="x.ui.animation.tween.quint.html">x.ui.animation.tween.quint</a></li><li><a href="x.ui.animation.tween.sine.html">x.ui.animation.tween.sine</a></li><li><a href="x.ui.dialogs.html">x.ui.dialogs</a></li><li><a href="x.ui.drag.html">x.ui.drag</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.ui.pkg.html">x.ui.pkg</a></li><li><a href="x.ui.pkg.slide.html">x.ui.pkg.slide</a></li><li><a href="x.ui.pkg.tabs.html">x.ui.pkg.tabs</a></li><li><a href="x.ui.pkg.tree.html">x.ui.pkg.tree</a></li><li><a href="x.ui.tooltip.html">x.ui.tooltip</a></li><li><a href="x.ui.util.html">x.ui.util</a></li><li><a href="x.ui.windows.html">x.ui.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ui/core/x.ui.wizards.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>﻿// =============================================================================
+//
+// Copyright (c) 2010 ruanyu@live.com
+//
+// FileName     :x.wizards.js
+//
+// Description  :
+//
+// Author       :Max
+//
+// Date         :2010-01-01
+//
+// =============================================================================
+
+/**
+* wizards
+*
+* require	: x.js
+*/
+x.wizards = {
+
+    newWizard: function(name, options)
+    {
+        // x.wizard 继承与 x.window 对象
+        var wizard = x.ext(x.windows.newWindow(name, options), {
+
+            // 遮罩
+            maskWrapper: null,
+
+            /*#region 函数:open()*/
+            open: function()
+            {
+                this.maskWrapper.open();
+            },
+            /*#endregion*/
+
+            /*#region 函数:close()*/
+            close: function()
+            {
+                this.maskWrapper.close();
+            },
+            /*#endregion*/
+
+            /*#region 函数:save(e)*/
+            save: function(e)
+            {
+                var result = this.save_callback(e);
+
+                if (result === 0)
+                {
+                    this.close();
+                }
+            },
+            /*#endregion*/
+
+            /*#region 函数:save_callback(event)*/
+            /*
+            * 默认回调函数，可根据需要自行修改此函数。
+            */
+            save_callback: function(event)
+            {
+                return 0;
+            },
+            /*#endregion*/
+
+            /*#region 函数:cancel()*/
+            cancel: function()
+            {
+                if (typeof (this.cancel_callback) !== 'undefined')
+                {
+                    this.cancel_callback();
+                }
+
+                this.close();
+            },
+            /*#endregion*/
+
+            /*#region 函数:create()*/
+            create: function()
+            {
+                x.debug.error("必须重写向导对象的 create() 方法。");
+
+                return "必须重写向导对象的 create() 方法。";
+            },
+            /*#endregion*/
+
+            /*#region 函数:bindOptions(options)*/
+//            bindOptions: function(options)
+//            {
+//                x.debug.error("必须重写向导对象的 bindOptions() 方法。");
+//            },
+            /*#endregion*/
+
+            /*#region 函数:load(options)*/
+            load: function(options)
+            {
+                // 设置遮罩对象
+                if (typeof (options.maskWrapper) === 'undefined')
+                {
+                    this.maskWrapper = x.mask.newMaskWrapper(this.name + '$maskWrapper');
+                }
+                else
+                {
+                    this.maskWrapper = options.maskWrapper;
+                }
+
+                // 设置重写后的创建函数
+                if (typeof (options.bindOptions) !== 'undefined')
+                {
+                    this.bindOptions = options.bindOptions;
+                }
+
+                // 验证并绑定选项信息
+                this.bindOptions(options);
+
+                // 设置重写后的创建函数
+                if (typeof (options.create) !== 'undefined')
+                {
+                    this.create = options.create;
+                }
+
+                // 设置保存回调函数
+                if (typeof (options.save_callback) !== 'undefined')
+                {
+                    this.save_callback = options.save_callback;
+                }
+
+                // 设置取消回调函数
+                if (typeof (options.cancel_callback) !== 'undefined')
+                {
+                    this.cancel_callback = options.cancel_callback;
+                }
+
+                // 加载遮罩和页面内容
+                x.mask.getWindow(this.create(), this.maskWrapper);
+
+                x.dom.features.bind();
+            }
+            /*#endregion*/
+        });
+
+        return wizard;
+    },
+
+    getWizard: function(name, options)
+    {
+        var name = x.getFriendlyName(location.pathname + '$wizard$' + name);
+
+        var wizard = x.wizards.newWizard(name, options);
+
+        // 加载界面、数据、事件
+        wizard.load(options);
+
+        // 绑定到Window对象
+        window[name] = wizard;
+
+        return wizard;
+    },
+
+    // -------------------------------------------------------
+    // 常用对话框
+    // -------------------------------------------------------
+
+    /**
+    * 提示框
+    */
+    alert: function(options)
+    {
+        options.title = typeof (options.title) === 'undefined' ? '提示框' : options.title;
+
+        options.width = typeof (options.width) === 'undefined' ? '360px' : options.width;
+
+        x.wizards.getWizard('alert', {
+
+            bindOptions: function(options)
+            {
+                // 取消遮罩点击时的自动隐藏
+                this.maskWrapper.autoHide = 0;
+            },
+
+            save_callback: function()
+            {
+                return 0;
+            },
+
+            create: function()
+            {
+                var outString = '';
+
+                outString += '&lt;div id="' + this.name + '" class="winodw-wizard-wrapper" style="width:' + options.width + '; height:auto;" >';
+
+                outString += '&lt;div class="winodw-wizard-toolbar" >';
+                outString += '&lt;div class="winodw-wizard-toolbar-close">';
+                outString += '&lt;a href="javascript:' + this.name + '.cancel();" class="button-text" >关闭&lt;/a>';
+                outString += '&lt;/div>';
+                outString += '&lt;div class="float-left">';
+                outString += '&lt;div class="winodw-wizard-toolbar-item" style="width:200px;" >&lt;span>' + options.title + '&lt;/span>&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+                outString += '&lt;div style="padding:10px;" >' + options.message + '&lt;/div>';
+                outString += '&lt;div class="winodw-wizard-result-container" >';
+                outString += '&lt;div class="winodw-wizard-result-item" style="float:right;" >&lt;div class="button-2font-wrapper" style="margin:0 10px 3px 0px;" >&lt;a href="javascript:' + this.name + '.save();" class="button-text" >确定&lt;/a>&lt;/div>&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+
+                return outString;
+            }
+        });
+
+        x.stopEventPropagation();
+    },
+
+    /**
+    * 确认框
+    */
+    confirm: function(options)
+    {
+        options.title = typeof (options.title) === 'undefined' ? '确认框' : options.title;
+
+        options.width = typeof (options.width) === 'undefined' ? '360px' : options.width;
+
+        x.wizards.getWizard('confirm', {
+
+            bindOptions: function(options)
+            {
+                // 取消遮罩点击时的自动隐藏
+                this.maskWrapper.autoHide = 0;
+            },
+
+            save_callback: function()
+            {
+                if (options.callback)
+                {
+                    options.callback();
+                }
+
+                return 0;
+            },
+
+            create: function()
+            {
+                var outString = '';
+
+                outString += '&lt;div id="' + this.name + '" class="winodw-wizard-wrapper" style="width:' + options.width + '; height:auto;" >';
+
+                outString += '&lt;div class="winodw-wizard-toolbar" >';
+                outString += '&lt;div class="winodw-wizard-toolbar-close">';
+                outString += '&lt;a href="javascript:' + this.name + '.cancel();" class="button-text" >关闭&lt;/a>';
+                outString += '&lt;/div>';
+                outString += '&lt;div class="float-left">';
+                outString += '&lt;div class="winodw-wizard-toolbar-item" style="width:200px;" >&lt;span>' + options.title + '&lt;/span>&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+                outString += '&lt;div style="padding:10px;" >' + options.message + '&lt;/div>';
+                outString += '&lt;div class="winodw-wizard-result-container" >';
+                outString += '&lt;div class="winodw-wizard-result-item" style="float:right;" >&lt;div class="button-2font-wrapper" style="margin:0 10px 3px 0px;" >&lt;a href="javascript:' + this.name + '.cancel();" class="button-text" >取消&lt;/a>&lt;/div>&lt;/div>';
+                outString += '&lt;div class="winodw-wizard-result-item" style="float:right;" >&lt;div class="button-2font-wrapper" style="margin:0 10px 3px 0px;" >&lt;a href="javascript:' + this.name + '.save();" class="button-text" >确定&lt;/a>&lt;/div>&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+
+                return outString;
+            }
+        });
+    },
+
+    /**
+    * 提示输入框
+    */
+    prompt: function(options)
+    {
+        options.title = typeof (options.title) === 'undefined' ? '提示输入框' : options.title;
+        options.message = typeof (options.message) === 'undefined' ? '请填写相关内容' : options.message;
+        options.defaultValue = typeof (options.defaultValue) === 'undefined' ? '' : options.defaultValue;
+
+        options.width = typeof (options.width) === 'undefined' ? '360px' : options.width;
+
+        x.wizards.getWizard('confirm', {
+
+            bindOptions: function(options)
+            {
+                // 取消遮罩点击时的自动隐藏
+                this.maskWrapper.autoHide = 0;
+            },
+
+            save_callback: function()
+            {
+                if (options.callback)
+                {
+                    options.callback(x.dom.query(this.name + '$input').val());
+                }
+
+                return 0;
+            },
+
+            create: function()
+            {
+                var outString = '';
+
+                outString += '&lt;div id="' + this.name + '" class="winodw-wizard-wrapper" style="width:' + options.width + '; height:auto;" >';
+
+                outString += '&lt;div class="winodw-wizard-toolbar" >';
+                outString += '&lt;div class="winodw-wizard-toolbar-close">';
+                outString += '&lt;a href="javascript:' + this.name + '.cancel();" class="button-text" >关闭&lt;/a>';
+                outString += '&lt;/div>';
+                outString += '&lt;div class="float-left">';
+                outString += '&lt;div class="winodw-wizard-toolbar-item" style="width:200px;" >&lt;span>' + options.title + '&lt;/span>&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+                outString += '&lt;div style="padding:10px;" >';
+                outString += options.message + '&lt;br />';
+                outString += '&lt;input id="' + this.name + '$input" name="' + this.name + '$input" type="text" value="' + options.defaultValue + '" class="input-normal" style="width:200px" />';
+                outString += '&lt;/div>';
+                outString += '&lt;div class="winodw-wizard-result-container" >';
+                outString += '&lt;div class="winodw-wizard-result-item" style="float:right;" >&lt;div class="button-2font-wrapper" style="margin:0 10px 3px 0px;" >&lt;a href="javascript:' + this.name + '.save();" class="button-text" >确定&lt;/a>&lt;/div>&lt;/div>';
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+
+                outString += '&lt;div class="clear">&lt;/div>';
+                outString += '&lt;/div>';
+
+                return outString;
+            }
+        });
+    }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:53.091Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

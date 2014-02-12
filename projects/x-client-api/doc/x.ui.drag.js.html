@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: ui/core/x.ui.drag.js - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default-fixed.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="x.date.newTime.html">newTime</a></li><li><a href="x.date.newTimeSpan.html">newTimeSpan</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.ui.pkg.tabs.newTabs.html">newTabs</a></li><li><a href="x.ui.pkg.tree.newTreeView.html">newTreeView</a></li><li><a href="x.ui.tooltip.newTooltip.html">newTooltip</a></li><li><a href="x.ui.tooltip.newWarnTooltip.html">newWarnTooltip</a></li><li><a href="x.ui.tree.newTreeNode.html">newTreeNode</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.browser.html">x.browser</a></li><li><a href="x.browser.features.html">x.browser.features</a></li><li><a href="x.color.html">x.color</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.dom.html">x.dom</a></li><li><a href="x.encoding.html">x.encoding</a></li><li><a href="x.encoding.html.html">x.encoding.html</a></li><li><a href="x.encoding.unicode.html">x.encoding.unicode</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.net.request.html">x.net.request</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.html">x.ui</a></li><li><a href="x.ui.animation.html">x.ui.animation</a></li><li><a href="x.ui.animation.tween.html">x.ui.animation.tween</a></li><li><a href="x.ui.animation.tween.back.html">x.ui.animation.tween.back</a></li><li><a href="x.ui.animation.tween.bounce.html">x.ui.animation.tween.bounce</a></li><li><a href="x.ui.animation.tween.circ.html">x.ui.animation.tween.circ</a></li><li><a href="x.ui.animation.tween.cubic.html">x.ui.animation.tween.cubic</a></li><li><a href="x.ui.animation.tween.elastic.html">x.ui.animation.tween.elastic</a></li><li><a href="x.ui.animation.tween.expo.html">x.ui.animation.tween.expo</a></li><li><a href="x.ui.animation.tween.quad.html">x.ui.animation.tween.quad</a></li><li><a href="x.ui.animation.tween.quart.html">x.ui.animation.tween.quart</a></li><li><a href="x.ui.animation.tween.quint.html">x.ui.animation.tween.quint</a></li><li><a href="x.ui.animation.tween.sine.html">x.ui.animation.tween.sine</a></li><li><a href="x.ui.dialogs.html">x.ui.dialogs</a></li><li><a href="x.ui.drag.html">x.ui.drag</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.ui.pkg.html">x.ui.pkg</a></li><li><a href="x.ui.pkg.slide.html">x.ui.pkg.slide</a></li><li><a href="x.ui.pkg.tabs.html">x.ui.pkg.tabs</a></li><li><a href="x.ui.pkg.tree.html">x.ui.pkg.tree</a></li><li><a href="x.ui.tooltip.html">x.ui.tooltip</a></li><li><a href="x.ui.util.html">x.ui.util</a></li><li><a href="x.ui.windows.html">x.ui.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ui/core/x.ui.drag.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>﻿// -*- ecoding=utf-8 -*-
+
+/**
+* @namespace drag
+* @memberof x.ui
+* @description 拖拽
+*/
+x.ui.drag = {
+    /**
+    * 获取可拖拽窗口
+    */
+    getDraggableWindow: function(options)
+    {
+        var name = x.getFriendlyName(location.pathname + '$' + options.targetWindowName + '$draggable');
+
+        var draggable = {
+            // 实例名称
+            name: name,
+
+            // 配置信息
+            options: options,
+
+            // 目标窗口
+            targetWindow: null,
+
+            // 目标窗口宽度
+            targetWindowWidth: 0,
+
+            // 目标窗口高度
+            targetWindowHeight: 0,
+
+            mask: 'dragListenerMask',
+
+            //
+            isDragging: false,
+
+            pointX: '',
+            pointY: '',
+
+            currentX: '',
+            currentY: '',
+
+            // 拖拽时的容器样子
+            draggingClassName: 'alpha',
+            // 停止时的容器样子
+            stopClassName: '',
+
+            load: function()
+            {
+                if (document.getElementById(this.options.targetWindowName) === undefined)
+                {
+                    alert('元素【' + this.options.targetWindowName + '】未找到。');
+                    return;
+                }
+
+                this.targetWindowName = this.options.targetWindowName;
+
+                if (this.options.draggingClassName)
+                {
+                    this.draggingClassName = this.options.draggingClassName;
+                }
+
+                this.targetWindow = document.getElementById(this.targetWindowName);
+
+                this.stopClassName = this.targetWindow.className;
+
+                // 设置目标窗口的宽度
+                if (typeof (this.options.targetWindowWidth) === 'undefined')
+                {
+                    this.targetWindowWidth = $(this.targetWindow).width();
+                    this.targetWindowWidth += Number($(this.targetWindow).css('padding-left').replace('px', ''));
+                    this.targetWindowWidth += Number($(this.targetWindow).css('padding-right').replace('px', ''));
+                }
+                else
+                {
+                    this.targetWindowWidth = this.options.targetWindowWidth;
+                }
+
+                // 设置目标窗口的高度
+                if (typeof (this.options.targetWindowHeight) === 'undefined')
+                {
+                    this.targetWindowHeight = $(this.targetWindow).height();
+
+                    this.targetWindowHeight += Number($(this.targetWindow).css('padding-top').replace('px', ''));
+                    this.targetWindowHeight += Number($(this.targetWindow).css('padding-bottom').replace('px', ''));
+                }
+                else
+                {
+                    this.targetWindowHeight = this.options.targetWindowHeight;
+                }
+
+                // if (!document.getElementById(this.mask))
+                // {
+                // -*- IE 6 hack -*-
+
+                //    var iframe = document.createElement('iframe');
+
+                //    iframe.id = this.mask;
+
+                //    iframe.frameBorder = 0;
+                //    iframe.className = "hidden";
+
+                //    document.body.appendChild(iframe);
+                // }
+
+                if (typeof (this.options.pointX) !== 'undefined')
+                {
+                    this.targetWindow.style.top = this.options.pointX + "px";
+                }
+
+                if (typeof (this.options.pointY) !== 'undefined')
+                {
+                    this.targetWindow.style.left = this.options.pointY + "px";
+                }
+
+                var self = this;
+
+                // 拖拽
+                $(document.body).bind('mousemove', function(event)
+                {
+                    event = (event === null) ? window.event : event;
+
+                    if (self.isDragging)
+                    {
+                        // 自定义拖拽样式
+                        if (self.options.draggingStyle !== 'default')
+                        {
+                            self.targetWindow.className = self.draggingClassName;
+                        }
+
+                        self.targetWindow.style.left = event.clientX - self.pointX + "px";
+                        self.targetWindow.style.top = event.clientY - self.pointY + "px";
+
+                        self.currentX = self.targetWindow.offsetLeft;
+                        self.currentY = self.targetWindow.offsetTop;
+
+                        if (self.currentX &lt; 0)
+                        {
+                            self.targetWindow.style.left = '0px';
+                        }
+
+                        if (self.currentY &lt; 0)
+                        {
+                            self.targetWindow.style.top = '0px';
+                        }
+
+                        /*
+                        if (self.currentX + self.targetWindowWidth > document.body.clientWidth - 22)
+                        {
+                        self.targetWindow.style.left = (document.body.clientWidth - self.targetWindowWidth - 22) + "px";
+                        }
+
+                        if (self.currentY + self.targetWindowHeight > document.body.clientHeight)
+                        {
+                        self.targetWindow.style.top = (document.body.clientHeight - self.targetWindowHeight) + "px";
+                        }
+                        */
+                        var range = x.page.getRange();
+
+                        if (self.currentX + self.targetWindowWidth > range.width - 22)
+                        {
+                            self.targetWindow.style.left = (range.width - self.targetWindowWidth - 22) + "px";
+                        }
+
+                        if (self.currentY + self.targetWindowHeight > range.height)
+                        {
+                            self.targetWindow.style.top = (range.height - self.targetWindowHeight) + "px";
+                        }
+
+                        x.debug.log('document.body.scrollHeight:' + document.body.scrollHeight + " | self.targetWindow.offsetTop:" + self.targetWindow.offsetTop + ' | '
+                        + 'range.width:' + range.width + " | range.height:" + range.height + " | "
+                        + 'targetWindowWidth:' + self.targetWindowWidth + " | targetWindowHeight:" + self.targetWindowHeight + " | "
+                        + 'left:' + self.currentX + ' | top:' + self.currentY + ' | right:' + (range.width - (self.currentX + self.targetWindowWidth)) + ' | bottom:' + (self.currentY + self.targetWindowHeight));
+
+                        // -*- IE 6 hack -*-
+
+                        var div = self.targetWindow;
+                        var iframe = document.getElementById(self.mask);
+
+                        div.style.display = "block";
+                            
+                        if (iframe)
+                        {
+                            iframe.style.width = div.offsetWidth;
+                            iframe.style.height = div.offsetHeight;
+                            iframe.style.top = div.style.top;
+                            iframe.style.left = div.style.left;
+                            iframe.style.zIndex = div.style.zIndex - 1;
+                            iframe.style.position = 'absolute';
+                            iframe.style.display = 'block';
+
+                            iframe.className = "transparent";
+                        } 
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+
+                // 结束
+                $(document.body).bind('mouseup', function(event)
+                {
+                    if (self.targetWindow.releaseCapture)
+                    {
+                        self.targetWindow.releaseCapture();
+                    }
+                    else if (window.releaseEvents)
+                    {
+                        window.releaseEvents(Event.MOUSEMOVE | Event.MOUSEUP);
+                    };
+
+                    if (self.isDragging)
+                    {
+                        var iframe = document.getElementById(self.mask);
+
+                        if (iframe)
+                        {
+                            iframe.style.display = 'hidden';
+                        }
+                    }
+
+                    self.isDragging = false;
+
+                    return false;
+                });
+
+                // 拖拽开始
+                $(this.targetWindow).bind('mousedown', function(event)
+                {
+                    event = (event === null) ? window.event : event;
+
+                    // x.debug.log(event.target.id);
+                    if (event.target.id === self.targetWindow.id)
+                    {
+                        if (self.targetWindow.setCapture)
+                        {
+                            self.targetWindow.setCapture();
+                        }
+                        else if (window.captureEvents)
+                        {
+                            window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP)
+                        };
+
+                        if (event.button != 2)
+                        {
+                            self.targetWindow.style.zIndex = 99;
+
+                            self.pointX = event.clientX - self.targetWindow.offsetLeft;
+                            self.pointY = event.clientY - self.targetWindow.offsetTop;
+
+                            self.isDragging = true;
+                        }
+                    }
+                });
+
+                // 拖拽停止
+                $(this.targetWindow).bind('mouseup', function(event)
+                {
+                    if (self.targetWindow.releaseCapture)
+                    {
+                        self.targetWindow.releaseCapture();
+
+                        self.targetWindow.className = self.stopClassName;
+                    }
+                    else if (window.releaseEvents)
+                    {
+                        window.releaseEvents(Event.MOUSEMOVE | Event.MOUSEUP)
+
+                        self.targetWindow.className = self.stopClassName;
+                    }
+
+                    self.isDragging = false;
+
+                    return false;
+                });
+            }
+        };
+
+        draggable.load();
+
+        return draggable;
+    }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:53.044Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

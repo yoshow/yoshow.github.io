@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>名称空间(Namespace): randomText - 帮助手册</title>
+    <title>名称空间(Namespace): tween - 帮助手册</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -57,7 +57,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">名称空间(Namespace): randomText</h1>
+    <h1 class="page-title">名称空间(Namespace): tween</h1>
 
     
 
@@ -67,9 +67,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="x.html">x</a>.</span>
+        <span class="ancestors"><a href="x.html">x</a><a href="x.ui.html">.ui</a><a href="x.ui.animation.html">.animation</a>.</span>
     
-    randomText
+    tween
     </h2>
     
 </header>  
@@ -80,7 +80,7 @@
     
     
         
-            <div class="description">随机文本</div>
+            <div class="description">补间动画</div>
         
         
         
@@ -107,7 +107,7 @@
     <!-- 不输出源码位置
     <dt class="tag-source">源码(Source):</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1178">line 1178</a>
+        <a href="x.ui.animation.js.html">ui/core/x.ui.animation.js</a>, <a href="x.ui.animation.js.html#line249">line 249</a>
     </li></ul></dd> -->
     
     
@@ -132,6 +132,40 @@
     
     
     
+        <h3 class="subsection-title">名称空间</h3>
+        
+        <dl>
+            <dt><a href="namespaces.html#x.ui.animation.tween.back"><a href="x.ui.animation.tween.back.html">back</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.bounce"><a href="x.ui.animation.tween.bounce.html">bounce</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.circ"><a href="x.ui.animation.tween.circ.html">circ</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.cubic"><a href="x.ui.animation.tween.cubic.html">cubic</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.elastic"><a href="x.ui.animation.tween.elastic.html">elastic</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.expo"><a href="x.ui.animation.tween.expo.html">expo</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.quad"><a href="x.ui.animation.tween.quad.html">quad</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.quart"><a href="x.ui.animation.tween.quart.html">quart</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.quint"><a href="x.ui.animation.tween.quint.html">quint</a></a></dt>
+            <dd></dd>
+        
+            <dt><a href="namespaces.html#x.ui.animation.tween.sine"><a href="x.ui.animation.tween.sine.html">sine</a></a></dt>
+            <dd></dd>
+        </dl>
+    
     
     
     
@@ -141,7 +175,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="create"><span class="type-signature">&lt;static> </span>create<span class="signature">(length)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="linear"><span class="type-signature">&lt;static> </span>linear<span class="signature">(t:, b:, c:, d:)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -149,7 +183,7 @@
     
     
     <div class="description">
-        创建随机文本信息
+        线性的
     </div>
     
 
@@ -183,7 +217,7 @@
 	
         <tr>
             
-                <td class="name"><code>length</code></td>
+                <td class="name"><code>t:</code></td>
             
             
             <td class="type">
@@ -199,7 +233,76 @@
             
             
             
-            <td class="description last">返回的文本长度</td>
+            <td class="description last">timestamp，指缓动效果开始执行到当前帧开始执行时经过的时间段，单位ms</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>b:</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">beginning position，起始位置</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>c:</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">change，要移动的距离，就是终点位置减去起始位置</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>d:</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">duration ，缓和效果持续的时间</td>
         </tr>
 	
 	
@@ -231,7 +334,7 @@
     <!-- 不输出源码位置
     <dt class="tag-source">源码(Source):</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1185">line 1185</a>
+        <a href="x.ui.animation.js.html">ui/core/x.ui.animation.js</a>, <a href="x.ui.animation.js.html#line255">line 255</a>
     </li></ul></dd> -->
     
     
@@ -254,11 +357,6 @@
     
     
     
-        <h5>示例(Example)</h5>
-        
-    <pre class="prettyprint"><code>// 输出格式 00000000console.log(x.randomText.create(8));</code></pre>
-
-    
 </dd>
 
         </dl>
@@ -279,7 +377,7 @@
 <br clear="both">
 
 <footer>
-    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:55.691Z.
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:56.014Z.
 </footer>
 
 <script> prettyPrint(); </script>

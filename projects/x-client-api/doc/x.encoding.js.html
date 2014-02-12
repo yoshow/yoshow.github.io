@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: core/x.css.js - 帮助手册</title>
+    <title>Source: core/x.encoding.js - 帮助手册</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -57,7 +57,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: core/x.css.js</h1>
+    <h1 class="page-title">Source: core/x.encoding.js</h1>
 
     
 
@@ -65,151 +65,180 @@
     
     <section>
         <article>
-            <pre class="prettyprint source"><code>﻿// -*- ecoding=utf-8 -*-
+            <pre class="prettyprint source"><code>// -*- ecoding=utf-8 -*-
 
 /**
-* @namespace css
+* @namespace encoding
 * @memberof x
-* @description CSS
+* @description 编码
 */
-x.css = {
-
-    /*#region 函数:style(selector)*/
+x.encoding = {
     /**
-    * 获取或设置元素对象的样式信息
-    * @method style
-    * @memberof x.css
-    * @param {string} selector 选择器或者元素对象
-    * @returns {CSSStyleDeclaration} {@like https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration|CSSStyleDeclaration}
+    * @namespace html
+    * @memberof x.encoding
+    * @description html 编码管理
     */
-    style: function(selector)
-    {
-        var element = x.query(selector);
+    html: {
+        // http://www.w3.org/MarkUp/html-spec/html-spec_13.html
+        dict: {
+            '&': '&#32;',
+            ' ': '&#38;',
+            '&lt;': '&#60;',
+            '>': '&#62;',
+            '"': '&#34;',
+            '\'': '&#39;'
+        },
 
-        if (arguments.length == 1)
+        /*#region 函数:encode(text)*/
+        /**
+        * html 编码
+        * @method encode
+        * @memberof x.encoding.html
+        * @param {string} text 文本信息
+        * @example
+        * // 输出格式 &#60;p&#62;hello&#60;/p&#62;
+        * console.log(x.encoding.html.encode('&lt;p>hello&lt;/p>'));
+        */
+        encode: function(text)
         {
-            return element.currentStyle || window.getComputedStyle(element, null);
-        }
-        else if (arguments.length == 2)
-        {
-            if (x.type(arguments[1]) == 'object')
+            // 空值判断
+            if (text.length === 0) { return ''; }
+
+            text = x.string.stringify(text);
+
+            return text.replace(/&(?![\w#]+;)|[&lt;>"']/g, function(s)
             {
-                var options = arguments[1];
+                return x.encoding.html.dict[s];
+            });
 
-                x.each(options, function(key, value)
+            //            var outString = text.replace(/&/g, '&amp;');
+
+            //            outString = outString.replace(/&lt;/g, '&lt;');
+            //            outString = outString.replace(/>/g, '&gt;');
+            //            outString = outString.replace(/ /g, '&nbsp;');
+            //            outString = outString.replace(/\'/g, '&#39;');
+            //            outString = outString.replace(/\"/g, '&quot;');
+
+            //            return outString;
+        },
+        /*#endregion*/
+
+        /*#region 函数:decode(text)*/
+        /**
+        * html 解码
+        * @method decode
+        * @memberof x.encoding.html
+        * @param {string} text 文本信息
+        */
+        decode: function(text)
+        {
+            // 空值判断
+            if (text.length === 0) { return ''; }
+
+            text = x.string.stringify(text);
+
+            var outString = '';
+
+            outString = text.replace(/&amp;/g, "&");
+
+            outString = outString.replace(/&lt;/g, "&lt;");
+            outString = outString.replace(/&gt;/g, ">");
+            outString = outString.replace(/&nbsp;/g, "  ");
+            outString = outString.replace(/&#39;/g, "\'");
+            outString = outString.replace(/&quot;/g, "\"");
+
+            return outString;
+        }
+        /*#endregion*/
+    },
+
+    /**
+    * @namespace unicode
+    * @memberof x.encoding
+    * @description unicode 编码管理
+    */
+    unicode: {
+
+        // 注意
+        // html 的 unicode 编码格式是&#888888;, javascript 的 unicode 编码格式\u000000
+
+        /*#region 函数:encode(text)*/
+        /**
+        * unicode 编码
+        * @method encode
+        * @memberof x.encoding.unicode
+        * @param {string} text 文本信息
+        */
+        encode: function(text, prefix)
+        {
+            if (text.length === 0) { return ''; }
+
+            prefix = x.isUndefined(prefix) ? '\\u' : prefix;
+
+            text = x.string.stringify(text);
+
+            var outString = '';
+
+            for (var i = 0; i &lt; text.length; i++)
+            {
+                var temp = text.charCodeAt(i).toString(16);
+
+                if (temp.length &lt; 4)
                 {
-                    element.style[x.camelCase(key)] = options[key];
+                    while (temp.length &lt; 4)
+                    {
+                        temp = '0'.concat(temp);
+                    }
+                }
+
+                // temp = '\\u' + temp.slice(2, 4).concat(temp.slice(0, 2));
+                // temp = '\\u' + temp;
+
+                outString = outString.concat(prefix + temp);
+            }
+
+            return outString.toLowerCase();
+        },
+        /*#endregion*/
+
+        /*#region 函数:decode(text)*/
+        /**
+        * unicode 解码
+        * @method decode
+        * @memberof x.encoding.unicode
+        * @param {string} text 文本信息
+        */
+        decode: function(text, prefix)
+        {
+            if (text.length === 0) { return ''; }
+
+            prefix = x.isUndefined(prefix) ? '\\u' : prefix;
+
+            text = x.string.stringify(text);
+
+            var outString = '';
+
+            var list = text.match(/([\w]+)|(\\u([\w]{4}))/g);
+
+            if (list != null)
+            {
+                list.each(function(node, index)
+                {
+                    if (node.indexOf(prefix) == 0)
+                    {
+                        outString += String.fromCharCode(parseInt(node.slice(2, 6), 16));
+                    }
+                    else
+                    {
+                        outString += node;
+                    }
                 });
             }
+
+            return outString;
         }
-        else if (arguments.length == 3)
-        {
-            if (x.type(arguments[1]) == 'string')
-            {
-                element.style[arguments[1]] = arguments[2];
-            }
-        }
-    },
-    /*#endregion*/
-
-    /*#region 函数:check(selector, className)*/
-    /**
-    * 检测元素对象的 className 是否存在
-    * @method check
-    * @memberof x.css
-    * @param {string} selector 选择器或者元素对象
-    * @param {string} className CSS类名称
-    * @returns {bool}
-    */
-    check: function(selector, className)
-    {
-        var element = x.query(selector);
-        /*
-        var found=false;
-        var buffer=o.className.split(' ');
-
-        for(var i=0;i&lt;buffer.length;i++){
-        if(buffer[i]==className){found=true;}
-        }
-        return found;
-        */
-
-        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
-
-        return element.className.match(reg) == null ? false : true;
-    },
-    /*#endregion*/
-
-    /*#region 函数:swap(selector, classNameA, classNameB)*/
-    /**
-    * 替换元素对象的 className
-    * @method swap
-    * @memberof x.css
-    * @param {string} selector 选择器或者元素对象
-    * @param {string} classNameA CSS类名称
-    * @param {string} classNameB CSS类名称
-    */
-    swap: function(selector, classNameA, classNameB)
-    {
-        var element = x.query(selector);
-
-        if (x.css.check(element, classNameA))
-        {
-            var buffer = element.className.split(' ');
-
-            for (var i = 0; i &lt; buffer.length; i++)
-            {
-                buffer[i] = buffer[i].trim();
-
-                if (buffer[i] == classNameA) { buffer[i] = classNameB; }
-            }
-
-            element.className = buffer.join(' ');
-        }
-    },
-    /*#endregion*/
-
-    /*#region 函数:add(selector, className)*/
-    /**
-    * 添加元素对象的 className
-    * @method add
-    * @memberof x.css
-    * @param {string} selector 选择器或者元素对象
-    * @param {string} className CSS类名称
-    */
-    add: function(selector, className)
-    {
-        var element = x.query(selector);
-
-        if (!x.css.check(element, className))
-        {
-            element.className += ' ' + className;
-            element.className = element.className.trim();
-        }
-    },
-    /*#endregion*/
-
-    /*#region 函数:remove(selector, className)*/
-    /**
-    * 移除元素对象的 className
-    * @method remove
-    * @memberof x.css
-    * @param {string} selector 选择器或者元素对象
-    * @param {string} className CSS类名称
-    */
-    remove: function(selector, className)
-    {
-        var element = x.query(selector);
-
-        if (x.css.check(element, className))
-        {
-            var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
-
-            element.className = element.className.replace(reg, '');
-            element.className = element.className.trim();
-        }
+        /*#endregion*/
     }
-    /*#endregion*/
 };
 </code></pre>
         </article>
@@ -223,7 +252,7 @@ x.css = {
 <br clear="both">
 
 <footer>
-    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:52.888Z.
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:52.994Z.
 </footer>
 
 <script> prettyPrint(); </script>

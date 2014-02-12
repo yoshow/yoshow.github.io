@@ -1,0 +1,3254 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: ui/core/x.ui.form.js - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default-fixed.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="x.date.newTime.html">newTime</a></li><li><a href="x.date.newTimeSpan.html">newTimeSpan</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.ui.pkg.tabs.newTabs.html">newTabs</a></li><li><a href="x.ui.pkg.tree.newTreeView.html">newTreeView</a></li><li><a href="x.ui.tooltip.newTooltip.html">newTooltip</a></li><li><a href="x.ui.tooltip.newWarnTooltip.html">newWarnTooltip</a></li><li><a href="x.ui.tree.newTreeNode.html">newTreeNode</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.browser.html">x.browser</a></li><li><a href="x.browser.features.html">x.browser.features</a></li><li><a href="x.color.html">x.color</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.dom.html">x.dom</a></li><li><a href="x.encoding.html">x.encoding</a></li><li><a href="x.encoding.html.html">x.encoding.html</a></li><li><a href="x.encoding.unicode.html">x.encoding.unicode</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.net.request.html">x.net.request</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.html">x.ui</a></li><li><a href="x.ui.animation.html">x.ui.animation</a></li><li><a href="x.ui.animation.tween.html">x.ui.animation.tween</a></li><li><a href="x.ui.animation.tween.back.html">x.ui.animation.tween.back</a></li><li><a href="x.ui.animation.tween.bounce.html">x.ui.animation.tween.bounce</a></li><li><a href="x.ui.animation.tween.circ.html">x.ui.animation.tween.circ</a></li><li><a href="x.ui.animation.tween.cubic.html">x.ui.animation.tween.cubic</a></li><li><a href="x.ui.animation.tween.elastic.html">x.ui.animation.tween.elastic</a></li><li><a href="x.ui.animation.tween.expo.html">x.ui.animation.tween.expo</a></li><li><a href="x.ui.animation.tween.quad.html">x.ui.animation.tween.quad</a></li><li><a href="x.ui.animation.tween.quart.html">x.ui.animation.tween.quart</a></li><li><a href="x.ui.animation.tween.quint.html">x.ui.animation.tween.quint</a></li><li><a href="x.ui.animation.tween.sine.html">x.ui.animation.tween.sine</a></li><li><a href="x.ui.dialogs.html">x.ui.dialogs</a></li><li><a href="x.ui.drag.html">x.ui.drag</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.ui.pkg.html">x.ui.pkg</a></li><li><a href="x.ui.pkg.slide.html">x.ui.pkg.slide</a></li><li><a href="x.ui.pkg.tabs.html">x.ui.pkg.tabs</a></li><li><a href="x.ui.pkg.tree.html">x.ui.pkg.tree</a></li><li><a href="x.ui.tooltip.html">x.ui.tooltip</a></li><li><a href="x.ui.util.html">x.ui.util</a></li><li><a href="x.ui.windows.html">x.ui.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ui/core/x.ui.form.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>﻿// =============================================================================
+//
+// Copyright (c) 2010 ruanyu@live.com
+//
+// FileName     :x.customForm.js
+//
+// Description  :
+//
+// Author       :RuanYu
+//
+// Date         :2010-01-01
+//
+// =============================================================================
+
+/**
+* 自定义表单
+*
+* require	: x.js
+*/
+x.customForm = {
+
+    /*#region 函数:save()*/
+    /*
+    * 暂存
+    */
+    save: function()
+    {
+        var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+        outString += '&lt;ajaxStorage>';
+        outString += '&lt;action>&lt;![CDATA[save]]>&lt;/action>';
+        outString += '&lt;id>&lt;![CDATA[' + $('#customFormInstanceId').val() + ']]>&lt;/id>';
+        outString += '&lt;code>&lt;![CDATA[' + $('#customFormInstanceCode').val() + ']]>&lt;/code>';
+        outString += '&lt;entityId>&lt;![CDATA[' + $('#customFormInstanceentityId').val() + ']]>&lt;/entityId>';
+        outString += '&lt;entityClassName>&lt;![CDATA[' + $('#customFormInstanceEntityClassName').val() + ']]>&lt;/entityClassName>';
+        outString += '&lt;templateId>&lt;![CDATA[' + $('#customFormInstanceTemplateId').val() + ']]>&lt;/templateId>';
+        outString += '&lt;accountId>&lt;![CDATA[' + $('#customFormInstanceAccountId').val() + ']]>&lt;/accountId>';
+        outString += '&lt;title>&lt;![CDATA[' + $('#customFormInstanceTitle').val() + ']]>&lt;/title>';
+        outString += '&lt;dataStorage>&lt;![CDATA[' + x.customForm.getDataStorage() + ']]>&lt;/dataStorage>';
+        outString += '&lt;beginDate>&lt;![CDATA[' + $('#customFormInstanceBeginDate').val() + ']]>&lt;/beginDate>';
+        outString += '&lt;endDate>&lt;![CDATA[' + $('#customFormInstanceEndDate').val() + ']]>&lt;/endDate>';
+
+        if ($('#customFormInstanceFinishedAlertScopeText').size() === 1)
+        {
+            outString += '&lt;finishedAlertScopeText>&lt;![CDATA[' + $('#customFormInstanceFinishedAlertScopeText').val() + ']]>&lt;/finishedAlertScopeText>';
+        }
+
+        outString += '&lt;/ajaxStorage>';
+
+        x.net.xhr('/api/custom.forms.instace.save.aspx', outString, {
+            waitingMessage: '正在提交数据，请稍候……',
+            popResultValue: 1,
+            callback: function(response)
+            {
+                x.page.close();
+            }
+        });
+    },
+    /*#endregion*/
+
+    /*#region 函数:recommendWindow(accountName, time)*/
+    recommendWindow: function(accountName, time)
+    {
+        var outString = '&lt;table class="table-style" style="width:100%; margin-top:10px;">';
+
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" style="width:80px" >推荐人员&lt;/td>';
+        outString += '&lt;td class="table-body-input" >';
+        outString += '&lt;input id="customForm$recommend$authorizationObjectText" name="" type="hidden" />';
+        outString += '&lt;textarea id="customForm$recommend$authorizationObjectView" class="textarea-normal" style="width:360px;height:50px;" >&lt;/textarea>';
+        outString += '&lt;div class="text-right" style="width:360px;">&lt;a href="javascript:x.customForm.getContactsWindow(\'recommend\');">编辑&lt;/a>&lt;/div>';
+        outString += '&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" >推荐原因&lt;/td>';
+        outString += '&lt;td class="table-body-input" >&lt;textarea id="customForm$recommend$reason" class="textarea-normal" style="width:360px;height:60px;" >&lt;/textarea>&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" >时间&lt;/td>';
+        outString += '&lt;td class="table-body-input" >&lt;span>' + time + '&lt;/span>&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" >&lt;/td>';
+        outString += '&lt;td class="table-body-input" >';
+        outString += '&lt;input id="customForm$recommend$ok" type="button" class="button" value="确定" style="margin-right:10px;" onclick="$(\'#idea\').val($(\'#__idea\').val());x.customForm.recommend();" >';
+        outString += '&lt;input id="customForm$recommend$cancel" type="button" class="button" value="取消" onclick="x.ui.modalbox.hide();" >';
+        outString += '&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;/table>';
+
+        x.ui.modalbox.width = 500;
+        x.ui.modalbox.height = 300;
+
+        x.ui.modalbox.show(outString);
+    },
+    /*#endregion*/
+
+    /*#region 函数:recommend()*/
+    /*
+    * 审批, 包括会签, 审核, 批准.
+    */
+    recommend: function()
+    {
+        if (x.customForm.checkDataStorage()) { return; }
+
+        x.ui.modalbox.hide();
+
+        var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+        outString += '&lt;ajaxStorage>';
+        outString += '&lt;entityId>&lt;![CDATA[' + $('#customFormInstanceId').val() + ']]>&lt;/entityId>';
+        outString += '&lt;authorizationObjectText>&lt;![CDATA[' + $(document.getElementById('customForm$recommend$authorizationObjectText')).val() + ']]>&lt;/authorizationObjectText>';
+        outString += '&lt;reason>&lt;![CDATA[' + $(document.getElementById('customForm$recommend$reason')).val() + ']]>&lt;/reason>';
+        outString += '&lt;/ajaxStorage>';
+
+        x.net.xhr('/api/kernel.entities.operationLog.recommend.aspx', outString, {
+            waitingMessage: '正在提交数据，请稍候……',
+            popResultValue: 1
+        });
+    },
+    /*#endregion*/
+
+    /*#region 函数:implementationWindow(accountName, time)*/
+    implementationWindow: function(accountName, time)
+    {
+        var outString = '&lt;table class="table-style" style="width:100%; margin-top:10px;">';
+
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" style="width:80px" >完成情况&lt;/td>';
+        outString += '&lt;td class="table-body-input" >';
+        outString += '&lt;input id="customForm$implementation$completionStatus" class="input-normal" style="width:360px;" />';
+        outString += '&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" >详细情况描述&lt;/td>';
+        outString += '&lt;td class="table-body-input" >&lt;textarea id="customForm$implementation$workContent" class="textarea-normal" style="width:360px;height:60px;" >&lt;/textarea>&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" style="width:80px" >通知人员&lt;/td>';
+        outString += '&lt;td class="table-body-input" >';
+        outString += '&lt;input id="customForm$implementation$authorizationObjectText" name="" type="hidden" />';
+        outString += '&lt;input id="customForm$implementation$authorizationObjectView" class="input-normal" style="width:200px;" /> ';
+        outString += '&lt;a href="javascript:x.customForm.getContactsWindow(\'implementation\');">编辑&lt;/a>';
+        outString += '&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" >提交人&lt;/td>';
+        outString += '&lt;td class="table-body-input" >&lt;span>' + accountName + '&lt;/span>&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" >时间&lt;/td>';
+        outString += '&lt;td class="table-body-input" >&lt;span>' + time + '&lt;/span>&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;tr>';
+        outString += '&lt;td class="table-body-text" >&lt;/td>';
+        outString += '&lt;td class="table-body-input" >';
+        outString += '&lt;input id="customForm$implementation$ok" type="button" class="button" value="确定" style="margin-right:10px;" onclick="$(\'#idea\').val($(\'#__idea\').val());x.customForm.implementation();" >';
+        outString += '&lt;input id="customForm$implementation$cancel" type="button" class="button" value="取消" onclick="x.ui.modalbox.hide();" >';
+        outString += '&lt;/td>';
+        outString += '&lt;/tr>';
+        outString += '&lt;/table>';
+
+        x.ui.modalbox.width = 500;
+        x.ui.modalbox.height = 300;
+
+        x.ui.modalbox.show(outString);
+    },
+    /*#endregion*/
+
+    /*#region 函数:implementation()*/
+    /*
+    * 落实情况.
+    */
+    implementation: function()
+    {
+        if (x.customForm.checkDataStorage()) { return; }
+
+        x.ui.modalbox.hide();
+
+        var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+        outString += '&lt;ajaxStorage>';
+        outString += '&lt;action>&lt;![CDATA[implementation]]>&lt;/action>';
+        outString += '&lt;entityId>&lt;![CDATA[' + $('#customFormInstanceId').val() + ']]>&lt;/entityId>';
+        outString += '&lt;completionStatus>&lt;![CDATA[' + $(document.getElementById('customForm$implementation$completionStatus')).val() + ']]>&lt;/completionStatus>';
+        outString += '&lt;workContent>&lt;![CDATA[' + $(document.getElementById('customForm$implementation$workContent')).val() + ']]>&lt;/workContent>';
+        outString += '&lt;authorizationObjectText>&lt;![CDATA[' + $(document.getElementById('customForm$implementation$authorizationObjectText')).val() + ']]>&lt;/authorizationObjectText>';
+        outString += '&lt;/ajaxStorage>';
+
+        x.net.xhr('/api/kernel.entities.implementation.implement.aspx', outString, {
+            waitingMessage: '正在提交数据，请稍候……',
+            popResultValue: 1,
+            callback: function(response)
+            {
+                x.page.close();
+            }
+        });
+    },
+    /*#endregion*/
+
+    /*#region 函数:getContactsWindow()*/
+    /*
+    * 打开联系人窗口
+    */
+    getContactsWindow: function(type)
+    {
+        type = (typeof (type) === 'undefined') ? 'default' : type;
+
+        if (type === 'recommend')
+        {
+            x.wizards.getContactsWizardSingleton('customForm$recommend$authorizationObjectView', 'customForm$recommend$authorizationObjectText', "Account");
+        }
+        else if (type === 'implementation')
+        {
+            x.wizards.getContactsWizardSingleton('customForm$implementation$authorizationObjectView', 'customForm$implementation$authorizationObjectText', "Account");
+        }
+    },
+    /*#endregion*/
+
+    /*#region 函数:bindInputData(inputName, multiSelection)*/
+    /*
+    * 绊定控件的数据
+    */
+    bindInputData: function(options)
+    {
+        // options.inputName ,options multiSelection
+        var input = x.dom.query(options.inputName);
+
+        if ('[contacts],[corporation],[project]'.indexOf(options.featureName) > -1)
+        {
+            // 根据data标签的数据内容设置隐藏值和文本信息
+            var data = input.attr('data');
+
+            if (typeof (data) !== 'undefined' && data.indexOf('#') > -1)
+            {
+                var selectedValue = '';
+                var selectedText = '';
+
+                var list = x.string.trim(data, ',').split(',');
+
+                for (var i = 0; i &lt; list.length; i++)
+                {
+                    selectedValue += list[i].split('#')[1] + ',';
+                    selectedText += list[i].split('#')[2] + ';';
+
+                    // 单选时,只取data第一个值
+                    if (options.multiSelection === 0) { break; }
+                }
+
+                selectedValue = x.string.rtrim(selectedValue, ',');
+                selectedText = x.string.rtrim(selectedText, ';');
+
+                if (options.multiSelection === 1)
+                {
+                    // 多选
+                    input.val(data);
+                }
+                else
+                {
+                    // 单选
+                    input.val(selectedValue);
+                }
+
+                input.attr('selectedText', selectedText);
+            }
+        }
+    },
+    /*#endregion*/
+
+    /*#region 函数:checkDataStorage()*/
+    /*
+    * 验证客户端数据
+    */
+    checkDataStorage: function()
+    {
+        // 设置默认选项参数
+        var options = x.ext({
+            // 提示工具条
+            tooltip: 0,
+            // 提示框
+            alert: 1
+        }, arguments[0] || {});
+
+        var warning = '';
+
+        var list = $('*');
+
+        list.each(function(index, node)
+        {
+            try
+            {
+                if ($(node).hasClass('custom-forms-data-required') || $(node).hasClass('custom-forms-data-regexp'))
+                {
+                    warning += x.customForm.checkDataInput(node, options.tooltip);
+                }
+            }
+            catch (ex)
+            {
+                x.debug.error(ex);
+            }
+        });
+
+        if (warning === '')
+        {
+            return false;
+        }
+        else
+        {
+            alert(warning);
+            return true;
+        }
+    },
+    /*#endregion*/
+
+    /*#region 函数:checkDataInput(node, warnTooltip)*/
+    /*
+    * 验证客户端数据
+    */
+    checkDataInput: function(node, warnTooltip)
+    {
+        // 如果没有id信息，或者为空则不检测
+        if (typeof (node.id) === 'undefined' || node.id === '') { return ''; }
+
+        var warning = '';
+
+        if (warnTooltip == 1)
+        {
+            x.tooltip.newWarnTooltip({ element: node.id, hide: 1 });
+        }
+
+        if ($(node).hasClass('custom-forms-data-required'))
+        {
+            // 数据必填项验证
+            if ($(node).val().trim() === '')
+            {
+                var dataVerifyWarning = $(node).attr('dataVerifyWarning');
+
+                // x.debug.log('x:' + x.page.getElementLeft(node) + ' y:' + x.page.getElementTop(node));
+
+                if (dataVerifyWarning)
+                {
+                    if (warnTooltip == 1)
+                    {
+                        x.tooltip.newWarnTooltip({ element: node.id, message: dataVerifyWarning, hide: 0 });
+                    }
+
+                    warning += dataVerifyWarning + '\n';
+                }
+            }
+        }
+
+        if ($(node).hasClass('custom-forms-data-regexp'))
+        {
+            // 数据规则验证
+            if ($(node).val().trim() !== '')
+            {
+                if (!x.expressions.exists({ text: $(node).val(), ignoreCase: $(node).attr('dataIgnoreCase'), regexpName: $(node).attr('dataRegExpName'), regexp: $(node).attr('dataRegExp') }))
+                {
+                    var dataRegExpWarning = $(node).attr('dataRegExpWarning');
+
+                    // x.debug.log(x.page.getElementTop(node));
+
+                    if (dataRegExpWarning)
+                    {
+                        if (warnTooltip == 1)
+                        {
+                            x.tooltip.newWarnTooltip({ element: node.id, message: dataRegExpWarning, hide: 0 });
+                        }
+
+                        warning += dataRegExpWarning + '\n';
+                    }
+                }
+            }
+        }
+
+        return warning;
+    },
+    /*#endregion*/
+
+    /*#region 函数:getDataStorage(options)*/
+    getDataStorage: function(options)
+    {
+        if (typeof (options) == 'undefined')
+        {
+            options = {};
+        }
+
+        if (typeof (options.storageType) == 'undefined')
+        {
+            options.storageType = 'JSON';
+        }
+
+        options.storageType = options.storageType.toUpperCase();
+
+        if (typeof (options.includeajaxStorageNode) == 'undefined')
+        {
+            options.includeajaxStorageNode = (options.storageType === 'JSON' ? true : false);
+        }
+
+        if (options.storageType === 'JSON')
+        {
+            return x.customForm.getJSONDataStorage(options);
+        }
+        else
+        {
+            return x.customForm.getXMLDataStorage(options);
+        }
+    },
+    /*#endregion*/
+
+    /*#region 函数:getJSONDataStorage(options)*/
+    getJSONDataStorage: function(options)
+    {
+        var dataStorage = '';
+
+        if (options.includeajaxStorageNode)
+        {
+            dataStorage = '{ajaxStorage:{'
+        }
+
+        var list = $('*');
+
+        list.each(function(index, node)
+        {
+            try
+            {
+                if (typeof (node.id) === 'undefined' || node.id === '')
+                {
+                    return;
+                }
+
+                var dataType = $(node).attr('dataType');
+
+                if (dataType !== null && typeof (dataType) !== "undefined")
+                {
+                    switch (dataType)
+                    {
+                        case 'value':
+                            dataStorage += '"' + node.id + '":"' + x.toSafeJSON($(node).val().trim()) + '",';
+                            break;
+                        case 'html':
+                            dataStorage += '"' + node.id + '":"' + x.toSafeJSON($(node).html().trim()) + '",';
+                            break;
+                        case 'checkbox':
+                            dataStorage += '"' + node.id + '":[';
+
+                            if ($(document.getElementsByName(node.id)).size() === 0)
+                            {
+                                dataStorage += '],';
+                                break;
+                            }
+
+                            var checkboxGroupName = node.id;
+
+                            $(document.getElementsByName(node.id)).each(function(index, node)
+                            {
+                                if (checkboxGroupName === node.name && node.type.toLowerCase() === 'checkbox')
+                                {
+                                    dataStorage += '{"text":"' + $(node).attr('text') + '", "value":"' + x.toSafeJSON($(node).val()) + '", "checked":' + node.checked + '},';
+                                }
+                            });
+
+                            if (dataStorage.substr(dataStorage.length - 1, 1) === ',')
+                            {
+                                dataStorage = dataStorage.substr(0, dataStorage.length - 1);
+                            }
+
+                            dataStorage += '],';
+
+                            break;
+
+                        case 'list':
+                            dataStorage += '"' + node.id + '":[';
+
+                            if ($(this).find('.list-item').size() === 0)
+                            {
+                                dataStorage += '],';
+                                break;
+                            }
+
+                            $(this).find('.list-item').each(function(index, node)
+                            {
+                                dataStorage += '[';
+
+                                $(this).find('.list-item-colum').each(function(index, node)
+                                {
+                                    if ($(node).hasClass('data-type-html'))
+                                    {
+                                        dataStorage += '"' + x.toSafeJSON($(node).html().trim()) + '",';
+                                    }
+                                    else
+                                    {
+                                        dataStorage += '"' + x.toSafeJSON($(node).val().trim()) + '",';
+                                    }
+                                });
+
+                                if (dataStorage.substr(dataStorage.length - 1, 1) === ',')
+                                {
+                                    dataStorage = dataStorage.substr(0, dataStorage.length - 1);
+                                }
+
+                                dataStorage += '],';
+                            });
+
+                            if (dataStorage.substr(dataStorage.length - 1, 1) === ',')
+                            {
+                                dataStorage = dataStorage.substr(0, dataStorage.length - 1);
+                            }
+
+                            dataStorage += '],';
+
+                            break;
+
+                        case 'table':
+                            dataStorage += '"' + node.id + '":[';
+
+                            $('#' + node.id).find('tr').each(function(index, node)
+                            {
+                                if ($(this).find('.table-td-item').size() === 0)
+                                {
+                                    return;
+                                }
+
+                                dataStorage += '[';
+
+                                $(this).find('.table-td-item').each(function(index, node)
+                                {
+                                    if ($(node).hasClass('data-type-html'))
+                                    {
+                                        dataStorage += '"' + x.toSafeJSON($(node).html().trim()) + '",';
+                                    }
+                                    else
+                                    {
+                                        dataStorage += '"' + x.toSafeJSON($(node).val().trim()) + '",';
+                                    }
+                                });
+
+                                if (dataStorage.substr(dataStorage.length - 1, 1) === ',')
+                                    dataStorage = dataStorage.substr(0, dataStorage.length - 1);
+
+                                dataStorage += '],';
+                            });
+
+                            if (dataStorage.substr(dataStorage.length - 1, 1) === ',')
+                                dataStorage = dataStorage.substr(0, dataStorage.length - 1);
+
+                            dataStorage += '],';
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (ex)
+            {
+                x.debug.error(ex);
+            }
+        });
+
+        if (dataStorage.substr(dataStorage.length - 1, 1) === ',')
+        {
+            dataStorage = dataStorage.substr(0, dataStorage.length - 1);
+        }
+
+        if (options.includeajaxStorageNode)
+        {
+            dataStorage += '}}';
+        }
+
+        return dataStorage;
+    },
+    /*#endregion*/
+
+    /*#region 函数:getXMLDataStorage(options)*/
+    getXMLDataStorage: function(options)
+    {
+        var dataStorage = '';
+
+        if (typeof (options) == 'undefined')
+        {
+            options = { includeajaxStorageNode: false };
+        }
+
+        if (options.includeajaxStorageNode)
+        {
+            outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+            outString += '&lt;ajaxStorage>';
+        }
+
+        var list = $('*');
+
+        list.each(function(index, node)
+        {
+            try
+            {
+                if (typeof (node.id) === 'undefined' || node.id === '')
+                {
+                    return;
+                }
+
+                var dataType = $(node).attr('dataType');
+
+                if (dataType !== null && typeof (dataType) !== "undefined")
+                {
+                    switch (dataType)
+                    {
+                        case 'value':
+                            dataStorage += '&lt;' + node.id + '>&lt;![CDATA[' + $(node).val().trim() + ']]>&lt;/' + node.id + '>';
+                            break;
+                        case 'html':
+                            dataStorage += '&lt;' + node.id + '>&lt;![CDATA[' + $(node).html().trim() + ']]>&lt;/' + node.id + '>';
+                            break;
+                        case 'select':
+
+                            if ($(node).get(0).selectedIndex !== -1)
+                            {
+                                dataStorage += '&lt;' + node.id + '>&lt;![CDATA[' + x.toSafeJSON($(node).get(0)[$(node).get(0).selectedIndex].value.trim()) + ']]>&lt;/' + node.id + '>';
+                            }
+                            else
+                            {
+                                dataStorage += '&lt;' + node.id + '>&lt;/' + node.id + '>';
+                            }
+                            break;
+
+                        case 'checkbox':
+                            var checkboxs = document.getElementsByName("check" + node.id);
+                            var checkboxsResult = "";
+                            for (var i = 0; i &lt; checkboxs.length; i++)
+                            {
+                                if (checkboxs[i].checked)
+                                {
+                                    checkboxsResult += checkboxs[i].value + ';';
+                                }
+                            }
+
+                            if (checkboxsResult !== '')
+                            {
+                                checkboxsResult = checkboxsResult.substring(0, checkboxsResult.length - 1);
+                                dataStorage += '&lt;' + node.id + '>&lt;![CDATA[' + checkboxsResult + ']]>&lt;/' + node.id + '>';
+                            }
+                            else
+                            {
+                                var notSelectedDefaultValue = $(node).attr('notSelectedDefaultValue');
+
+                                if (notSelectedDefaultValue == undefined)
+                                {
+                                    dataStorage += '&lt;' + node.id + '>&lt;![CDATA[' + "" + ']]>&lt;/' + node.id + '>';
+                                }
+                                else
+                                {
+                                    dataStorage += '&lt;' + node.id + '>&lt;![CDATA[' + notSelectedDefaultValue + ']]>&lt;/' + node.id + '>';
+                                }
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (ex)
+            {
+                x.debug.error(ex);
+            }
+        });
+
+        if (options.includeajaxStorageNode)
+        {
+            dataStorage += '&lt;/ajaxStorage>';
+        }
+
+        return dataStorage;
+    },
+    /*#endregion*/
+
+    /*#region 函数:getReminderHistoryWindow(entityId, entityClassName, container)*/
+    /*
+    * 获取推荐情况列表
+    */
+    getReminderHistoryWindow: function(entityId, entityClassName, container)
+    {
+        var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+        outString += '&lt;ajaxStorage>';
+        outString += '&lt;customTableName>&lt;![CDATA[tb_CustomForm_OperationLog]]>&lt;/customTableName>';
+        outString += '&lt;entityId>&lt;![CDATA[' + entityId + ']]>&lt;/entityId>';
+        outString += '&lt;entityClassName>&lt;![CDATA[' + entityClassName + ']]>&lt;/entityClassName>';
+        outString += '&lt;operationType>&lt;![CDATA[1]]>&lt;/operationType>';
+        outString += '&lt;/ajaxStorage>';
+
+        x.cookies.add('customForm$getReminderHistoryWindow$entityId', entityId);
+        x.cookies.add('customForm$getReminderHistoryWindow$entityClassName', entityClassName);
+        x.cookies.add('customForm$getReminderHistoryWindow$container', $(container).get(0).id);
+
+        x.net.xhr('/api/kernel.entities.operationLog.findAllByEntityId.aspx', outString, {
+            callback: function(response)
+            {
+                // 返回信息
+
+                var outString = '';
+
+                var list = x.toJSON(response).ajaxStorage;
+
+                if (list.length > 0)
+                {
+                    outString += '&lt;table style="width: 100%;" class="table-style table-full-border-style-table">';
+
+                    outString += '&lt;tbody>';
+                    outString += '&lt;tr class="table-row-title">';
+                    outString += '&lt;th style="width: 80px;">催办人&lt;/th>';
+                    outString += '&lt;th>催办情况&lt;/th>';
+                    outString += '&lt;th style="width: 120px;">催办时间&lt;/th>';
+                    outString += '&lt;/tr>';
+
+                    list.each(function(node, index)
+                    {
+                        outString += '&lt;tr class="table-row-normal" >';
+                        outString += '&lt;td>' + node.accountName + '&lt;/td>';
+                        outString += '&lt;td>向【' + node.toAuthorizationObjectName + '】发送了一条催办信息。&lt;/td>';
+                        outString += '&lt;td>' + x.date.newTime(node.createDate).toString('yyyy-MM-dd HH:mm:ss') + '&lt;/td>';
+                        outString += '&lt;/tr>';
+                    });
+
+                    outString += '&lt;/tbody>';
+                    outString += '&lt;/table>';
+                }
+
+                if (x.cookies.find('customForm$getReminderHistoryWindow$container') === '')
+                {
+                    $("#windowCustomFormReminderHistoryContainer").html(outString);
+                }
+                else
+                {
+                    $(document.getElementById(x.cookies.find('customForm$getReminderHistoryWindow$container'))).html(outString);
+                }
+
+                x.cookies.remove('customForm$getReminderHistoryWindow$container');
+            }
+        });
+    },
+    /*#endregion*/
+
+    /*#region 函数:getRecommendHistoryWindow(entityId, entityClassName, container)*/
+    /*
+    * 获取推荐情况列表
+    */
+    getRecommendHistoryWindow: function(entityId, entityClassName, container)
+    {
+        var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+        outString += '&lt;ajaxStorage>';
+        outString += '&lt;customTableName>&lt;![CDATA[tb_CustomForm_OperationLog]]>&lt;/customTableName>';
+        outString += '&lt;entityId>&lt;![CDATA[' + entityId + ']]>&lt;/entityId>';
+        outString += '&lt;entityClassName>&lt;![CDATA[' + entityClassName + ']]>&lt;/entityClassName>';
+        outString += '&lt;operationType>&lt;![CDATA[2]]>&lt;/operationType>';
+        outString += '&lt;/ajaxStorage>';
+
+        x.cookies.add('customForm$getRecommendHistoryWindow$entityId', entityId);
+        x.cookies.add('customForm$getRecommendHistoryWindow$entityClassName', entityClassName);
+        x.cookies.add('customForm$getRecommendHistoryWindow$container', $(container).get(0).id);
+
+        x.net.xhr('/api/kernel.entities.operationLog.findAllByEntityId.aspx', outString, {
+            callback: function(response)
+            {
+                // 返回信息
+
+                var outString = '';
+
+                var list = x.toJSON(response).ajaxStorage;
+
+                if (list.length > 0)
+                {
+                    outString += '&lt;table style="width: 100%;" class="table-style table-full-border-style-table">';
+
+                    outString += '&lt;tbody>';
+                    outString += '&lt;tr class="table-row-title">';
+                    outString += '&lt;th style="width: 80px;">推荐人&lt;/th>';
+                    outString += '&lt;th>推荐情况&lt;/th>';
+                    outString += '&lt;th style="width: 120px;">推荐时间&lt;/th>';
+                    outString += '&lt;/tr>';
+
+                    list.each(function(node, index)
+                    {
+                        outString += '&lt;tr class="table-row-normal" >';
+                        outString += '&lt;td>' + node.accountName + '&lt;/td>';
+                        outString += '&lt;td>推荐给【' + node.toAuthorizationObjectName + '】，推荐原因：' + node.reason + '。&lt;/td>';
+                        outString += '&lt;td>' + x.date.newTime(node.createDate).toString('yyyy-MM-dd HH:mm:ss') + '&lt;/td>';
+                        outString += '&lt;/tr>';
+                    });
+
+                    outString += '&lt;/tbody>';
+                    outString += '&lt;/table>';
+                }
+
+                if (x.cookies.find('customForm$getRecommendHistoryWindow$container') === '')
+                {
+                    $("#windowCustomFormRecommendHistoryContainer").html(outString);
+                }
+                else
+                {
+                    $(document.getElementById(x.cookies.find('customForm$getRecommendHistoryWindow$container'))).html(outString);
+                }
+
+                x.cookies.remove('customForm$getRecommendHistoryWindow$container');
+            }
+        });
+    },
+    /*#endregion*/
+
+    /*#region 函数:getImplementationHistoryWindow(entityId, entityClassName, container)*/
+    /*
+    * 获取落实情况列表
+    */
+    getImplementationHistoryWindow: function(entityId, entityClassName, container)
+    {
+        var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+        outString += '&lt;ajaxStorage>';
+        outString += '&lt;entityId>&lt;![CDATA[' + entityId + ']]>&lt;/entityId>';
+        outString += '&lt;entityClassName>&lt;![CDATA[' + entityClassName + ']]>&lt;/entityClassName>';
+        outString += '&lt;/ajaxStorage>';
+
+        x.cookies.add('customForm$getImplementationHistoryWindow$entityId', entityId);
+        x.cookies.add('customForm$getImplementationHistoryWindow$entityClassName', entityClassName);
+        x.cookies.add('customForm$getImplementationHistoryWindow$container', $(container).get(0).id);
+
+        x.net.xhr('/api/kernel.entities.implementation.findAllByEntityId.aspx', outString, {
+            callback: function(response)
+            {
+                // 返回信息
+
+                var outString = '';
+
+                var list = x.toJSON(response).ajaxStorage;
+
+                if (list.length === 0)
+                {
+                    outString += '&lt;div style="height:30px;">&lt;/div>';
+                }
+                else
+                {
+                    outString += '&lt;table style="width: 100%;" class="table-style table-full-border-style-table">';
+
+                    outString += '&lt;tbody>';
+                    outString += '&lt;tr class="table-row-title">';
+                    outString += '&lt;th style="width: 80px;">提交人&lt;/th>';
+                    outString += '&lt;th style="width: 120px;">完成情况&lt;/th>';
+                    outString += '&lt;th>详细情况描述&lt;/th>';
+                    outString += '&lt;th style="width: 120px;">提交时间&lt;/th>';
+                    outString += '&lt;/tr>';
+
+                    list.each(function(node, index)
+                    {
+                        var classNameValue = "table-row-normal" + ((index + 1) === list.length ? '-transparent' : '');
+
+                        outString += '&lt;tr class="' + classNameValue + '">';
+                        outString += '&lt;td>' + node.accountName + '&lt;/td>';
+                        outString += '&lt;td>' + node.completionStatus + '&lt;/td>';
+                        outString += '&lt;td>' + node.workContent + '&lt;/td>';
+                        outString += '&lt;td>' + x.date.newTime(node.createDate).toString('yyyy-MM-dd HH:mm:ss') + '&lt;/td>';
+                        outString += '&lt;/tr>';
+                    });
+
+                    outString += '&lt;/tbody>';
+                    outString += '&lt;/table>';
+                }
+
+                $(document.getElementById(x.cookies.find('customForm$getImplementationHistoryWindow$container'))).html(outString);
+
+                x.cookies.remove('customForm$getImplementationHistoryWindow$container');
+            }
+        });
+    },
+    /*#endregion*/
+
+    /*#region 函数:setColorStatusView(statusView)*/
+    /*
+    * 获取落实情况列表
+    */
+    setColorStatusView: function(statusView)
+    {
+        switch (statusView)
+        {
+            case '-1':
+            case '草稿':
+                return '&lt;span style="color:tomato;" >草稿&lt;/span>';
+            case '0':
+            case '禁用':
+                return '&lt;span class="red-text" >禁用&lt;/span>';
+            case '1':
+            case '启用':
+                return '&lt;span class="green-text" >启用&lt;/span>';
+            case '2':
+            case '回收':
+                return '&lt;span class="gray-text" >回收&lt;/span>';
+            default:
+                return statusView;
+        }
+    },
+    /*#endregion*/
+
+    /*#region 函数:setColorDocStatusView(docStatusView)*/
+    /*
+    * 获取落实情况列表
+    */
+    setColorDocStatusView: function(docStatusView)
+    {
+        switch (docStatusView)
+        {
+            case 'Draft':
+            case '草稿':
+                return '&lt;span style="color:tomato;" >草稿&lt;/span>';
+            case 'Published':
+            case '已发布':
+                return '&lt;span class="green-text" >已发布&lt;/span>';
+            case 'Overdue':
+            case '已过期':
+                return '&lt;span class="gray-text" >已过期&lt;/span>';
+            case 'Abandon':
+            case '废弃':
+                return '&lt;span class="gray-text" >废弃&lt;/span>';
+            case 'Review':
+            case '会签':
+                return '&lt;span style="color:orange;" >会签&lt;/span>';
+            case 'ProofreadDraft':
+            case '校稿前草稿':
+                return '&lt;span class="blue-text" >校稿前草稿&lt;/span>';
+            case 'Proofreading':
+            case '校稿中':
+                return '&lt;span class="blue-text" >校稿中&lt;/span>';
+            case 'Approving':
+            case '审批中':
+                return '&lt;span class="blue-text" >审批中&lt;/span>';
+            case 'Rejected':
+            case '被驳回':
+                return '&lt;span class="red-text" >被驳回&lt;/span>';
+            case 'Archived':
+            case '归档':
+                return '&lt;span >归档&lt;/span>';
+            default:
+                return docStatusView;
+        }
+    },
+    /*#endregion*/
+
+    /*
+    * 工作流管理
+    */
+    workflow: {
+
+        /*#region 函数:commit()*/
+        /*
+        * 提交
+        */
+        commit: function()
+        {
+            if (x.customForm.checkDataStorage()) { return; }
+
+            var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+            outString += '&lt;ajaxStorage>';
+            outString += '&lt;action>&lt;![CDATA[commitWorkflowRequest]]>&lt;/action>';
+            outString += '&lt;id>&lt;![CDATA[' + $('#customFormInstanceId').val() + ']]>&lt;/id>';
+            outString += '&lt;code>&lt;![CDATA[' + $('#customFormInstanceCode').val() + ']]>&lt;/code>';
+            outString += '&lt;entityId>&lt;![CDATA[' + $('#customFormInstanceEntityId').val() + ']]>&lt;/entityId>';
+            outString += '&lt;entityClassName>&lt;![CDATA[' + $('#customFormInstanceEntityClassName').val() + ']]>&lt;/entityClassName>';
+            outString += '&lt;templateId>&lt;![CDATA[' + $('#customFormInstanceTemplateId').val() + ']]>&lt;/templateId>';
+            outString += '&lt;accountId>&lt;![CDATA[' + $('#customFormInstanceAccountId').val() + ']]>&lt;/accountId>';
+            outString += '&lt;title>&lt;![CDATA[' + $('#customFormInstanceTitle').val() + ']]>&lt;/title>';
+            outString += '&lt;dataStorage>&lt;![CDATA[' + x.customForm.getDataStorage() + ']]>&lt;/dataStorage>';
+            outString += '&lt;beginDate>&lt;![CDATA[' + $('#customFormInstanceBeginDate').val() + ']]>&lt;/beginDate>';
+            outString += '&lt;endDate>&lt;![CDATA[' + $('#customFormInstanceEndDate').val() + ']]>&lt;/endDate>';
+            if ($('#customFormInstanceFinishedAlertScopeText').size() === 1)
+            {
+                outString += '&lt;finishedAlertScopeText>&lt;![CDATA[' + $('#customFormInstanceFinishedAlertScopeText').val() + ']]>&lt;/finishedAlertScopeText>';
+            }
+            if ($('#customFormInstanceCorporationId').size() === 1)
+            {
+                outString += '&lt;corporationId>&lt;![CDATA[' + $('#customFormInstanceCorporationId').val() + ']]>&lt;/corporationId>';
+            }
+            if ($('#customFormInstanceProjectId').size() === 1)
+            {
+                outString += '&lt;projectId>&lt;![CDATA[' + $('#customFormInstanceProjectId').val() + ']]>&lt;/projectId>';
+            }
+            if ($('#customFormInstanceWorkflowTemplateEditable').val() === '1')
+            {
+                outString += '&lt;workflowTemplateText>&lt;![CDATA[' + x.workflow.designtime.createDesignXml() + ']]>&lt;/workflowTemplateText>';
+            }
+            else
+            {
+                outString += '&lt;workflowTemplateId>&lt;![CDATA[' + $('#customFormInstanceWorkflowTemplateId').val() + ']]>&lt;/workflowTemplateId>';
+            }
+            outString += '&lt;/ajaxStorage>';
+
+            x.net.xhr('/api/custom.forms.instace.commitWorkflowRequest.aspx', outString, {
+                waitingMessage: '正在提交数据，请稍候……',
+                popResultValue: 1,
+                callback: function(response)
+                {
+                    x.page.close();
+                }
+            });
+        },
+        /*#endregion*/
+
+        /*#region 函数:transactWindow(accountName, time)*/
+        transactWindow: function(accountName, time)
+        {
+            var outString = '&lt;table class="table-style" style="width:100%; margin-top:10px;">';
+
+            outString += '&lt;tr>';
+            outString += '&lt;td class="table-body-text" style="width:80px" >审批人&lt;/td>';
+            outString += '&lt;td class="table-body-input" >&lt;input id="accountId" class="input-normal" type="text" style="width:360px" value="' + accountName + '" />&lt;/td>';
+            outString += '&lt;/tr>';
+            outString += '&lt;tr>';
+            outString += '&lt;td class="table-body-text" >意见&lt;/td>';
+            outString += '&lt;td class="table-body-input" >&lt;textarea id="__idea" class="textarea-normal" style="width:360px;height:120px;" >&lt;/textarea>&lt;/td>';
+            outString += '&lt;/tr>';
+            outString += '&lt;tr>';
+            outString += '&lt;td class="table-body-text" >时间&lt;/td>';
+            outString += '&lt;td class="table-body-input" >&lt;span>' + time + '&lt;/span>&lt;/td>';
+            outString += '&lt;/tr>';
+            outString += '&lt;tr>';
+            outString += '&lt;td class="table-body-text" >&lt;/td>';
+            outString += '&lt;td class="table-body-input" >';
+            outString += '&lt;input id="" type="button" class="button" value="确定" style="margin-right:10px;" onclick="$(\'#idea\').val($(\'#__idea\').val());x.customForm.workflow.transact();" >';
+            outString += '&lt;input id="" type="button" class="button" value="取消" onclick="x.ui.modalbox.hide();" >';
+            outString += '&lt;/td>';
+            outString += '&lt;/tr>';
+            outString += '&lt;/table>';
+
+            x.ui.modalbox.width = 500;
+            x.ui.modalbox.height = 300;
+
+            x.ui.modalbox.show(outString);
+        },
+        /*#endregion*/
+
+        /*#region 函数:transact()*/
+        /*
+        * 审批, 包括会签, 审核, 批准.
+        */
+        transact: function()
+        {
+            if (x.customForm.checkDataStorage()) { return; }
+
+            x.ui.modalbox.hide();
+
+            var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+            outString += '&lt;ajaxStorage>';
+            outString += '&lt;id>&lt;![CDATA[' + $('#customFormInstanceId').val() + ']]>&lt;/id>';
+            outString += '&lt;code>&lt;![CDATA[' + $('#customFormInstanceCode').val() + ']]>&lt;/code>';
+            outString += '&lt;entityId>&lt;![CDATA[' + $('#customFormInstanceEntityId').val() + ']]>&lt;/entityId>';
+            outString += '&lt;entityClassName>&lt;![CDATA[' + $('#customFormInstanceEntityClassName').val() + ']]>&lt;/entityClassName>';
+            outString += '&lt;templateId>&lt;![CDATA[' + $('#customFormInstanceTemplateId').val() + ']]>&lt;/templateId>';
+            outString += '&lt;accountId>&lt;![CDATA[' + $('#customFormInstanceAccountId').val() + ']]>&lt;/accountId>';
+            outString += '&lt;title>&lt;![CDATA[' + $('#customFormInstanceTitle').val() + ']]>&lt;/title>';
+            outString += '&lt;dataStorage>&lt;![CDATA[' + x.customForm.getDataStorage() + ']]>&lt;/dataStorage>';
+            outString += '&lt;beginDate>&lt;![CDATA[' + $('#customFormInstanceBeginDate').val() + ']]>&lt;/beginDate>';
+            outString += '&lt;endDate>&lt;![CDATA[' + $('#customFormInstanceEndDate').val() + ']]>&lt;/endDate>';
+            if ($('#customFormInstanceFinishedAlertScopeText').size() === 1)
+            {
+                outString += '&lt;finishedAlertScopeText>&lt;![CDATA[' + $('#customFormInstanceFinishedAlertScopeText').val() + ']]>&lt;/finishedAlertScopeText>';
+            }
+            if ($('#customFormInstanceCorporationId').size() === 1)
+            {
+                outString += '&lt;corporationId>&lt;![CDATA[' + $('#customFormInstanceCorporationId').val() + ']]>&lt;/corporationId>';
+            }
+            if ($('#customFormInstanceProjectId').size() === 1)
+            {
+                outString += '&lt;projectId>&lt;![CDATA[' + $('#customFormInstanceProjectId').val() + ']]>&lt;/projectId>';
+            }
+            if ($('#customFormInstanceWorkflowTemplateEditable').val() === '1')
+            {
+                if ($("#windowDesignTemplateContainer").html() == '')
+                {
+                    alert("正在加载流程模板,可点击审批流程页签查看流程模板加载情况。")
+                    return;
+                }
+                outString += '&lt;workflowTemplateText>&lt;![CDATA[' + x.workflow.designtime.createDesignXml() + ']]>&lt;/workflowTemplateText>';
+            }
+            else
+            {
+                outString += '&lt;workflowTemplateId>&lt;![CDATA[' + $('#customFormInstanceWorkflowTemplateId').val() + ']]>&lt;/workflowTemplateId>';
+            }
+            outString += '&lt;workflowNodeId>&lt;![CDATA[' + $('#customFormInstanceWorkflowNodeId').val() + ']]>&lt;/workflowNodeId>';
+            outString += '&lt;workflowHistoryNodeId>&lt;![CDATA[' + $('#customFormInstanceWorkflowHistoryNodeId').val() + ']]>&lt;/workflowHistoryNodeId>';
+            outString += '&lt;idea>&lt;![CDATA[' + ($('#idea').val() === '' ? '同意' : $('#idea').val()) + ']]>&lt;/idea>';
+            outString += '&lt;/ajaxStorage>';
+
+            x.net.xhr('/api/custom.forms.instace.transactWorkflowRequest.aspx', outString, {
+                waitingMessage: '正在提交数据，请稍候……',
+                popResultValue: 1,
+                callback: function(response)
+                {
+                    x.page.close();
+                }
+            });
+        },
+        /*#endregion*/
+
+        /*#region 函数:gotoStartNodeWindow(accountName, time)*/
+        gotoStartNodeWindow: function(accountName, time)
+        {
+            var outString = '&lt;table class="table-style" style="width:100%; margin-top:10px;">';
+
+            outString += '&lt;tr>';
+            outString += '&lt;td class="table-body-text" style="width:80px" >驳回人&lt;/td>';
+            outString += '&lt;td class="table-body-input" >&lt;input id="accountId" class="input-normal" type="text" style="width:360px" value="' + accountName + '" />&lt;/td>';
+            outString += '&lt;/tr>';
+            outString += '&lt;tr>';
+            outString += '&lt;td class="table-body-text" >意见&lt;/td>';
+            outString += '&lt;td class="table-body-input" >&lt;textarea id="__idea" class="textarea-normal" style="width:360px;height:120px;" >&lt;/textarea>&lt;/td>';
+            outString += '&lt;/tr>';
+            outString += '&lt;tr>';
+            outString += '&lt;td class="table-body-text" >时间&lt;/td>';
+            outString += '&lt;td class="table-body-input" >&lt;span>' + time + '&lt;/span>&lt;/td>';
+            outString += '&lt;/tr>';
+            outString += '&lt;tr>';
+            outString += '&lt;td class="table-body-text" >&lt;/td>';
+            outString += '&lt;td class="table-body-input" >';
+            outString += '&lt;input id="" type="button" class="button" value="确定" style="margin-right:10px;" onclick="if($(\'#__idea\').val().trim() === \'\'){ alert(\'驳回必须填写意见.\'); return;} $(\'#idea\').val($(\'#__idea\').val());x.customForm.workflow.gotoStartNode();" >';
+            outString += '&lt;input id="" type="button" class="button" value="取消" onclick="x.ui.modalbox.hide();" >';
+            outString += '&lt;/td>';
+            outString += '&lt;/tr>';
+            outString += '&lt;/table>';
+
+            x.ui.modalbox.width = 500;
+            x.ui.modalbox.height = 300;
+
+            x.ui.modalbox.show(outString);
+        },
+        /*#endregion*/
+
+        /*#region 函数:gotoStartNode()*/
+        /*
+        * 驳回
+        */
+        gotoStartNode: function()
+        {
+            if (x.customForm.checkDataStorage()) { return; }
+
+            x.ui.modalbox.hide();
+
+            var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+            outString += '&lt;ajaxStorage>';
+            outString += '&lt;id>&lt;![CDATA[' + $('#customFormInstanceId').val() + ']]>&lt;/id>';
+            outString += '&lt;code>&lt;![CDATA[' + $('#customFormInstanceCode').val() + ']]>&lt;/code>';
+            outString += '&lt;entityId>&lt;![CDATA[' + $('#customFormInstanceEntityId').val() + ']]>&lt;/entityId>';
+            outString += '&lt;entityClassName>&lt;![CDATA[' + $('#customFormInstanceEntityClassName').val() + ']]>&lt;/entityClassName>';
+            outString += '&lt;templateId>&lt;![CDATA[' + $('#customFormInstanceTemplateId').val() + ']]>&lt;/templateId>';
+            outString += '&lt;accountId>&lt;![CDATA[' + $('#customFormInstanceAccountId').val() + ']]>&lt;/accountId>';
+            outString += '&lt;title>&lt;![CDATA[' + $('#customFormInstanceTitle').val() + ']]>&lt;/title>';
+            outString += '&lt;dataStorage>&lt;![CDATA[' + x.customForm.getDataStorage() + ']]>&lt;/dataStorage>';
+            outString += '&lt;beginDate>&lt;![CDATA[' + $('#customFormInstanceBeginDate').val() + ']]>&lt;/beginDate>';
+            outString += '&lt;endDate>&lt;![CDATA[' + $('#customFormInstanceEndDate').val() + ']]>&lt;/endDate>';
+            if ($('#customFormInstanceFinishedAlertScopeText').size() === 1)
+            {
+                outString += '&lt;finishedAlertScopeText>&lt;![CDATA[' + $('#customFormInstanceFinishedAlertScopeText').val() + ']]>&lt;/finishedAlertScopeText>';
+            }
+            if ($('#customFormInstanceCorporationId').size() === 1)
+            {
+                outString += '&lt;corporationId>&lt;![CDATA[' + $('#customFormInstanceCorporationId').val() + ']]>&lt;/corporationId>';
+            }
+            if ($('#customFormInstanceProjectId').size() === 1)
+            {
+                outString += '&lt;projectId>&lt;![CDATA[' + $('#customFormInstanceProjectId').val() + ']]>&lt;/projectId>';
+            }
+            if ($('#customFormInstanceWorkflowTemplateEditable').val() === '1')
+            {
+                outString += '&lt;workflowTemplateText>&lt;![CDATA[' + x.workflow.designtime.createDesignXml() + ']]>&lt;/workflowTemplateText>';
+            }
+            else
+            {
+                outString += '&lt;workflowTemplateId>&lt;![CDATA[' + $('#customFormInstanceWorkflowTemplateId').val() + ']]>&lt;/workflowTemplateId>';
+            }
+            outString += '&lt;workflowNodeId>&lt;![CDATA[' + $('#customFormInstanceWorkflowNodeId').val() + ']]>&lt;/workflowNodeId>';
+            outString += '&lt;workflowHistoryNodeId>&lt;![CDATA[' + $('#customFormInstanceWorkflowHistoryNodeId').val() + ']]>&lt;/workflowHistoryNodeId>';
+            outString += '&lt;idea>&lt;![CDATA[' + $('#idea').val() + ']]>&lt;/idea>';
+            outString += '&lt;/ajaxStorage>';
+
+            x.net.xhr('/api/custom.forms.instace.gotoStartNodeWorkflowRequest.aspx', outString, {
+                waitingMessage: '正在提交数据，请稍候……',
+                popResultValue: 1,
+                callback: function(response)
+                {
+                    x.page.close();
+                }
+            });
+        },
+        /*#endregion*/
+
+        /*#region 函数:gotoRejectNode()*/
+        /*
+        * 返回到被驳回节点
+        */
+        gotoRejectNode: function()
+        {
+            if (x.customForm.checkDataStorage()) { return; }
+
+            x.ui.modalbox.hide();
+
+            if ($('#windowDesignTemplateContainer').html() === '') { return false; }
+
+            var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+            outString += '&lt;ajaxStorage>';
+            outString += '&lt;action>&lt;![CDATA[gotoRejectNodeWorkflowRequest]]>&lt;/action>';
+            outString += '&lt;id>&lt;![CDATA[' + $('#customFormInstanceId').val() + ']]>&lt;/id>';
+            outString += '&lt;code>&lt;![CDATA[' + $('#customFormInstanceCode').val() + ']]>&lt;/code>';
+            outString += '&lt;entityId>&lt;![CDATA[' + $('#customFormInstanceEntityId').val() + ']]>&lt;/entityId>';
+            outString += '&lt;entityClassName>&lt;![CDATA[' + $('#customFormInstanceEntityClassName').val() + ']]>&lt;/entityClassName>';
+            outString += '&lt;templateId>&lt;![CDATA[' + $('#customFormInstanceTemplateId').val() + ']]>&lt;/templateId>';
+            outString += '&lt;accountId>&lt;![CDATA[' + $('#customFormInstanceAccountId').val() + ']]>&lt;/accountId>';
+            outString += '&lt;title>&lt;![CDATA[' + $('#customFormInstanceTitle').val() + ']]>&lt;/title>';
+            outString += '&lt;dataStorage>&lt;![CDATA[' + x.customForm.getDataStorage() + ']]>&lt;/dataStorage>';
+            outString += '&lt;beginDate>&lt;![CDATA[' + $('#customFormInstanceBeginDate').val() + ']]>&lt;/beginDate>';
+            outString += '&lt;endDate>&lt;![CDATA[' + $('#customFormInstanceEndDate').val() + ']]>&lt;/endDate>';
+            if ($('#customFormInstanceFinishedAlertScopeText').size() === 1)
+            {
+                outString += '&lt;finishedAlertScopeText>&lt;![CDATA[' + $('#customFormInstanceFinishedAlertScopeText').val() + ']]>&lt;/finishedAlertScopeText>';
+            }
+            if ($('#customFormInstanceCorporationId').size() === 1)
+            {
+                outString += '&lt;corporationId>&lt;![CDATA[' + $('#customFormInstanceCorporationId').val() + ']]>&lt;/corporationId>';
+            }
+            if ($('#customFormInstanceProjectId').size() === 1)
+            {
+                outString += '&lt;projectId>&lt;![CDATA[' + $('#customFormInstanceProjectId').val() + ']]>&lt;/projectId>';
+            }
+            if ($('#customFormInstanceWorkflowTemplateEditable').val() === '1')
+            {
+                outString += '&lt;workflowTemplateText>&lt;![CDATA[' + x.workflow.designtime.createDesignXml() + ']]>&lt;/workflowTemplateText>';
+            }
+            else
+            {
+                outString += '&lt;workflowTemplateId>&lt;![CDATA[' + $('#customFormInstanceWorkflowTemplateId').val() + ']]>&lt;/workflowTemplateId>';
+            }
+            outString += '&lt;workflowNodeId>&lt;![CDATA[' + $('#customFormInstanceWorkflowNodeId').val() + ']]>&lt;/workflowNodeId>';
+            outString += '&lt;workflowHistoryNodeId>&lt;![CDATA[' + $('#customFormInstanceWorkflowHistoryNodeId').val() + ']]>&lt;/workflowHistoryNodeId>';
+            outString += '&lt;idea>&lt;![CDATA[驳回后，重新提交。]]>&lt;/idea>';
+            outString += '&lt;/ajaxStorage>';
+
+            x.net.xhr('/api/custom.forms.instace.gotoRejectNodeWorkflowRequest.aspx', outString, {
+                waitingMessage: '正在提交数据，请稍候……',
+                popResultValue: 1,
+                callback: function(response)
+                {
+                    x.page.close();
+                }
+            });
+        },
+        /*#endregion*/
+
+        /*#region 函数:reminder(options)*/
+        reminder: function(options)
+        {
+            if (confirm('确定发送催办消息给审批人?'))
+            {
+                var outString = '&lt;?xml version="1.0" encoding="utf-8"?>';
+                outString += '&lt;ajaxStorage>';
+                if (typeof (options.clientTargetObject) !== 'undefined')
+                {
+                    outString += '&lt;clientTargetObject>&lt;![CDATA[' + options.clientTargetObject + ']]>&lt;/clientTargetObject>';
+                }
+                outString += '&lt;customTableName>&lt;![CDATA[' + options.customTableName + ']]>&lt;/customTableName>';
+                outString += '&lt;entityId>&lt;![CDATA[' + options.entityId + ']]>&lt;/entityId>';
+                outString += '&lt;entityClassName>&lt;![CDATA[' + options.entityClassName + ']]>&lt;/entityClassName>';
+                outString += '&lt;workflowInstanceId>&lt;![CDATA[' + options.workflowInstanceId + ']]>&lt;/workflowInstanceId>';
+                outString += '&lt;sendUrlFormat>&lt;![CDATA[' + options.sendUrlFormat + ']]>&lt;/sendUrlFormat>';
+                outString += '&lt;tags>&lt;![CDATA[' + options.tags + ']]>&lt;/tags>';
+                outString += '&lt;/ajaxStorage>';
+
+                x.net.xhr('/api/kernel.entities.operationLog.reminder.aspx', outString, { popResultValue: 1 });
+            }
+        },
+        /*#endregion*/
+
+        /*#region 函数:request_callback(response)*/
+        /*
+        * 默认请求回调函数
+        */
+        request_callback: function(response)
+        {
+            // 返回信息
+            var result = x.toJSON(response).message;
+
+            // 关闭等待窗口
+            x.customForm.getWaitingWindow().hide();
+
+            switch (Number(result.returnCode))
+            {
+                case 0:
+                    alert(result.value);
+                    x.page.close();
+                    break;
+
+                case -1:
+                case 1:
+                    alert(result.value);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        /*#endregion*/
+    },
+
+    /*
+    * 附件存储管理
+    */
+    attachmentStorage: {
+
+        // 显示删除按钮
+        showDeleteBtn: false,
+
+        /*#region 函数:findAll(entityId, entityClassName, callback)*/
+        /*
+        * 查询全部
+        */
+        findAll: function(entityId, entityClassName, callback)
+        {
+            var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+            outString += '&lt;ajaxStorage>';
+            outString += '&lt;whereClause>&lt;![CDATA[ EntityId = ##' + entityId + '## AND EntityClassName=##' + entityClassName + '## ]]>&lt;/whereClause>';
+            outString += '&lt;length>&lt;![CDATA[0]]>&lt;/length>';
+            outString += '&lt;/ajaxStorage>';
+
+            x.net.xhr('/api/attachmentStorage.findAll.aspx', outString, {
+                callback: ((typeof (callback) === 'undefined') ? x.customForm.attachmentStorage.findAll_callback : callback)
+            });
+        },
+
+        findAll_callback: function(response)
+        {
+            var outString = '';
+
+            var result = x.toJSON(response);
+
+            var list = result.ajaxStorage;
+
+            list.each(function(node, index)
+            {
+                //list list-item-colum list-item-colum
+                outString += '&lt;div>';
+                outString += '&lt;span class="list-item" style="width:300px">';
+                outString += '&lt;input id="value_' + node.id + '" type="hidden" class="list-item-colum data-type-value" value="/attachment/archive/' + node.id + '.aspx" />';
+                outString += '&lt;label id="text_' + node.id + '" class="ajax-options-menu-target list-item-colum data-type-html" >' + node.attachmentName + '(' + x.expressions.formatNumberRound2(node.fileSize / 1024) + 'KB)&lt;/label>';
+
+                outString += '&lt;/span>';
+
+                if (x.customForm.attachmentStorage.showDeleteBtn)
+                {
+                    outString += '&lt;span title="删除此附件" style="cursor:pointer; color:003399; margin:0 0 0 4px; text-decoration:none" onclick="x.customForm.attachmentStorage.confirmDelete(\'' + node.id + '\',this)">' + '[删  除]' + '&lt;/span>';
+                }
+
+                outString += '&lt;/div>';
+            });
+
+            // 上下文菜单
+
+            //outString += '&lt;div class="ajax-options-menu-wrapper" >';
+            //outString += '&lt;ul>';
+            //outString += '&lt;li id="optionsMenu_Download" class="ajax-options-menu-item" >下载&lt;/li>';
+            //outString += '&lt;li class="ajax-options-menu-item-separator">&lt;/li>';
+            //outString += '&lt;li id="optionsMenu_Delete" class="ajax-options-menu-item" >删除&lt;/li>';
+            //outString += '&lt;/ul>';
+            //outString += '&lt;/div>';
+
+            $('.window-attachment-wrapper').html(outString);
+
+            if (list.length > 0)
+            {
+                $('.window-attachment-wrapper').css('display', '');
+                $('.window-attachment-wrapper').css('margin-bottom', '8px');
+            }
+
+            var optionsMenu = x.optionsMenu.newContextMenu(
+                {
+                    // 菜单区域
+                    target: "ajax-options-menu-target",
+                    // 菜单对象
+                    wrapper: "ajax-options-menu-wrapper",
+                    // 左击事件
+                    clickType: 'click'
+                },
+                {
+                    bindings: {
+                        'optionsMenu_Download': function(target)
+                        {
+                            location.href = '/attachment/archive/' + target.id + '.aspx';
+                        },
+                        'optionsMenu_Delete': function(target)
+                        {
+                            x.customForm.attachmentStorage.confirmDelete(target.id);
+                        }
+                    }
+                }
+	        );
+
+            optionsMenu.build();
+        },
+        /*#endregion*/
+
+        /*#region 函数:findAllAttachment_callback2(response)*/
+        /*
+        * [compact]紧凑型
+        */
+        findAllAttachment_callback2: function(response)
+        {
+            x.net.fetchException(response);
+
+            var outString = '';
+
+            var result = x.toJSON(response);
+
+            var list = result.ajaxStorage;
+
+            list.each(function(node, index)
+            {
+                // list list-item-colum list-item-colum
+                outString += '&lt;div>';
+                outString += '&lt;span class="list-item" style="width:300px">';
+                outString += '&lt;a href="/attachment/archive/' + node.id + '.aspx" target="_blank">' + node.attachmentName + '(' + x.expressions.formatNumberRound2(node.fileSize / 1024) + 'KB)&lt;/a>';
+                outString += '&lt;/span>';
+                outString += '&lt;/div>';
+            });
+
+            $('.window-attachment-wrapper').html(outString);
+
+            if (list.length > 0)
+            {
+                $('.window-attachment-wrapper').css('display', '');
+                $('.window-attachment-wrapper').css('margin-bottom', '8px');
+            }
+        },
+        /*#endregion*/
+
+        /*#region 函数:confirmDelete(ids, element)*/
+        /*
+        * 删除对象
+        */
+        confirmDelete: function(ids, element)
+        {
+            if (confirm('确定删除?'))
+            {
+                x.net.xhr('/api/attachmentStorage.delete.aspx?ids=' + ids, {
+                    callback: x.customForm.attachmentStorage.confirmDelete_callback
+                });
+
+                element.parentNode.parentNode.removeChild(element.parentNode);
+
+                if ($('.window-attachment-wrapper span').size() === 0)
+                {
+                    $('.window-attachment-wrapper').css('display', 'none');
+                }
+            }
+        },
+
+        confirmDelete_callback: function(response)
+        {
+            var result = x.toJSON(response).message;
+
+            switch (Number(result.returnCode))
+            {
+                case 0:
+                    break;
+
+                case -1:
+                case 1:
+                    alert(result.value);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        /*#endregion*/
+    },
+
+    /*
+    * 常用页签管理
+    */
+    tabs: {
+
+        /*#region 函数:getTabView(targetContainerName, options)*/
+        /*
+        * 获取页签视图
+        */
+        getTabView: function(targetContainerName, options, overwrite)
+        {
+            // 设置容器的名称
+            if (typeof (targetContainerName) === 'undefined')
+            {
+                alert('参数【targetContainerName】必须填写。');
+                return;
+            }
+
+            // 设置页签类型
+            if (typeof (options.type) === 'undefined')
+            {
+                alert('参数【type】必须填写。');
+                return;
+            }
+
+            var name = x.getFriendlyName(location.pathname + '$' + targetContainerName + '$' + options.type + '$tab');
+
+            // 初始化常用页签对象
+            var tab = null;
+
+            if (typeof (window[name]) === 'undefined' || overwrite === 1)
+            {
+                switch (options.type)
+                {
+                    case 'workflow-template':
+                        // 审批模板页签
+                        tab = x.customForm.tabs.newWorkflowTemplateTab(name, targetContainerName, options);
+                        break;
+
+                    case 'approval-record':
+                        // 审批记录页签
+                        tab = x.customForm.tabs.newApprovalRecordTab(name, targetContainerName, options);
+                        break;
+
+                    case 'operation-log':
+                        // 相关记录页签
+                        tab = x.customForm.tabs.newOperationLogTab(name, targetContainerName, options);
+                        break;
+
+                    case 'click':
+                        // 阅读记录页签
+                        tab = x.customForm.tabs.newClickTab(name, targetContainerName, options);
+                        break;
+
+                    case 'implementation':
+                        // 落实情况页签
+                        tab = x.customForm.tabs.newImplementationTab(name, targetContainerName, options);
+                        break;
+
+                    case 'document-history':
+                        // 历史版本页签
+                        tab = x.customForm.tabs.newDocumentHistoryTab(name, targetContainerName, options);
+                        break;
+
+                    default:
+                        alert('未知的页签对象类型【' + options.type + '】。');
+                        return;
+                }
+
+                // 加载界面、数据、事件
+                tab.load();
+                // 绑定到Window对象
+                window[name] = tab;
+            }
+            else
+            {
+                tab = window[name];
+            }
+
+            tab.refresh();
+        },
+        /*#endregion*/
+
+        /*#region 函数:newWorkflowTemplateTab(name, targetContainerName, options)*/
+        /*
+        * 审批模板页签
+        */
+        newWorkflowTemplateTab: function(name, targetContainerName, options)
+        {
+            var tab = {
+
+                // 实例名称
+                name: name,
+
+                // 选项信息
+                options: options,
+
+                // 数据表名称
+                customTableName: null,
+
+                // 实体标识
+                entityId: null,
+
+                // 实体类型名称
+                entityClassName: null,
+
+                // 目标容器名称
+                targetContainerName: targetContainerName,
+
+                /*#region 函数:refresh()*/
+                refresh: function()
+                {
+                    x.workflow.designtime.getTemplateByWorkflowInstanceId(
+                        this.options.workflowInstanceId,
+                        $(document.getElementById(this.targetContainerName)),
+                        this.options.toolbar,
+                        this.options.fectchExpectedActors,
+                        this.options.fectchFinishedActors,
+                        { corporationId: this.options.corporationId, projectId: this.options.projectId }
+                     );
+                },
+                /*#endregion*/
+
+                /*#region 函数:load()*/
+                load: function()
+                {
+                    // 设置数据表名称
+                    if (typeof (options.customTableName) === 'undefined')
+                    {
+                        alert('参数【customTableName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.customTableName = options.customTableName;
+                    }
+
+                    // 设置实体标识
+                    if (typeof (options.entityId) === 'undefined')
+                    {
+                        alert('参数【entityId】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityId = options.entityId;
+                    }
+
+                    // 设置实体类型名称
+                    if (typeof (options.entityClassName) === 'undefined')
+                    {
+                        alert('参数【entityClassName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityClassName = options.entityClassName;
+                    }
+
+                    // 设置实体类型名称
+                    if (typeof (options.workflowInstanceId) === 'undefined')
+                    {
+                        alert('参数【workflowInstanceId】必须填写。');
+                        return;
+                    }
+                }
+                /*#endregion*/
+            };
+
+            return tab;
+        },
+        /*#endregion*/
+
+        /*#region 函数:newApprovalRecordTab(name, targetContainerName, options)*/
+        /*
+        * 审批记录页签
+        */
+        newApprovalRecordTab: function(name, targetContainerName, options)
+        {
+            var tab = {
+
+                // 实例名称
+                name: name,
+
+                // 选项信息
+                options: options,
+
+                // 数据表名称
+                customTableName: null,
+
+                // 实体标识
+                entityId: null,
+
+                // 实体类型名称
+                entityClassName: null,
+
+                // 目标容器名称
+                targetContainerName: targetContainerName,
+
+                /*#region 函数:reminder(options)*/
+                reminder: function(options)
+                {
+                    x.customForm.workflow.reminder({
+                        clientTargetObject: this.name,
+                        customTableName: options.customTableName,
+                        entityId: options.entityId,
+                        entityClassName: options.entityClassName,
+                        workflowInstanceId: options.workflowInstanceId,
+                        sendUrlFormat: options.sendUrlFormat,
+                        tags: options.tags
+                    });
+                },
+                /*#endregion*/
+
+                /*#region 函数:refresh()*/
+                refresh: function()
+                {
+                    var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                    outString += '&lt;ajaxStorage>';
+                    outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                    outString += '&lt;id>&lt;![CDATA[' + this.options.workflowInstanceId + ']]>&lt;/id>';
+                    outString += '&lt;/ajaxStorage>';
+
+                    x.net.xhr('/api/workflow.instance.getWorkflowOverview.aspx', outString, {
+                        callback: function(response)
+                        {
+                            var result = x.toJSON(response);
+
+                            var clientTargetObject = window[result.clientTargetObject];
+
+                            var param = result.ajaxStorage;
+
+                            // 当前活动节点
+                            clientTargetObject.workflowActiveNodeName = typeof (result.activeNode) === 'undefined' ? '' : result.activeNode.name;
+
+                            clientTargetObject.workflowStatus = param.status;
+
+                            // 已审批执行人
+                            $(document.getElementById(clientTargetObject.name + '$docStatus')).html((clientTargetObject.workflowStatus === '已完成' ? '已发布' : clientTargetObject.workflowStatus));
+
+                            // 已审批执行人
+                            $(document.getElementById(clientTargetObject.name + '$approvedActors')).html(result.approvedActors);
+
+                            // 正在审批的执行人
+                            if (result.approveingActors !== '')
+                            {
+                                $(document.getElementById(clientTargetObject.name + '$approveingActors')).html(result.approveingActors);
+
+                                var toolbar = '&lt;a style="margin-right:5px" href="javascript:' + clientTargetObject.name + '.reminder({'
+                                        + 'customTableName:\'' + clientTargetObject.options.customOperationLogTableName + '\','
+                                        + 'entityId:\'' + clientTargetObject.entityId + '\','
+                                        + 'entityClassName:\'' + clientTargetObject.entityClassName + '\','
+                                        + 'workflowInstanceId:\'' + clientTargetObject.options.workflowInstanceId + '\','
+                                        + 'sendUrlFormat:\'' + clientTargetObject.options.reminderSendUrlFormat + '\','
+                                        + 'tags:\'' + x.isUndefined(clientTargetObject.options.reminderTags, '') + '\' '
+                                        + '});" class="table-toolbar-button-single-2font" >催办&lt;/a>';
+
+                                $(document.getElementById(clientTargetObject.name + '$approveingActors$toolbar')).get(0).className = 'table-toolbar';
+                                $(document.getElementById(clientTargetObject.name + '$approveingActors$toolbar')).css('margin-bottom', '5px');
+                                $(document.getElementById(clientTargetObject.name + '$approveingActors$toolbar')).html(toolbar);
+
+                                outString += '&lt;div id="' + this.name + '$approveingActors$toolbar">&lt;/div>';
+                            }
+
+                            var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                            outString += '&lt;ajaxStorage>';
+                            outString += '&lt;action>&lt;![CDATA[getWorkflowTemplate]]>&lt;/action>';
+                            outString += '&lt;clientTargetObject>&lt;![CDATA[' + clientTargetObject.name + ']]>&lt;/clientTargetObject>';
+                            outString += '&lt;id>&lt;![CDATA[' + clientTargetObject.options.workflowInstanceId + ']]>&lt;/id>';
+                            outString += '&lt;fectchExpectedActors>&lt;![CDATA[1]]>&lt;/fectchExpectedActors>';
+                            outString += '&lt;fectchFinishedActors>&lt;![CDATA[1]]>&lt;/fectchFinishedActors>';
+                            outString += '&lt;corporationId>&lt;![CDATA[' + clientTargetObject.options.corporationId + ']]>&lt;/corporationId>';
+                            outString += '&lt;projectId>&lt;![CDATA[' + clientTargetObject.options.projectId + ']]>&lt;/projectId>';
+                            outString += '&lt;/ajaxStorage>';
+
+                            x.net.xhr('/api/workflow.instance.getTemplateByWorkflowInstanceId.aspx', outString, {
+                                callback: function(response)
+                                {
+                                    var result = x.toJSON(response);
+
+                                    var clientTargetObject = window[result.clientTargetObject];
+
+                                    var list = result.ajaxStorage.activities;
+
+                                    var outString = '';
+
+                                    if (list.length === 0)
+                                    {
+                                        outString += '&lt;div style="height:30px;">&lt;/div>';
+                                    }
+                                    else
+                                    {
+                                        outString += '&lt;table class="table-style table-full-border-style" style="width:100%;" >';
+                                        outString += '&lt;tr class="table-row-title" >';
+                                        outString += '&lt;td style="width:30px">编号&lt;/td>';
+                                        outString += '&lt;td style="width:300px" >审批人&lt;/td>';
+                                        outString += '&lt;td >预计执行人&lt;/td>';
+                                        outString += '&lt;td style="width:80px" >审批方式&lt;/td>';
+                                        outString += '&lt;/tr>';
+
+                                        list.each(function(node, index)
+                                        {
+                                            if (node.name === clientTargetObject.workflowActiveNodeName)
+                                            {
+                                                outString += '&lt;tr class="table-row-normal" >';
+                                                outString += '&lt;td >&lt;img alt="当前节点" style="margin:-4px;" src="/resources/images/icon/icon-hand-point.gif"/>&lt;/td>';
+                                                outString += '&lt;td style="font-weight:bold; background-color:#f1fde9;" >' + node.actorDescription; +'&lt;/td>';
+                                                outString += '&lt;td style="font-weight:bold; background-color:#f1fde9;" >' + node.expectedActors + '&lt;/td>';
+                                                outString += '&lt;td style="font-weight:bold; background-color:#f1fde9;" >' + node.actorMethod + '&lt;/td>';
+                                                outString += '&lt;/tr>';
+                                            }
+                                            else
+                                            {
+                                                outString += '&lt;tr class="table-row-normal">';
+                                                outString += '&lt;td>' + ((index + 1) &lt; 9 ? '0' : '') + (index + 1) + '&lt;/td>';
+                                                outString += '&lt;td>' + node.actorDescription; +'&lt;/td>';
+                                                outString += '&lt;td>' + node.expectedActors + '&lt;/td>';
+                                                outString += '&lt;td>' + node.actorMethod + '&lt;/td>';
+                                                outString += '&lt;/tr>';
+                                            }
+                                        });
+
+                                        outString += '&lt;/tbody>';
+                                        outString += '&lt;/table>';
+                                    }
+
+                                    $(document.getElementById(clientTargetObject.name + '$table$workflow$template')).html(outString);
+                                }
+                            });
+                        }
+                    });
+                },
+                /*#endregion*/
+
+                /*#region 函数:create()*/
+                create: function()
+                {
+                    var outString = '';
+
+                    outString += '&lt;table class="table-style table-full-border-style" style="width:100%; margin-bottom:10px;" >';
+                    outString += '&lt;tr>';
+                    outString += '&lt;td class="table-body-text" style="width:120px" >文档状态&lt;/td>';
+                    outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$docStatus">已发布&lt;/div>&lt;/td>';
+                    outString += '&lt;/tr>';
+
+                    outString += '&lt;tr>&lt;td class="table-body-text">已会签/审批&lt;/td>';
+                    outString += '&lt;td class="table-body-input">&lt;div id="' + this.name + '$approvedActors">&lt;/div>&lt;/td>';
+                    outString += '&lt;/tr>';
+
+                    outString += '&lt;tr>';
+                    outString += '&lt;td class="table-body-text">&lt;div style="margin-bottom:5px" >正在会签/审批&lt;/div>';
+                    outString += '&lt;div id="' + this.name + '$approveingActors$toolbar">&lt;/div>';
+                    outString += '&lt;/td>';
+                    outString += '&lt;td class="table-body-input">&lt;span id="' + this.name + '$approveingActors">&lt;/span>';
+                    outString += '&lt;/td>';
+                    outString += '&lt;/tr>';
+                    outString += '&lt;/table>';
+
+                    outString += '&lt;div id = "' + this.name + '$table$workflow$template" >';
+                    outString += '&lt;span class="tooltip-loading-text">&lt;img src="/resources/images/loading.gif" alt="正在加载..." />&lt;/span>&lt;/td>';
+                    outString += '&lt;/div>';
+
+                    return outString;
+                },
+                /*#endregion*/
+
+                /*#region 函数:load()*/
+                load: function()
+                {
+                    // 设置数据表名称
+                    if (typeof (options.customTableName) === 'undefined')
+                    {
+                        alert('参数【customTableName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.customTableName = options.customTableName;
+                    }
+
+                    // 设置实体标识
+                    if (typeof (options.entityId) === 'undefined')
+                    {
+                        alert('参数【entityId】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityId = options.entityId;
+                    }
+
+                    // 设置实体类型名称
+                    if (typeof (options.entityClassName) === 'undefined')
+                    {
+                        alert('参数【entityClassName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityClassName = options.entityClassName;
+                    }
+
+                    // 设置实体类型名称
+                    if (typeof (options.workflowInstanceId) === 'undefined')
+                    {
+                        alert('参数【workflowInstanceId】必须填写。');
+                        return;
+                    }
+
+                    $(document.getElementById(this.targetContainerName)).css('margin', '10px');
+                    $(document.getElementById(this.targetContainerName)).html(this.create());
+                }
+                /*#endregion*/
+            };
+
+            return tab;
+        },
+        /*#endregion*/
+
+        /*#region 函数:newOperationLogTab(name, targetContainerName, options)*/
+        /*
+        * 相关记录页签
+        */
+        newOperationLogTab: function(name, targetContainerName, options)
+        {
+            var tab = {
+
+                // 实例名称
+                name: name,
+
+                // 选项信息
+                options: options,
+
+                // 遮罩
+                maskWrapper: null,
+
+                // 数据表名称
+                customTableName: null,
+
+                // 实体标识
+                entityId: null,
+
+                // 实体类型名称
+                entityClassName: null,
+
+                // 目标容器名称
+                targetContainerName: targetContainerName,
+
+                // 需要显示的元素
+                displayElements: '[审批记录][紧急审批反馈][催办记录][推荐记录]',
+
+                // 协商guid
+                discussNewId: '',
+
+                /*#region 函数:getWorkflowResult(node)*/
+                getWorkflowResult: function(node)
+                {
+                    if (node.operation.indexOf('【重新提交】') === 0
+                    || node.operation.indexOf('驳回后重新提交') === 0
+                    || node.remark.indexOf('【重新提交】') === 0
+                    || node.remark.indexOf('驳回后重新提交') === 0)
+                    {
+                        return '【重新提交】';
+                    }
+
+                    if (node.operation.indexOf('【提交】') === 0
+                    || node.operation.indexOf('[提交]') === 0
+                    || node.remark.indexOf('【提交】') === 0
+                    || node.remark.indexOf('[提交]') === 0)
+                    {
+                        return '【提交】';
+                    }
+
+                    if (node.operation.indexOf('【审批】') === 0
+                    || node.operation.indexOf('[审批]') === 0
+                    || node.remark.indexOf('【审批】') === 0
+                    || node.remark.indexOf('【审批】') === 0
+                    || node.remark.indexOf('[审批]') === 0)
+                    {
+                        return '【通过】';
+                    }
+
+                    if (node.operation.indexOf('【驳回】') === 0
+                    || node.operation.indexOf('[驳回]') === 0
+                    || node.operation.indexOf('驳回到发起人节点') === 0
+                    || node.remark.indexOf('【驳回】') === 0
+                    || node.remark.indexOf('[驳回]') === 0
+                    || node.remark.indexOf('驳回到发起人节点') === 0)
+                    {
+                        return '【驳回】';
+                    }
+
+                    return '';
+                },
+                /*#endregion*/
+
+                /*#region 函数:openWorkflowHistoryNodeDiscussWindow(workflowHistoryNodeId, toActorId)*/
+                /*
+                * 打开协商窗口
+                */
+                openWorkflowHistoryNodeDiscussWindow: function(workflowHistoryNodeId, toActorId)
+                {
+                    // 协商信息的标识
+                    var id = x.guid.create();
+
+                    this.discussNewId = id;
+
+                    this.maskWrapper = x.mask.newMaskWrapper(this.name + '$maskWrapper');
+
+                    var outString = '';
+
+                    outString += '&lt;div id="' + this.name + '" class="winodw-wizard-wrapper" style="width:400px; height:auto;" >';
+
+                    outString += '&lt;div class="winodw-wizard-toolbar" >';
+                    outString += '&lt;div class="winodw-wizard-toolbar-close">';
+                    outString += '&lt;a href="javascript:' + this.name + '.closeWorkflowHistoryNodeDiscussWindow();" class="button-text" >关闭&lt;/a>';
+                    outString += '&lt;/div>';
+                    outString += '&lt;div class="float-left">';
+                    outString += '&lt;div class="winodw-wizard-toolbar-item" style="width:200px;" >&lt;span>协商&lt;/span>&lt;/div>';
+                    outString += '&lt;div class="clear">&lt;/div>';
+                    outString += '&lt;/div>';
+                    outString += '&lt;div class="clear">&lt;/div>';
+                    outString += '&lt;/div>';
+
+                    outString += '&lt;table class="table-style" style="width:100%;" >';
+                    outString += '&lt;tr class="table-row-normal-transparent" >';
+                    outString += '&lt;td class="table-body-text" style="width:80px;" >&lt;span class="required-text">协商人&lt;/span>&lt;/td>';
+                    outString += '&lt;td class="table-body-input" >';
+                    outString += this.options.fromAccountName;
+                    outString += '&lt;input id="' + this.name + '$discuss$id"  name="' + this.name + '$discuss$id" type="hidden" value="' + id + '" />';
+                    outString += '&lt;input id="' + this.name + '$discuss$workflowHistoryNodeId"  name="' + this.name + '$discuss$workflowHistoryNodeId" type="hidden" value="' + workflowHistoryNodeId + '" />';
+                    outString += '&lt;input id="' + this.name + '$discuss$toActorId"  name="' + this.name + '$discuss$toActorId" type="hidden" value="' + toActorId + '" />';
+                    outString += '&lt;/td>';
+                    outString += '&lt;/tr>';
+                    outString += '&lt;tr class="table-row-normal-transparent" >';
+                    outString += '&lt;td class="table-body-text" >&lt;span class="required-text">协商意见&lt;/span>&lt;/td>';
+                    outString += '&lt;td class="table-body-input" >&lt;textarea id="' + this.name + '$discuss$idea" class="textarea-normal" style="width:260px; height:80px;" >&lt;/textarea>&lt;/td>';
+                    outString += '&lt;/tr>';
+
+                    if (this.options.uploadFileWizard != '')
+                    {
+                        outString += '&lt;tr class="table-row-normal-transparent" >';
+                        outString += '&lt;td class="table-body-text" >附件&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >';
+                        outString += '&lt;input id="' + this.name + '$uploadFileWizard" name="' + this.name + '$uploadFileWizard" feature="uploads" uploadUrl="' + this.options.uploadFileWizard + '" uploadEntityId="' + id + '" uploadEntityClassName="X3Platform.WorkflowPlus.Model.WorkflowHistoryNodeDiscussInfo, X3Platform.WorkflowPlus" uploadAttachmentFolder="workflowplus" uploadFileSizeLimit="20" uploadFileTypes="*.*" uploadFileUploadLimit="0" class="input-normal" style="height:18px; width:100%" />';
+                        outString += '&lt;/td>';
+                        outString += '&lt;/tr>';
+                    }
+
+                    outString += '&lt;tr class="table-row-normal-transparent" >';
+                    outString += '&lt;td class="table-body-text" >&lt;/td>';
+                    outString += '&lt;td class="table-body-input" >';
+                    outString += '&lt;div style="margin:0 0 4px 2px;" >';
+                    outString += '&lt;div class="float-left button-2font-wrapper" style="margin-right:10px;" >&lt;a href="javascript:' + this.name + '.sendWorkflowHistoryNodeDiscuss();" class="button-text" >确定&lt;/a>&lt;/div>';
+                    outString += '&lt;div class="float-left button-2font-wrapper" style="margin-right:10px;" >&lt;a href="javascript:' + this.name + '.closeWorkflowHistoryNodeDiscussWindow();" class="button-text" >取消&lt;/a>&lt;/div>';
+                    outString += '&lt;div class="clear">&lt;/div>';
+                    outString += '&lt;/div>';
+                    outString += '&lt;/td>';
+                    outString += '&lt;/tr>';
+                    outString += '&lt;/table>';
+
+                    outString += '&lt;div class="clear">&lt;/div>';
+                    outString += '&lt;/div>';
+
+                    // 加载遮罩和页面内容
+                    x.mask.getWindow(outString, this.maskWrapper);
+
+                    x.dom.features.bind();
+                },
+                /*#endregion*/
+
+                /*#region 函数:closeWorkflowHistoryNodeDiscussWindow()*/
+                /*
+                * 打开协商窗口
+                */
+                closeWorkflowHistoryNodeDiscussWindow: function()
+                {
+                    this.maskWrapper.close();
+                },
+                /*#endregion*/
+
+                /*#region 函数:sendWorkflowHistoryNodeDiscuss()*/
+                /*
+                * 协商
+                */
+                sendWorkflowHistoryNodeDiscuss: function()
+                {
+                    var idea = $(document.getElementById(this.name + '$discuss$idea')).val();
+
+                    if (idea == '')
+                    {
+                        alert("【意见】必填。");
+                        return false;
+                    }
+
+                    this.closeWorkflowHistoryNodeDiscussWindow();
+
+                    var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                    outString += '&lt;ajaxStorage>';
+                    outString += '&lt;action>&lt;![CDATA[send]]>&lt;/action>';
+                    outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                    outString += '&lt;id>&lt;![CDATA[' + $(document.getElementById(this.name + '$discuss$id')).val() + ']]>&lt;/id>';
+                    outString += '&lt;entityId>&lt;![CDATA[' + this.options.entityId + ']]>&lt;/entityId>';
+                    outString += '&lt;entitySubject>&lt;![CDATA[' + this.options.entitySubject + ']]>&lt;/entitySubject>';
+                    outString += '&lt;entityAccountId>&lt;![CDATA[' + this.options.entityAccountId + ']]>&lt;/entityAccountId>';
+                    outString += '&lt;idea>&lt;![CDATA[' + $(document.getElementById(this.name + '$discuss$idea')).val() + ']]>&lt;/idea>';
+                    outString += '&lt;workflowHistoryNodeId>&lt;![CDATA[' + $(document.getElementById(this.name + '$discuss$workflowHistoryNodeId')).val() + ']]>&lt;/workflowHistoryNodeId>';
+                    outString += '&lt;toActorId>&lt;![CDATA[' + $(document.getElementById(this.name + '$discuss$toActorId')).val() + ']]>&lt;/toActorId>';
+                    outString += '&lt;applicationName>&lt;![CDATA[' + this.options.applicationName + ']]>&lt;/applicationName>';
+                    outString += '&lt;reminderTags>&lt;![CDATA[' + this.options.reminderTags + ']]>&lt;/reminderTags>';
+                    outString += '&lt;entityViewUrlFormat>&lt;![CDATA[' + this.options.entityViewUrlFormat + ']]>&lt;/entityViewUrlFormat>';
+                    outString += '&lt;/ajaxStorage>';
+
+                    x.net.xhr('/api/workflow.historyNodeDiscuss.send.aspx', outString, {
+                        waitingMessage: '正在提交协商数据，请稍候……',
+                        callback: function(response)
+                        {
+                            window[x.toJSON(response).clientTargetObject].refresh();
+                        }
+                    });
+                },
+                /*#endregion*/
+
+                /*#region 函数:createWorkflowHistoryNodeHtml()*/
+                /*
+                * 协商
+                */
+                createWorkflowHistoryNodeHtml: function(node, isDiscuss)
+                {
+                    var outString = '';
+
+                    outString += '&lt;tr class="table-row-normal" >';
+
+                    if (isDiscuss && this.options.entityAccountId == this.options.fromAccountId && this.options.fromAccountId != node.actorId)
+                    {
+                        outString += '&lt;td style="vertical-align: top;" >';
+                        outString += '&lt;a href="javascript:' + this.name + '.openWorkflowHistoryNodeDiscussWindow(\'' + node.id + '\',\'' + node.actorId + '\');" ';
+                        outString += 'title="与【' + node.actorName + '】协商" >' + node.actorName + '&lt;/a>';
+                        outString += '&lt;/td>';
+                    }
+                    else
+                    {
+                        if (node.isGranted === 'True')
+                        {
+                            outString += '&lt;td style="vertical-align: top;" >' + node.granteeName + '&lt;/td>';
+                        }
+                        else
+                        {
+                            outString += '&lt;td style="vertical-align: top;" >' + node.actorName + '&lt;/td>';
+                        }
+                    }
+
+                    var discuss = x.toJSON(node.discuss);
+
+                    var discussAttachmentFiles = x.toJSON(node.discussAttachmentFiles);
+
+                    if (typeof (discuss) === 'undefined' || discuss.length === 0)
+                    {
+                        outString += '&lt;td>' + this.getWorkflowResult(node) + node.idea;
+                        if (node.isGranted === 'True') { outString += ' -【委托人:' + node.grantorName + '】'; }
+                        if (node.rating > 0) { outString += ' - &lt;span class="rating-text" >评分:' + node.rating + '&lt;/span> '; }
+
+                        if (node.attachmentFiles != undefined)
+                        {
+                            var nodeAttachmentFiles = x.toJSON(node.attachmentFiles);
+
+                            outString += '&lt;div style="margin-top:4px;" >';
+
+                            for (var k1 = 0; k1 &lt; nodeAttachmentFiles.length; k1++)
+                            {
+                                outString += '&lt;img style="margin-right:2px;vertical-align: middle;" src="/resources/images/icon/' + x.attachment.getfileExtImg(nodeAttachmentFiles[k1].fileType) + '"/>';
+                                outString += '&lt;a style="vertical-align: bottom;text-decoration:none" href="/attachment/archive/' + nodeAttachmentFiles[k1].id + '.aspx" >' + nodeAttachmentFiles[k1].attachmentName + '&lt;/a>';
+                                outString += '&lt;span style="vertical-align: middle;margin-left:1px;text-decoration:none">(' + x.expressions.formatNumberRound2(nodeAttachmentFiles[k1].fileSize / 1024) + 'KB)&lt;/span> ';
+                            }
+
+                            outString += '&lt;/div>'
+                        }
+
+                        outString += '&lt;/td>';
+
+                    }
+                    else
+                    {
+                        outString += '&lt;td style="padding:0px;" >';
+                        outString += '&lt;table style="width:100%; border:0px #fff solid;" >';
+                        outString += '&lt;tr>&lt;td style="border:none;" >' + this.getWorkflowResult(node) + node.idea;
+                        if (node.isGranted === 'True') { outString += ' -【委托人:' + node.grantorName + '】'; }
+                        if (node.rating > 0) { outString += ' - &lt;span class="rating-text" >评分:' + node.rating + '&lt;/span> '; }
+
+                        if (node.attachmentFiles != undefined)
+                        {
+                            var nodeAttachmentFiles = x.toJSON(node.attachmentFiles);
+
+                            outString += '&lt;div style="margin-top:4px;" >';
+
+                            for (var k1 = 0; k1 &lt; nodeAttachmentFiles.length; k1++)
+                            {
+                                outString += '&lt;img style="margin-right:2px;vertical-align: middle;" src="/resources/images/icon/' + x.attachment.getfileExtImg(nodeAttachmentFiles[k1].fileType) + '"/>';
+                                outString += '&lt;a style="vertical-align: middle;" href="/attachment/archive/' + nodeAttachmentFiles[k1].id + '.aspx" >' + nodeAttachmentFiles[k1].attachmentName + '&lt;/a>';
+                                outString += '&lt;span style="vertical-align: middle;margin-left:1px;text-decoration:none">(' + x.expressions.formatNumberRound2(nodeAttachmentFiles[k1].fileSize / 1024) + 'KB)&lt;/span> ';
+                            }
+
+                            outString += '&lt;/div>'
+                        }
+                        outString += '&lt;/td>&lt;/tr>';
+
+                        outString += '&lt;tr>&lt;td style="border:none; border-top:1px #ccc solid; font-weight:bold;">协商记录&lt;/td>&lt;/tr>';
+                        for (var i = 0; i &lt; discuss.length; i++)
+                        {
+                            outString += '&lt;tr>'
+                            outString += '&lt;td style="border:none;" >';
+                            outString += '&lt;div>';
+                            if (isDiscuss && this.options.entityAccountId == this.options.fromAccountId && this.options.fromAccountId != discuss[i].fromActorId)
+                            {
+                                outString += '&lt;a href="javascript:' + clientTargetObject.name + '.openWorkflowHistoryNodeDiscussWindow(\'' + node.id + '\',\'' + discuss[i].fromActorId + '\');" ';
+                                outString += 'title="与【' + discuss[i].fromActorName + '】协商" >' + discuss[i].fromActorName + '&lt;/a> ';
+                            }
+                            else
+                            {
+                                outString += discuss[i].fromActorName + ' ';
+                            }
+                            outString += x.date.newTime(discuss[i].createDate).toString('yyyy-MM-dd HH:mm:ss');
+                            outString += '&lt;/div>';
+
+                            outString += '&lt;div style="margin-top:4px;" >' + discuss[i].idea + '&lt;/div>';
+
+                            var isExistAttachmentFile;
+
+                            for (var k = 0; k &lt; discussAttachmentFiles.length; k++)
+                            {
+                                if (discussAttachmentFiles[k].entityId == discuss[i].id)
+                                {
+                                    isExistAttachmentFile = true;
+                                    break;
+                                }
+                            }
+
+                            if (isExistAttachmentFile)
+                            {
+                                outString += '&lt;div style="margin-top:4px;" >';
+
+                                for (var k = 0; k &lt; discussAttachmentFiles.length; k++)
+                                {
+                                    if (discussAttachmentFiles[k].entityId == discuss[i].id)
+                                    {
+                                        outString += '&lt;img style="margin-right:2px;vertical-align: middle;" src="/resources/images/icon/' + x.attachment.getfileExtImg(discussAttachmentFiles[k].fileType) + '"/>';
+                                        outString += '&lt;a style="vertical-align: middle;" href="/attachment/archive/' + discussAttachmentFiles[k].id + '.aspx" >' + discussAttachmentFiles[k].attachmentName + '&lt;/a>';
+                                        outString += '&lt;span style="vertical-align: middle;margin-left:1px;text-decoration:none">(' + x.expressions.formatNumberRound2(discussAttachmentFiles[k].fileSize / 1024) + 'KB)&lt;/span> ';
+                                    }
+                                }
+
+                                outString += '&lt;/div>';
+                            }
+
+                            outString += '&lt;/td>';
+                            outString += '&lt;/tr>';
+                        }
+                        outString += '&lt;/table>';
+                        outString += '&lt;/td>';
+                    }
+
+                    outString += '&lt;td style="vertical-align: top;" >' + x.date.newTime(node.finishedTime).toString('yyyy-MM-dd HH:mm:ss') + '&lt;/td>';
+
+                    outString += '&lt;/tr>';
+
+                    return outString;
+                },
+                /*#endregion*/
+
+                /*#region 函数:refresh()*/
+                refresh: function()
+                {
+                    var url = '';
+
+                    var outString = '';
+
+                    // 获取会签记录
+                    if (this.displayElements.indexOf('[会签和审批记录]') > -1)
+                    {
+                        outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                        outString += '&lt;ajaxStorage>';
+                        outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                        outString += '&lt;accountId>&lt;![CDATA[' + this.options.entityAccountId + ']]>&lt;/accountId>';
+                        outString += '&lt;workflowInstanceId>&lt;![CDATA[' + this.options.workflowInstanceId + ']]>&lt;/workflowInstanceId>';
+                        outString += '&lt;isFinishedDiscuss>&lt;![CDATA[' + this.options.isFinishedDiscuss + ']]>&lt;/isFinishedDiscuss>';
+                        outString += '&lt;/ajaxStorage>';
+
+                        x.net.xhr('/api/workflow.historyNode.findFinishedHistoryNodesWithDiscuss.aspx', outString, {
+                            callback: function(response)
+                            {
+                                var result = x.toJSON(response);
+
+                                var clientTargetObject = window[result.clientTargetObject];
+
+                                var list = result.ajaxStorage;
+
+                                var isDiscuss = clientTargetObject.options.isFinishedDiscuss ? true : result.workflowInstance.isFinished == "1" ? false : true;
+
+                                if (list.length > 0)
+                                {
+                                    var outString = '';
+
+                                    outString += '&lt;table class="table-style table-full-border-style-table" style="width: 100%;" >'
+                                    outString += '&lt;tbody>';
+                                    outString += '&lt;tr class="table-row-title" >';
+                                    outString += '&lt;th style="width: 80px;">会签人&lt;/th>';
+                                    outString += '&lt;th >会签意见&lt;/th>';
+                                    outString += '&lt;th style="width: 120px;">会签时间&lt;/th>';
+                                    outString += '&lt;/tr>';
+
+                                    list.each(function(node, index)
+                                    {
+                                        if (node.actorMethod === '会签')
+                                        {
+                                            outString += clientTargetObject.createWorkflowHistoryNodeHtml(node, isDiscuss);
+                                        }
+                                    });
+
+                                    outString += '&lt;/tbody>';
+                                    outString += '&lt;/table>';
+
+                                    $(document.getElementById(clientTargetObject.name + '$table$discuss')).css('margin-bottom', '4px');
+                                    $(document.getElementById(clientTargetObject.name + '$table$discuss'))[0].innerHTML = outString;
+
+                                    // 显示审批意见
+                                    outString = '';
+
+                                    outString += '&lt;table class="table-style table-full-border-style-table" style="width: 100%;" >'
+                                    outString += '&lt;tbody>';
+                                    outString += '&lt;tr class="table-row-title" >';
+                                    outString += '&lt;th style="width: 80px;">审批人&lt;/th>';
+                                    outString += '&lt;th >审批意见&lt;/th>';
+                                    outString += '&lt;th style="width: 120px;">审批时间&lt;/th>';
+                                    outString += '&lt;/tr>';
+
+                                    list.each(function(node, index)
+                                    {
+                                        // if (node.actorMethod !== '提交' && node.actorMethod !== '会签')
+                                        if (node.actorMethod !== '会签')
+                                        {
+                                            outString += clientTargetObject.createWorkflowHistoryNodeHtml(node, isDiscuss);
+                                        }
+                                    });
+
+                                    outString += '&lt;/tbody>';
+                                    outString += '&lt;/table>';
+
+                                    $(document.getElementById(clientTargetObject.name + '$table$workflow')).css('margin-bottom', '4px');
+                                    $(document.getElementById(clientTargetObject.name + '$table$workflow'))[0].innerHTML = outString; ;
+                                }
+                            }
+                        });
+                    }
+
+                    // 获取审批记录(必须有)
+                    if (this.displayElements.indexOf('[审批记录]') > -1)
+                    {
+                        outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                        outString += '&lt;ajaxStorage>';
+                        outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                        outString += '&lt;workflowInstanceId>&lt;![CDATA[' + this.options.workflowInstanceId + ']]>&lt;/workflowInstanceId>';
+                        outString += '&lt;/ajaxStorage>';
+
+                        x.net.xhr('/api/workflow.historyNode.findFinishedHistoryNodes.aspx', outString, {
+                            callback: function(response)
+                            {
+                                var result = x.toJSON(response);
+
+                                var clientTargetObject = window[result.clientTargetObject];
+
+                                var list = result.ajaxStorage;
+
+                                var outString = '';
+
+                                if (list.length > 0)
+                                {
+                                    outString += '&lt;table class="table-style table-full-border-style-table" style="width: 100%;" >'
+
+                                    outString += '&lt;tbody>';
+                                    outString += '&lt;tr class="table-row-title" >';
+                                    outString += '&lt;th style="width: 80px;">审批人&lt;/th>';
+                                    outString += '&lt;th >审批意见&lt;/th>';
+                                    outString += '&lt;th style="width: 120px;">审批时间&lt;/th>';
+                                    outString += '&lt;/tr>';
+
+                                    list.each(function(node, index)
+                                    {
+                                        outString += clientTargetObject.createWorkflowHistoryNodeHtml(node, false);
+                                    });
+
+                                    outString += '&lt;/tbody>';
+                                    outString += '&lt;/table>';
+                                }
+
+                                x.dom.query(clientTargetObject.name + '$table$workflow').css('margin-bottom', '4px');
+                                x.dom.query(clientTargetObject.name + '$table$workflow').html(outString);
+                            }
+                        });
+                    }
+
+                    // 获取紧急审批反馈
+                    if (this.displayElements.indexOf('[紧急审批反馈]') > -1)
+                    {
+                        outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                        outString += '&lt;ajaxStorage>';
+                        outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                        outString += '&lt;workflowInstanceId>&lt;![CDATA[' + this.options.workflowInstanceId + ']]>&lt;/workflowInstanceId>';
+                        outString += '&lt;/ajaxStorage>';
+
+                        x.net.xhr('/api/workflow.historyNode.findAllForcedRequest.aspx', outString, {
+                            callback: function(response)
+                            {
+                                var result = x.toJSON(response);
+
+                                var clientTargetObject = window[result.clientTargetObject];
+
+                                var list = result.ajaxStorage;
+
+                                var outString = '';
+
+                                if (list.length > 0)
+                                {
+                                    outString += '&lt;table class="table-style table-full-border-style-table" style="width: 100%;" >'
+
+                                    outString += '&lt;tbody>';
+                                    outString += '&lt;tr class="table-row-title" >';
+                                    outString += '&lt;th style="width: 80px;">节点名称&lt;/th>';
+                                    outString += '&lt;th style="width: 80px;">反馈人&lt;/th>';
+                                    outString += '&lt;th >反馈内容&lt;/th>';
+                                    outString += '&lt;th style="width: 80px;">确认情况&lt;/th>';
+                                    outString += '&lt;th style="width: 120px;">反馈时间&lt;/th>';
+                                    outString += '&lt;/tr>';
+
+                                    list.each(function(node, index)
+                                    {
+                                        outString += '&lt;tr class="table-row-normal" >';
+                                        outString += '&lt;td>' + node.workflowNodeName + '&lt;/td>';
+                                        outString += '&lt;td>' + node.actorName + '&lt;/td>';
+                                        outString += '&lt;td>' + node.idea + '&lt;/td>';
+                                        outString += '&lt;td>' + (node.actionResult == 1 ? '等待确认' : (node.actionResult == 2 ? '&lt;span class="green-text">确认&lt;/span>' : '&lt;span class="red-text">不确认&lt;/span>')) + '&lt;/td>';
+                                        outString += '&lt;td>' + x.date.create(node.updateDate).toString('yyyy-MM-dd HH:mm:ss') + '&lt;/td>';
+                                        outString += '&lt;/tr>';
+                                    });
+
+                                    outString += '&lt;/tbody>';
+                                    outString += '&lt;/table>';
+                                }
+
+                                x.dom.query(clientTargetObject.name + '$table$forcedRequest').css('margin-bottom', '4px');
+                                x.dom.query(clientTargetObject.name + '$table$forcedRequest').html(outString);
+                            }
+                        });
+                    }
+
+                    // 获取催办记录
+                    if (this.displayElements.indexOf('[催办记录]') > -1)
+                    {
+                        outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                        outString += '&lt;ajaxStorage>';
+                        outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                        outString += '&lt;customTableName>&lt;![CDATA[' + this.customTableName + ']]>&lt;/customTableName>';
+                        outString += '&lt;entityId>&lt;![CDATA[' + this.entityId + ']]>&lt;/entityId>';
+                        outString += '&lt;entityClassName>&lt;![CDATA[' + this.entityClassName + ']]>&lt;/entityClassName>';
+                        outString += '&lt;operationType>&lt;![CDATA[1]]>&lt;/operationType>';
+                        outString += '&lt;/ajaxStorage>';
+
+                        x.net.xhr('/api/kernel.entities.operationLog.findAllByEntityId.aspx', outString, {
+                            callback: function(response)
+                            {
+                                var result = x.toJSON(response);
+
+                                var clientTargetObject = window[result.clientTargetObject];
+
+                                var list = result.ajaxStorage;
+
+                                var outString = '';
+
+                                if (list.length > 0)
+                                {
+                                    outString += '&lt;table style="width: 100%;" class="table-style table-full-border-style-table">';
+
+                                    outString += '&lt;tbody>';
+                                    outString += '&lt;tr class="table-row-title">';
+                                    outString += '&lt;th style="width: 80px;">催办人&lt;/th>';
+                                    outString += '&lt;th>催办情况&lt;/th>';
+                                    outString += '&lt;th style="width: 120px;">催办时间&lt;/th>';
+                                    outString += '&lt;/tr>';
+
+                                    list.each(function(node, index)
+                                    {
+                                        outString += '&lt;tr class="table-row-normal" >';
+                                        outString += '&lt;td>' + node.accountName + '&lt;/td>';
+                                        outString += '&lt;td>向【' + node.toAuthorizationObjectName + '】发送了一条催办信息。&lt;/td>';
+                                        outString += '&lt;td>' + x.date.newTime(node.createDate).toString('yyyy-MM-dd HH:mm:ss') + '&lt;/td>';
+                                        outString += '&lt;/tr>';
+                                    });
+
+                                    outString += '&lt;/tbody>';
+                                    outString += '&lt;/table>';
+                            
+                                    x.dom.query(clientTargetObject.name + '$table$reminder').css('margin-bottom', '4px');
+                                    x.dom.query(clientTargetObject.name + '$table$reminder').html(outString);
+                                }
+                            }
+                        });
+                    }
+
+                    // 获取推荐记录
+                    if (this.displayElements.indexOf('[推荐记录]') > -1)
+                    {
+                        outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                        outString += '&lt;ajaxStorage>';
+                        // outString += '&lt;action>&lt;![CDATA[findAllByEntityId]]>&lt;/action>';
+                        outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                        outString += '&lt;customTableName>&lt;![CDATA[' + this.customTableName + ']]>&lt;/customTableName>';
+                        outString += '&lt;entityId>&lt;![CDATA[' + this.entityId + ']]>&lt;/entityId>';
+                        outString += '&lt;entityClassName>&lt;![CDATA[' + this.entityClassName + ']]>&lt;/entityClassName>';
+                        outString += '&lt;operationType>&lt;![CDATA[2]]>&lt;/operationType>';
+                        outString += '&lt;/ajaxStorage>';
+
+                        x.net.xhr('/api/kernel.entities.operationLog.findAllByEntityId.aspx', outString, {
+                            callback: function(response)
+                            {
+                                var result = x.toJSON(response);
+
+                                var clientTargetObject = window[result.clientTargetObject];
+
+                                var list = result.ajaxStorage;
+
+                                var outString = '';
+
+                                if (list.length > 0)
+                                {
+                                    outString += '&lt;table style="width: 100%;" class="table-style table-full-border-style-table">';
+
+                                    outString += '&lt;tbody>';
+                                    outString += '&lt;tr class="table-row-title">';
+                                    outString += '&lt;th style="width: 80px;">推荐人&lt;/th>';
+                                    outString += '&lt;th>推荐情况&lt;/th>';
+                                    outString += '&lt;th style="width: 120px;">推荐时间&lt;/th>';
+                                    outString += '&lt;/tr>';
+
+                                    list.each(function(node, index)
+                                    {
+                                        outString += '&lt;tr class="table-row-normal" >';
+                                        outString += '&lt;td>' + node.accountName + '&lt;/td>';
+                                        if (node.reason == '')
+                                        {
+                                            outString += '&lt;td>推荐给【' + node.toAuthorizationObjectName + '】。&lt;/td>';
+                                        }
+                                        else
+                                        {
+                                            outString += '&lt;td>推荐给【' + node.toAuthorizationObjectName + '】，推荐原因：' + node.reason + '。&lt;/td>';
+                                        }
+                                        outString += '&lt;td>' + x.date.newTime(node.createDate).toString('yyyy-MM-dd HH:mm:ss') + '&lt;/td>';
+                                        outString += '&lt;/tr>';
+                                    });
+
+                                    outString += '&lt;/tbody>';
+                                    outString += '&lt;/table>';
+                                }
+
+                                x.dom.query(clientTargetObject.name + '$table$recommend').css('margin-bottom', '4px');
+                                x.dom.query(clientTargetObject.name + '$table$recommend').html(outString);
+                            }
+                        });
+                    }
+                },
+                /*#endregion*/
+
+                /*#region 函数:create()*/
+                create: function()
+                {
+                    var outString = '';
+
+                    outString += '&lt;table id="' + this.name + '$table" style="width: 100%;" class="table-style table-full-border-style">';
+
+                    outString += '&lt;tbody>';
+
+                    // 会签和审批记录
+                    if (this.displayElements.indexOf('[会签和审批记录]') > -1)
+                    {
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text" style="width:120px;" >会签记录&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$discuss">&lt;/div>&lt;/td>';
+                        outString += '&lt;/tr>';
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text" style="width:120px;" >审批记录&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$workflow">&lt;/div>&lt;/td>';
+                        outString += '&lt;/tr>';
+                    }
+
+                    // 审批记录
+                    if (this.displayElements.indexOf('[审批记录]') > -1)
+                    {
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text" style="width:120px;" >审批记录&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$workflow">&lt;/div>&lt;/td>';
+                        outString += '&lt;/tr>';
+                    }
+
+                    // 紧急审批反馈
+                    if (this.displayElements.indexOf('[紧急审批反馈]') > -1)
+                    {
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text">紧急审批反馈&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$forcedRequest">&lt;/div>&lt;/td>';
+                        outString += '&lt;/tr>';
+                    }
+
+                    // 催办记录
+                    if (this.displayElements.indexOf('[催办记录]') > -1)
+                    {
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text">催办记录&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$reminder">&lt;/div>&lt;/td>';
+                        outString += '&lt;/tr>';
+                    }
+
+                    // 未阅读人员
+                    if (this.displayElements.indexOf('[推荐记录]') > -1)
+                    {
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text" style="width:120px;" >推荐记录&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$recommend">&lt;/div>&lt;/td>';
+                        outString += '&lt;/tr>';
+                    }
+
+                    outString += '&lt;/tbody>';
+                    outString += '&lt;/table>';
+
+                    return outString;
+                },
+                /*#endregion*/
+
+                /*#region 函数:load()*/
+                load: function()
+                {
+                    // 设置数据表名称
+                    if (typeof (options.customTableName) === 'undefined')
+                    {
+                        alert('参数【customTableName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.customTableName = options.customTableName;
+                    }
+
+                    // 设置实体标识
+                    if (typeof (options.entityId) === 'undefined')
+                    {
+                        alert('参数【entityId】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityId = options.entityId;
+                    }
+
+                    // 设置实体类型名称
+                    if (typeof (options.entityClassName) === 'undefined')
+                    {
+                        alert('参数【entityClassName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityClassName = options.entityClassName;
+                    }
+
+                    // 设置需要显示的元素
+                    if (typeof (options.displayElements) !== 'undefined')
+                    {
+                        this.displayElements = options.displayElements;
+                    }
+
+                    $(document.getElementById(this.targetContainerName)).css('margin', '10px');
+                    $(document.getElementById(this.targetContainerName)).html(this.create());
+                }
+                /*#endregion*/
+            }
+
+            return tab;
+        },
+        /*#endregion*/
+
+        /*#region 函数:newClickTab(name, targetContainerName, options)*/
+        /*
+        * 阅读记录页签
+        */
+        newClickTab: function(name, targetContainerName, options)
+        {
+            var tab = {
+
+                // 实例名称
+                name: name,
+
+                // 选项信息
+                options: options,
+
+                // 数据表名称
+                customTableName: null,
+
+                // 实体标识
+                entityId: null,
+
+                // 实体类型名称
+                entityClassName: null,
+
+                // 目标容器名称
+                targetContainerName: targetContainerName,
+
+                // 需要显示的元素
+                displayElements: '[可阅读人员][已阅读人员][未阅读人员]',
+
+                /*#region 函数:refresh()*/
+                refresh: function()
+                {
+                    var url = '';
+
+                    var outString = '';
+
+                    if (this.displayElements.indexOf('可阅读人员') > -1)
+                    {
+                        var scopeTableName = '';
+
+                        if (typeof (options.entityScopeTableName) !== 'undefined')
+                        {
+                            scopeTableName = this.options.entityScopeTableName;
+                        }
+                        else if (typeof (options.entityTableName) !== 'undefined')
+                        {
+                            if (this.options.entityTableName.substr(this.options.entityTableName.length - 1, 1) === ']')
+                            {
+                                scopeTableName = this.options.entityTableName.substr(0, this.options.entityTableName.length - 1) + '_Scope]';
+                            }
+                            else
+                            {
+                                scopeTableName = this.options.entityTableName + '_Scope';
+                            }
+                        }
+
+                        outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                        outString += '&lt;ajaxStorage>';
+                        outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                        outString += '&lt;scopeTableName>&lt;![CDATA[' + scopeTableName + ']]>&lt;/scopeTableName>';
+                        outString += '&lt;entityId>&lt;![CDATA[' + this.entityId + ']]>&lt;/entityId>';
+                        outString += '&lt;entityClassName>&lt;![CDATA[' + this.entityClassName + ']]>&lt;/entityClassName>';
+                        outString += '&lt;authorityName>&lt;![CDATA[应用_通用_查看权限]]>&lt;/authorityName>';
+                        outString += '&lt;/ajaxStorage>';
+
+                        x.net.xhr('/api/kernel.entities.scope.getAuthorizationScopeObjectView.aspx', outString, {
+                            callback: function(response)
+                            {
+                                var result = x.toJSON(response);
+
+                                var clientTargetObject = window[result.clientTargetObject];
+
+                                $(document.getElementById(clientTargetObject.name + '$table$canread')).html(result.ajaxStorage);
+                            }
+                        });
+                    }
+
+                    // 已阅读人员
+                    if (this.displayElements.indexOf('已阅读人员') > -1)
+                    {
+                        outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                        outString += '&lt;ajaxStorage>';
+                        outString += '&lt;action>&lt;![CDATA[findAllByEntityId]]>&lt;/action>';
+                        outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                        outString += '&lt;customTableName>&lt;![CDATA[' + this.customTableName + ']]>&lt;/customTableName>';
+                        outString += '&lt;entityId>&lt;![CDATA[' + this.entityId + ']]>&lt;/entityId>';
+                        outString += '&lt;entityClassName>&lt;![CDATA[' + this.entityClassName + ']]>&lt;/entityClassName>';
+                        if (this.options.resultMap)
+                        {
+                            var resultMap = this.options.resultMap;
+                            outString += '&lt;resultMap>';
+                            for (resultProperty in resultMap)
+                            {
+                                outString += '&lt;result property="' + resultProperty + '" column="' + resultMap[resultProperty] + '" />';
+                            }
+                            outString += '&lt;/resultMap>';
+                        }
+                        outString += '&lt;/ajaxStorage>';
+
+                        x.net.xhr('/api/kernel.entities.click.findAllByEntityId.aspx', outString, {
+                            callback: function(response)
+                            {
+                                var result = x.toJSON(response);
+
+                                var clientTargetObject = window[result.clientTargetObject];
+
+                                var list = result.ajaxStorage;
+
+                                var outString = '';
+
+                                list.each(function(node, index)
+                                {
+                                    outString += '&lt;span title="' + node.accountName + '已阅读' + node.click + '次，最后阅读时间' + x.date.newTime(node.updateDate).toString('yyyy-MM-dd HH:mm:ss') + '。" >' + node.accountName + '&lt;/span>;';
+                                });
+
+                                $(document.getElementById(clientTargetObject.name + '$table$haveread')).html(outString);
+                            }
+                        });
+                    }
+                },
+                /*#endregion*/
+
+                /*#region 函数:create()*/
+                create: function()
+                {
+                    var outString = '';
+
+                    outString += '&lt;table id="' + this.name + '$table" style="width: 100%;" class="table-style table-full-border-style">';
+
+                    outString += '&lt;tbody>';
+
+                    // 可阅读人员
+                    if (this.displayElements.indexOf('可阅读人员') > -1)
+                    {
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text" style="width:120px;" >可阅读人员&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$canread">&lt;/div>&lt;/td>';
+                    }
+
+                    // 已阅读人员
+                    if (this.displayElements.indexOf('已阅读人员') > -1)
+                    {
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text">已阅读人员&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$haveread">&lt;/div>&lt;/td>';
+                        outString += '&lt;/tr>';
+                    }
+
+                    // 未阅读人员
+                    if (this.displayElements.indexOf('未阅读人员') > -1)
+                    {
+                        outString += '&lt;tr class="table-row-normal">';
+                        outString += '&lt;td class="table-body-text" style="width:120px;" >未阅读人员&lt;/td>';
+                        outString += '&lt;td class="table-body-input" >&lt;div id="' + this.name + '$table$unread">&lt;/div>&lt;/td>';
+                    }
+
+                    outString += '&lt;/tbody>';
+                    outString += '&lt;/table>';
+
+                    return outString;
+                },
+                /*#endregion*/
+
+                /*#region 函数:load()*/
+                load: function()
+                {
+                    // 设置数据表名称
+                    if (typeof (options.customTableName) === 'undefined')
+                    {
+                        alert('参数【customTableName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.customTableName = options.customTableName;
+                    }
+
+                    // 设置实体标识
+                    if (typeof (options.entityId) === 'undefined')
+                    {
+                        alert('参数【entityId】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityId = options.entityId;
+                    }
+
+                    // 设置实体类型名称
+                    if (typeof (options.entityClassName) === 'undefined')
+                    {
+                        alert('参数【entityClassName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityClassName = options.entityClassName;
+                    }
+
+                    // 设置需要显示的元素
+                    if (typeof (options.displayElements) !== 'undefined')
+                    {
+                        this.displayElements = options.displayElements;
+                    }
+
+                    $(document.getElementById(this.targetContainerName)).css('margin', '10px');
+                    $(document.getElementById(this.targetContainerName)).html(this.create());
+                }
+                /*#endregion*/
+            }
+
+            return tab;
+        },
+        /*#endregion*/
+
+        /*#region 函数:newImplementationTab(name, targetContainerName, options)*/
+        /*
+        * 落实情况页签
+        */
+        newImplementationTab: function(name, targetContainerName, options)
+        {
+            var tab = {
+
+                // 实例名称
+                name: name,
+
+                // 选项信息
+                options: options,
+
+                // 数据表名称
+                customTableName: null,
+
+                // 实体标识
+                entityId: null,
+
+                // 实体类型名称
+                entityClassName: null,
+
+                // 目标容器名称
+                targetContainerName: targetContainerName,
+
+                /*#region 函数:refresh()*/
+                refresh: function()
+                {
+                    var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                    outString += '&lt;ajaxStorage>';
+                    outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                    outString += '&lt;customTableName>&lt;![CDATA[' + this.customTableName + ']]>&lt;/customTableName>';
+                    outString += '&lt;entityId>&lt;![CDATA[' + this.entityId + ']]>&lt;/entityId>';
+                    outString += '&lt;entityClassName>&lt;![CDATA[' + this.entityClassName + ']]>&lt;/entityClassName>';
+                    outString += '&lt;/ajaxStorage>';
+
+                    x.net.xhr('/api/kernel.entities.implementation.findAllByEntityId.aspx', outString, {
+                        callback: function(response)
+                        {
+                            var result = x.toJSON(response);
+
+                            var clientTargetObject = window[result.clientTargetObject];
+
+                            var list = result.ajaxStorage;
+
+                            var outString = '';
+
+                            if (list.length === 0)
+                            {
+                                outString += '&lt;div style="height:30px;">&lt;/div>';
+                            }
+                            else
+                            {
+                                outString += '&lt;table style="width: 100%;" class="table-style table-full-border-style-table">';
+
+                                outString += '&lt;tbody>';
+                                outString += '&lt;tr class="table-row-title" >';
+                                outString += '&lt;th style="width:80px;" >提交人&lt;/th>';
+                                outString += '&lt;th style="width:120px;" >完成情况&lt;/th>';
+                                outString += '&lt;th>详细情况描述&lt;/th>';
+                                outString += '&lt;th style="width:120px;" >提交时间&lt;/th>';
+                                outString += '&lt;/tr>';
+
+                                list.each(function(node, index)
+                                {
+                                    var classNameValue = "table-row-normal" + ((index + 1) === list.length ? '-transparent' : '');
+
+                                    outString += '&lt;tr class="' + classNameValue + '">';
+                                    outString += '&lt;td>' + node.accountName + '&lt;/td>';
+                                    outString += '&lt;td>' + node.completionStatus + '&lt;/td>';
+                                    outString += '&lt;td>' + node.workContent + '&lt;/td>';
+                                    outString += '&lt;td>' + x.date.newTime(node.createDate).toString('yyyy-MM-dd HH:mm:ss') + '&lt;/td>';
+                                    outString += '&lt;/tr>';
+                                });
+
+                                outString += '&lt;/tbody>';
+                                outString += '&lt;/table>';
+                            }
+
+                            x.dom.query(clientTargetObject.name).html(outString);
+                        }
+                    });
+                },
+                /*#endregion*/
+
+                /*#region 函数:load()*/
+                load: function()
+                {
+                    // 设置数据表名称
+                    if (typeof (options.customTableName) === 'undefined')
+                    {
+                        alert('参数【customTableName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.customTableName = options.customTableName;
+                    }
+
+                    // 设置实体标识
+                    if (typeof (options.entityId) === 'undefined')
+                    {
+                        alert('参数【entityId】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityId = options.entityId;
+                    }
+
+                    // 设置实体类型名称
+                    if (typeof (options.entityClassName) === 'undefined')
+                    {
+                        alert('参数【entityClassName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.entityClassName = options.entityClassName;
+                    }
+                }
+                /*#endregion*/
+            }
+
+            return tab;
+        },
+        /*#endregion*/
+
+        /*#region 函数:newDocumentHistoryTab(name, targetContainerName, options)*/
+        /*
+        * 历史版本页签
+        */
+        newDocumentHistoryTab: function(name, targetContainerName, options)
+        {
+            var tab = {
+
+                // 实例名称
+                name: name,
+
+                // 选项信息
+                options: options,
+
+                // 数据表名称
+                customTableName: null,
+
+                // 实体标识
+                entityId: null,
+
+                // 实体类型名称
+                entityClassName: null,
+
+                // 目标容器名称
+                targetContainerName: targetContainerName,
+
+                // 文档标记
+                docToken: null,
+
+                // 文档查看页面地址规则
+                docUrlFormat: null,
+
+                /*#region 函数:refresh()*/
+                refresh: function()
+                {
+                    var outString = '&lt;?xml version="1.0" encoding="utf-8" ?>';
+
+                    outString += '&lt;ajaxStorage>';
+                    outString += '&lt;clientTargetObject>&lt;![CDATA[' + this.name + ']]>&lt;/clientTargetObject>';
+                    outString += '&lt;customTableName>&lt;![CDATA[' + this.customTableName + ']]>&lt;/customTableName>';
+                    outString += '&lt;docToken>&lt;![CDATA[' + this.docToken + ']]>&lt;/docToken>';
+                    if (this.options.resultMap)
+                    {
+                        var resultMap = this.options.resultMap;
+                        outString += '&lt;resultMap>';
+                        for (resultProperty in resultMap)
+                        {
+                            outString += '&lt;result property="' + resultProperty + '" column="' + resultMap[resultProperty] + '" />';
+                        }
+                        outString += '&lt;/resultMap>';
+                    }
+                    outString += '&lt;/ajaxStorage>';
+
+                    x.net.xhr('/api/kernel.entities.docObject.findAllByDocToken.aspx', outString, {
+                        callback: function(response)
+                        {
+                            var result = x.toJSON(response);
+
+                            var clientTargetObject = window[result.clientTargetObject];
+
+                            var list = result.ajaxStorage;
+
+                            var outString = '';
+
+                            if (list.length === 0)
+                            {
+                                outString += '&lt;div style="height:30px;">暂时还没有历史记录。&lt;/div>';
+                            }
+                            else
+                            {
+                                outString += '&lt;table style="width: 100%;" class="table-style table-full-border-style-table" >';
+
+                                outString += '&lt;tbody>';
+                                outString += '&lt;tr class="table-row-title" >';
+                                outString += '&lt;th>版本&lt;/th>';
+                                outString += '&lt;/tr>';
+
+                                list.each(function(node, index)
+                                {
+                                    var classNameValue = "table-row-normal" + ((index + 1) === list.length ? '-transparent' : '');
+
+                                    outString += '&lt;tr class="' + classNameValue + '" >';
+                                    outString += '&lt;td>&lt;a href="' + clientTargetObject.docUrlFormat.replace('{0}', node.id) + '" target="_blank" >' + node.docTitle + '&lt;/a> &lt;strong>' + node.docVersion + '版&lt;/strong>【' + node.accountName + '】【' + x.date.newTime(node.createDate).toString('yyyy-MM-dd HH:mm:ss') + '】&lt;/td>';
+                                    outString += '&lt;/tr>';
+                                });
+
+                                outString += '&lt;/tbody>';
+                                outString += '&lt;/table>';
+                            }
+
+                            $(document.getElementById(clientTargetObject.targetContainerName)).html(outString);
+                        }
+                    });
+                },
+                /*#endregion*/
+
+                /*#region 函数:load()*/
+                load: function()
+                {
+                    // 设置数据表名称
+                    if (typeof (options.customTableName) === 'undefined')
+                    {
+                        alert('参数【customTableName】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.customTableName = options.customTableName;
+                    }
+
+                    // 设置实体标识
+                    if (typeof (options.docToken) === 'undefined')
+                    {
+                        alert('参数【docToken】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.docToken = options.docToken;
+                    }
+
+                    // 设置实体查看页面
+                    if (typeof (options.docUrlFormat) === 'undefined')
+                    {
+                        alert('参数【docUrlFormat】必须填写。');
+                        return;
+                    }
+                    else
+                    {
+                        this.docUrlFormat = options.docUrlFormat;
+                    }
+                }
+                /*#endregion*/
+            }
+
+            return tab;
+        }
+        /*#endregion*/
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:52.904Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

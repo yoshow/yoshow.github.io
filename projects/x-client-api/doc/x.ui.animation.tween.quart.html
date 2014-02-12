@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>名称空间(Namespace): randomText - 帮助手册</title>
+    <title>名称空间(Namespace): quart - 帮助手册</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -57,7 +57,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">名称空间(Namespace): randomText</h1>
+    <h1 class="page-title">名称空间(Namespace): quart</h1>
 
     
 
@@ -67,9 +67,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="x.html">x</a>.</span>
+        <span class="ancestors"><a href="x.html">x</a><a href="x.ui.html">.ui</a><a href="x.ui.animation.html">.animation</a><a href="x.ui.animation.tween.html">.tween</a>.</span>
     
-    randomText
+    quart
     </h2>
     
 </header>  
@@ -79,8 +79,6 @@
     
     
     
-        
-            <div class="description">随机文本</div>
         
         
         
@@ -107,7 +105,7 @@
     <!-- 不输出源码位置
     <dt class="tag-source">源码(Source):</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1178">line 1178</a>
+        <a href="x.ui.animation.js.html">ui/core/x.ui.animation.js</a>, <a href="x.ui.animation.js.html#line268">line 268</a>
     </li></ul></dd> -->
     
     
@@ -141,7 +139,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="create"><span class="type-signature">&lt;static> </span>create<span class="signature">(length)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="easeIn"><span class="type-signature">&lt;static> </span>easeIn<span class="signature">(t:, b:, c:, d:)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -149,7 +147,7 @@
     
     
     <div class="description">
-        创建随机文本信息
+        缓慢进入
     </div>
     
 
@@ -183,7 +181,7 @@
 	
         <tr>
             
-                <td class="name"><code>length</code></td>
+                <td class="name"><code>t:</code></td>
             
             
             <td class="type">
@@ -199,7 +197,76 @@
             
             
             
-            <td class="description last">返回的文本长度</td>
+            <td class="description last">timestamp，指缓动效果开始执行到当前帧开始执行时经过的时间段，单位ms</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>b:</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">beginning position，起始位置</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>c:</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">change，要移动的距离，就是终点位置减去起始位置</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>d:</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">duration ，缓和效果持续的时间</td>
         </tr>
 	
 	
@@ -231,7 +298,7 @@
     <!-- 不输出源码位置
     <dt class="tag-source">源码(Source):</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1185">line 1185</a>
+        <a href="x.ui.animation.js.html">ui/core/x.ui.animation.js</a>, <a href="x.ui.animation.js.html#line273">line 273</a>
     </li></ul></dd> -->
     
     
@@ -254,10 +321,192 @@
     
     
     
-        <h5>示例(Example)</h5>
-        
-    <pre class="prettyprint"><code>// 输出格式 00000000console.log(x.randomText.create(8));</code></pre>
+</dd>
 
+        
+            
+<dt>
+    <h4 class="name" id="easeIn"><span class="type-signature">&lt;static> </span>easeIn<span class="signature">([t]imestamp, [b]eginning, [c]hange, [d]uration)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        缓慢退出
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>[t]imestamp</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">指缓动效果开始执行到当前帧开始执行时经过的时间段，单位ms</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>[b]eginning</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">position，起始位置</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>[c]hange</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">要移动的距离，就是终点位置减去起始位置</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>[d]uration</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">缓和效果持续的时间</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- 不输出源码位置
+    <dt class="tag-source">源码(Source):</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.ui.animation.js.html">ui/core/x.ui.animation.js</a>, <a href="x.ui.animation.js.html#line286">line 286</a>
+    </li></ul></dd> -->
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
     
 </dd>
 
@@ -279,7 +528,7 @@
 <br clear="both">
 
 <footer>
-    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:55.691Z.
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:56.414Z.
 </footer>
 
 <script> prettyPrint(); </script>

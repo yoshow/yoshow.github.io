@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>名称空间(Namespace): randomText - 帮助手册</title>
+    <title>Source: core/x.cookies.js - 帮助手册</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -57,219 +57,146 @@
 
 <div id="main">
 
-    <h1 class="page-title">名称空间(Namespace): randomText</h1>
+    <h1 class="page-title">Source: core/x.cookies.js</h1>
 
     
 
 
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>﻿// -*- ecoding=utf-8 -*-
 
-<section>
-    
-<header>
-    <h2>
-        <span class="ancestors"><a href="x.html">x</a>.</span>
-    
-    randomText
-    </h2>
-    
-</header>  
+/**
+* @namespace cookies
+* @memberof x
+* @description Cookies 管理
+*/
+x.cookies = {
 
-<article>
-    <div class="container-overview">
-    
-    
-    
-        
-            <div class="description">随机文本</div>
-        
-        
-        
-<dl class="details">
-    
-        
-    
-    
-    
+    /*#region 函数:query(name)*/
+    /**
+    * 根据 Cookie 名称查找相关的值
+    * @method query
+    * @memberof x.cookies
+    * @param {string} name 名称
+    */
+    query: function(name)
+    {
+        var value = '';
+        var search = name + '=';
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!-- 不输出源码位置
-    <dt class="tag-source">源码(Source):</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1178">line 1178</a>
-    </li></ul></dd> -->
-    
-    
-    
-    
-    
-    
-    
-</dl>
+        if (document.cookie.length > 0)
+        {
+            var offset = document.cookie.indexOf(search);
 
-        
-        
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">方法(Methods)</h3>
-        
-        <dl>
-            
-<dt>
-    <h4 class="name" id="create"><span class="type-signature">&lt;static> </span>create<span class="signature">(length)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        创建随机文本信息
-    </div>
-    
+            if (offset != -1)
+            {
+                offset += search.length;
 
-    
-    
-    
-    
-    
-        <h5>参数(Parameters):</h5>
-        
+                var end = document.cookie.indexOf(';', offset);
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>名称</th>
-		
-		
-		<th>类型</th>
-		
-		
-		
-		
-		
-		<th class="last">描述</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>length</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+                if (end == -1)
+                    end = document.cookie.length;
 
+                value = unescape(document.cookie.substring(offset, end));
+            }
+        }
 
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">返回的文本长度</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
+        return value;
+    },
+    /*#endregion*/
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!-- 不输出源码位置
-    <dt class="tag-source">源码(Source):</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1185">line 1185</a>
-    </li></ul></dd> -->
-    
-    
-    
-    
-    
-    
-    
-</dl>
+    /*#region 函数:add(name, value, options)*/
+    /**
+    * 新增 Cookie 的值
+    * @method add
+    * @memberof x.cookies
+    * @param {string} name 名称
+    * @param {string} value 值
+    * @param {object} [options] 选项&lt;br />
+    * 可选键值范围: 
+    * &lt;table class="param-options" >
+    * &lt;thead>
+    * &lt;tr>&lt;th>名称&lt;/th>&lt;th>类型&lt;/th>&lt;th class="last" >描述&lt;/th>&lt;/tr>
+    * &lt;/thead>
+    * &lt;tbody>
+    * &lt;tr>&lt;td class="name" >expire&lt;/td>&lt;td>string&lt;/td>&lt;td>过期时间&lt;/td>&lt;/tr> 
+    * &lt;tr>&lt;td class="name" >path&lt;/td>&lt;td>string&lt;/td>&lt;td>所属的路径&lt;/td>&lt;/tr>
+    * &lt;tr>&lt;td class="name" >domain&lt;/td>&lt;td>string&lt;/td>&lt;td>所属的域&lt;/td>&lt;/tr>
+    * &lt;/tbody>
+    * &lt;/table>
+    * @example
+    * // 新增一条 Cookie 记录, 
+    * // 名称为 CookieName1, 值为 CookieValue1
+    * x.cookie.add('CookieName1', 'CookieValue1');
+    * @example
+    * // 新增一条 Cookie 记录, 
+    * // 名称为 CookieName2, 值为 CookieValue2, 
+    * // 过期时间为 2050-1-1 10:30:00 
+    * x.cookie.add('cookieName2', 'cookieValue2', {'expire': new (2050, 1, 1, 10, 30, 00)});
+    * @example
+    * // 新增一条 Cookie 记录, 
+    * // 名称为 CookieName3, 值为 CookieValue3, 
+    * // 过期时间为 2050-1-1 10:30:00 , 所属路径为 /help/
+    * x.cookies.add('cookieName3', 'cookieValue3', {'expire': new (2050,1,1,10,30,00), path: '/help/'});
+    * @example
+    * // 新增一条 Cookie 记录, 
+    * // 名称为 CookieName4, 值为 CookieValue4, 
+    * // 过期时间为 2050-1-1 10:30:00, 所属的域为 github.com
+    * x.cookies.add('cookieName4', 'cookieValue4', {'expire': new (2050,1,1,10,30,00), path: '/', domain: 'github.com');
+    */
+    add: function(name, value, options)
+    {
+        options = x.ext({ path: '/' }, options || {});
 
-    
-    
+        document.cookie = escape(name) + '=' + escape(value)
+            + ((!options.expire) ? '' : ('; expires=' + options.expire.toGMTString()))
+            + '; path=' + options.path
+            + ((!options.domain) ? '' : ('; domain=' + options.domain));
+    },
+    /*#endregion*/
 
-    
+    /*#region 函数:remove(name, options)*/
+    /**
+    * 移除 Cookie 的值
+    * @method remove
+    * @memberof x.cookies
+    * @param {string} name 名称
+    * @param {object} [options] 选项&lt;br />
+    * 可选键值范围: 
+    * &lt;table class="param-options" >
+    * &lt;thead>
+    * &lt;tr>&lt;th>名称&lt;/th>&lt;th>类型&lt;/th>&lt;th class="last" >描述&lt;/th>&lt;/tr>
+    * &lt;/thead>
+    * &lt;tbody>
+    * &lt;tr>&lt;td class="name" >path&lt;/td>&lt;td>string&lt;/td>&lt;td>所属的路径&lt;/td>&lt;/tr>
+    * &lt;tr>&lt;td class="name" >domain&lt;/td>&lt;td>string&lt;/td>&lt;td>所属的域&lt;/td>&lt;/tr>
+    * &lt;/tbody>
+    * &lt;/table>
+    * @example
+    * // 移除一条 Cookie 记录, 名称为 CookieName1
+    * x.cookies.remove('CookieName1');
+    * @example
+    * // 移除一条 Cookie 记录, 名称为 CookieName2
+    * x.cookies.remove('CookieName2', {path: '/help/'});
+    */
+    remove: function(name, options)
+    {
+        options = x.ext({ path: '/' }, options || {});
 
-    
-    
-    
-    
-    
-    
-    
-        <h5>示例(Example)</h5>
-        
-    <pre class="prettyprint"><code>// 输出格式 00000000console.log(x.randomText.create(8));</code></pre>
-
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-</article>
-
-</section>  
+        if (!!x.cookies.query(name))
+        {
+            document.cookie = escape(name) + '=; path=' + options.path
+                + '; expires=' + new Date(0).toGMTString()
+                + ((!options.domain) ? '' : ('; domain=' + options.domain));
+        }
+    }
+    /*#endregion*/
+};
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -279,7 +206,7 @@
 <br clear="both">
 
 <footer>
-    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:55.691Z.
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:52.881Z.
 </footer>
 
 <script> prettyPrint(); </script>

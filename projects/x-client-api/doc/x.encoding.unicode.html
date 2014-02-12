@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>名称空间(Namespace): randomText - 帮助手册</title>
+    <title>名称空间(Namespace): unicode - 帮助手册</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -57,7 +57,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">名称空间(Namespace): randomText</h1>
+    <h1 class="page-title">名称空间(Namespace): unicode</h1>
 
     
 
@@ -67,9 +67,9 @@
     
 <header>
     <h2>
-        <span class="ancestors"><a href="x.html">x</a>.</span>
+        <span class="ancestors"><a href="x.html">x</a><a href="x.encoding.html">.encoding</a>.</span>
     
-    randomText
+    unicode
     </h2>
     
 </header>  
@@ -80,7 +80,7 @@
     
     
         
-            <div class="description">随机文本</div>
+            <div class="description">unicode 编码管理</div>
         
         
         
@@ -107,7 +107,7 @@
     <!-- 不输出源码位置
     <dt class="tag-source">源码(Source):</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1178">line 1178</a>
+        <a href="x.encoding.js.html">core/x.encoding.js</a>, <a href="x.encoding.js.html#line88">line 88</a>
     </li></ul></dd> -->
     
     
@@ -141,7 +141,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="create"><span class="type-signature">&lt;static> </span>create<span class="signature">(length)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="decode"><span class="type-signature">&lt;static> </span>decode<span class="signature">(text)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -149,7 +149,7 @@
     
     
     <div class="description">
-        创建随机文本信息
+        unicode 解码
     </div>
     
 
@@ -183,13 +183,13 @@
 	
         <tr>
             
-                <td class="name"><code>length</code></td>
+                <td class="name"><code>text</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
             
@@ -199,7 +199,7 @@
             
             
             
-            <td class="description last">返回的文本长度</td>
+            <td class="description last">文本信息</td>
         </tr>
 	
 	
@@ -231,7 +231,7 @@
     <!-- 不输出源码位置
     <dt class="tag-source">源码(Source):</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1185">line 1185</a>
+        <a href="x.encoding.js.html">core/x.encoding.js</a>, <a href="x.encoding.js.html#line138">line 138</a>
     </li></ul></dd> -->
     
     
@@ -254,10 +254,123 @@
     
     
     
-        <h5>示例(Example)</h5>
-        
-    <pre class="prettyprint"><code>// 输出格式 00000000console.log(x.randomText.create(8));</code></pre>
+</dd>
 
+        
+            
+<dt>
+    <h4 class="name" id="encode"><span class="type-signature">&lt;static> </span>encode<span class="signature">(text)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        unicode 编码
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">文本信息</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- 不输出源码位置
+    <dt class="tag-source">源码(Source):</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.encoding.js.html">core/x.encoding.js</a>, <a href="x.encoding.js.html#line99">line 99</a>
+    </li></ul></dd> -->
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
     
 </dd>
 
@@ -279,7 +392,7 @@
 <br clear="both">
 
 <footer>
-    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:55.691Z.
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:54.865Z.
 </footer>
 
 <script> prettyPrint(); </script>

@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: ui/core/x.ui.mask.js - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default-fixed.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="x.date.newTime.html">newTime</a></li><li><a href="x.date.newTimeSpan.html">newTimeSpan</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.ui.pkg.tabs.newTabs.html">newTabs</a></li><li><a href="x.ui.pkg.tree.newTreeView.html">newTreeView</a></li><li><a href="x.ui.tooltip.newTooltip.html">newTooltip</a></li><li><a href="x.ui.tooltip.newWarnTooltip.html">newWarnTooltip</a></li><li><a href="x.ui.tree.newTreeNode.html">newTreeNode</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.browser.html">x.browser</a></li><li><a href="x.browser.features.html">x.browser.features</a></li><li><a href="x.color.html">x.color</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.dom.html">x.dom</a></li><li><a href="x.encoding.html">x.encoding</a></li><li><a href="x.encoding.html.html">x.encoding.html</a></li><li><a href="x.encoding.unicode.html">x.encoding.unicode</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.net.request.html">x.net.request</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.html">x.ui</a></li><li><a href="x.ui.animation.html">x.ui.animation</a></li><li><a href="x.ui.animation.tween.html">x.ui.animation.tween</a></li><li><a href="x.ui.animation.tween.back.html">x.ui.animation.tween.back</a></li><li><a href="x.ui.animation.tween.bounce.html">x.ui.animation.tween.bounce</a></li><li><a href="x.ui.animation.tween.circ.html">x.ui.animation.tween.circ</a></li><li><a href="x.ui.animation.tween.cubic.html">x.ui.animation.tween.cubic</a></li><li><a href="x.ui.animation.tween.elastic.html">x.ui.animation.tween.elastic</a></li><li><a href="x.ui.animation.tween.expo.html">x.ui.animation.tween.expo</a></li><li><a href="x.ui.animation.tween.quad.html">x.ui.animation.tween.quad</a></li><li><a href="x.ui.animation.tween.quart.html">x.ui.animation.tween.quart</a></li><li><a href="x.ui.animation.tween.quint.html">x.ui.animation.tween.quint</a></li><li><a href="x.ui.animation.tween.sine.html">x.ui.animation.tween.sine</a></li><li><a href="x.ui.dialogs.html">x.ui.dialogs</a></li><li><a href="x.ui.drag.html">x.ui.drag</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.ui.pkg.html">x.ui.pkg</a></li><li><a href="x.ui.pkg.slide.html">x.ui.pkg.slide</a></li><li><a href="x.ui.pkg.tabs.html">x.ui.pkg.tabs</a></li><li><a href="x.ui.pkg.tree.html">x.ui.pkg.tree</a></li><li><a href="x.ui.tooltip.html">x.ui.tooltip</a></li><li><a href="x.ui.util.html">x.ui.util</a></li><li><a href="x.ui.windows.html">x.ui.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ui/core/x.ui.mask.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>﻿// -*- ecoding : utf-8 -*-
+/**
+* @namespace mask
+* @memberof x.ui
+* @description 遮罩
+*/
+x.ui.mask = {
+
+    zIndex: 800,
+
+    // 遮罩的栈
+    stack: null,
+
+    getMaskStack: function()
+    {
+        if (x.ui.mask.stack === null)
+        {
+            x.ui.mask.stack = x.newStack();
+        }
+
+        return x.ui.mask.stack;
+    },
+
+    // 默认遮罩实例
+    defaultInstance: null,
+
+    /**
+    * 获取默认遮罩窗口实例
+    * @method getWindow
+    * @memberof x
+    * @param {string} html 窗口中的Html代码
+    * @param {object} [instance] 当前遮罩实例
+    * @return {object} 这张对象
+    */
+    getWindow: function(options, instance)
+    {
+        if (typeof (instance) === 'undefined')
+        {
+            // 获得默认遮罩实例
+            if (this.defaultInstance === null)
+            {
+                var name = x.getFriendlyName(location.pathname + '$mask$default$instance');
+
+                this.defaultInstance = instance = x.ui.mask.newMaskWrapper(name, options);
+            }
+            else
+            {
+                instance = this.defaultInstance;
+            }
+        }
+
+        // 加载遮罩、页面结构
+        instance.open().innerHTML = options.content;
+
+        instance.resize();
+
+        return instance;
+    },
+
+    clear: function()
+    {
+        var mask = x.ui.mask.getMaskStack().peek();
+
+        if (mask !== null)
+        {
+            mask.close();
+        }
+    },
+
+    /**
+    * @class MaskWrapper 页面的遮罩封装器
+    * @constructor newMaskWrapper
+    * @memberof x.ui.mask
+    */
+    newMaskWrapper: function(name, options)
+    {
+        var maskWrapper = {
+            // 实例名称
+            name: 'maskWrapper',
+            // 弹出窗口名称
+            popupWindowName: 'maskPopupWindow',
+            // 配置信息
+            options: null,
+            // 最大
+            maxOpacity: 0.4,
+            //
+            maxDuration: 0.2,
+            // 自动隐藏
+            autoHide: 1,
+
+            create: function(name, options)
+            {
+                // 初始化选项信息
+                this.options = x.ext(options || {}, {
+                    height: '100%',
+                    width: '100%',
+                    left: '0',
+                    top: '0'
+                });
+
+                this.name = name;
+                this.popupWindowName = name + '$maskPopupWindow';
+
+                if (options.url)
+                {
+                    options.content = '&lt;div >'
+                            + '&lt;iframe border="0" frameborder="0" marginheight="0" marginwidth="0" border="0" scrolling="no" '
+                            + 'style="border:none; width:' + options.width + '; height:' + options.height + ';" src="' + options.url + '">&lt;/iframe>'
+                            + '&lt;/div>';
+                }
+            },
+
+            /**
+            * 显示遮罩
+            */
+            show: function()
+            {
+                var wrapper = document.getElementById(this.name);
+
+                if (wrapper === null)
+                {
+                    $(document.body).append('&lt;div id="' + this.name + '" style="display:none;" >&lt;/div>');
+
+                    wrapper = document.getElementById(this.name);
+                }
+
+                if (this.autoHide === 1)
+                {
+                    $(wrapper).bind('click', function(event)
+                    {
+                        $(this).unbind('click');
+
+                        x.stopEventPropagation(event);
+
+                        var mask = window[this.id];
+
+                        if (x.dom.query(mask.name).css('display') === '')
+                        {
+                            // x.debug.log(mask.name + '.close()');
+                            mask.close();
+                        }
+                    });
+                }
+
+                // .x-mask-wrapper{ position: absolute; top: 0; left: 0; z-index: 90; width: 100%; height: 100%; background-color: #000; }
+                // wrapper.className = 'x-mask-wrapper';
+
+                // wrapper.style.height = x.page.getRange().height + 'px';
+                // wrapper.style.width = x.page.getRange().width + 'px';
+
+                $(wrapper).css({
+                    // 'position': 'absolute',
+                    'position': 'fixed',
+                    'top': 0,
+                    'left': 0,
+                    'z-index': 90,
+                    'width': '100%',
+                    'height': '100%',
+                    'background': 'rgba(0,0,0,100)'
+                });
+
+                if (wrapper.style.display === 'none')
+                {
+                    // x.debug.log('show:' + mask.name);
+
+                    x.dom.query(this.name).css({ display: '', opacity: 0.1 });
+
+                    x.dom.query(this.popupWindowName).css({ display: 'none' });
+
+                    x.dom.query(this.name).fadeTo((this.maxDuration * 1000), this.maxOpacity, function()
+                    {
+                        var mask = window[this.id];
+
+                        // x.debug.log(mask.popupWindowName + '.show()');
+
+                        x.dom.query(mask.popupWindowName).css({ display: '' });
+                        x.dom.query(mask.popupWindowName).slideDown('slow');
+                    });
+                }
+            },
+
+            /*
+            * 隐藏
+            */
+            hide: function()
+            {
+                if (x.dom.query(this.popupWindowName).css('display') !== 'none')
+                {
+                    /*
+                    x.dom.query(this.popupWindowName).css({ display: 'none' });
+
+                    x.dom.query(this.name).css({ display: '', opacity: this.maxOpacity });
+
+                    x.dom.query(this.name).fadeOut((this.maxDuration * 1000), function()
+                    {
+                    x.dom.query(this.name).css({ display: 'none' });
+                    });
+                    */
+
+                    // 注:取消对 IE6 的支持
+                    // IE 6 支持
+                    /*
+                    if (document.getElementById('dragListenerMask'))
+                    {
+                    document.getElementById('dragListenerMask').style.display = 'none';
+                    }
+                    */
+
+                    var that = this;
+
+                    x.dom.query(this.popupWindowName).fadeOut('normal', function()
+                    {
+                        x.dom.query(that.name).css({ display: '', opacity: that.maxOpacity });
+
+                        x.dom.query(that.name).fadeOut((that.maxDuration * 1000), function()
+                        {
+                            x.dom.query(that.name).css({ display: 'none' });
+                        });
+                    });
+                }
+            },
+
+            /**
+            * 打开弹出窗口
+            */
+            open: function()
+            {
+                // 如果之前有遮罩，则隐藏之前的遮罩内容。
+                var mask = x.ui.mask.getMaskStack().peek();
+
+                if (mask !== null && mask.name !== this.name)
+                {
+                    mask.hide();
+                }
+
+                if (mask === null || mask.name !== this.name)
+                {
+                    x.ui.mask.getMaskStack().push(this);
+                }
+
+                this.show();
+
+                var element = document.getElementById(this.popupWindowName);
+
+                // 弹出窗口的位置
+                var pointX = this.options.left, pointY = this.options.top;
+
+                if (element === null)
+                {
+                    element = document.createElement('div');
+
+                    element.id = this.popupWindowName;
+
+                    element.style.width = this.options.width;
+
+                    element.style.height = this.options.height;
+
+                    element.style.display = 'none';
+
+                    element.style.zIndex = x.ui.mask.zIndex++;
+
+                    $(document.body).append(element);
+
+                    $(element).fadeIn('normal');
+
+                    pointX = (x.page.getRange().width - $(element).width()) / 2;
+
+                    // 设置窗口的位置
+                    x.util.setLocation(element, pointX, pointY);
+                }
+                else
+                {
+                    element.style.zIndex = x.ui.mask.zIndex++;
+
+                    // $(element).show();
+                    $(element).fadeIn('normal');
+
+                    pointX = (x.page.getRange().width - $(element).width()) / 2;
+
+                    x.util.setLocation(element, pointX, pointY);
+                }
+
+                this.resize();
+
+                return element;
+            },
+
+            /**
+            * 重置大小
+            */
+            resize: function()
+            {
+                var element = x.dom.query(this.popupWindowName);
+
+                if (element.size() === 0) { return; }
+
+                // 弹出窗口的位置
+                var pointX = this.options.left, pointY = this.options.top;
+
+                var width = 720;
+
+                if (element.children().length === 0) { return; }
+
+                // 弹出窗口宽度
+                var width = element.width();
+                // height = $(element.children()[0]).height();
+
+                // 设置容器宽度
+                element.css({ 'width': width + 'px' });
+
+                pointX = (x.page.getRange().width - width) / 2;
+
+                x.util.setLocation(element, pointX, pointY);
+
+                // 设置窗口可拖拽
+                x.drag.getDraggableWindow({
+                    targetWindowName: this.popupWindowName,
+                    targetWindowWidth: options.draggableWidth,
+                    targetWindowHeight: options.draggableHeight,
+                    draggingStyle: 'default'
+                });
+            },
+
+            closeEvent: null,
+
+            /*
+            * 关闭弹出窗口
+            */
+            close: function()
+            {
+                x.ui.mask.getMaskStack().pop();
+
+                this.hide();
+
+                // 如果之前遮罩，则显示之前的遮罩内容。
+                var mask = x.ui.mask.getMaskStack().peek();
+
+                if (mask !== null)
+                {
+                    // x.debug.log(mask.name + '.show()');
+                    mask.show();
+                }
+
+                if (this.closeEvent)
+                {
+                    this.closeEvent();
+                }
+            }
+        };
+
+        maskWrapper.create(name, options);
+
+        window[name] = maskWrapper;
+
+        return maskWrapper;
+    }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:53.013Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

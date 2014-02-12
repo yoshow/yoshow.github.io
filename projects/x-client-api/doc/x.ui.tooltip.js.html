@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: ui/core/x.ui.tooltip.js - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default-fixed.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="x.date.newTime.html">newTime</a></li><li><a href="x.date.newTimeSpan.html">newTimeSpan</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.ui.pkg.tabs.newTabs.html">newTabs</a></li><li><a href="x.ui.pkg.tree.newTreeView.html">newTreeView</a></li><li><a href="x.ui.tooltip.newTooltip.html">newTooltip</a></li><li><a href="x.ui.tooltip.newWarnTooltip.html">newWarnTooltip</a></li><li><a href="x.ui.tree.newTreeNode.html">newTreeNode</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.browser.html">x.browser</a></li><li><a href="x.browser.features.html">x.browser.features</a></li><li><a href="x.color.html">x.color</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.dom.html">x.dom</a></li><li><a href="x.encoding.html">x.encoding</a></li><li><a href="x.encoding.html.html">x.encoding.html</a></li><li><a href="x.encoding.unicode.html">x.encoding.unicode</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.net.request.html">x.net.request</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.html">x.ui</a></li><li><a href="x.ui.animation.html">x.ui.animation</a></li><li><a href="x.ui.animation.tween.html">x.ui.animation.tween</a></li><li><a href="x.ui.animation.tween.back.html">x.ui.animation.tween.back</a></li><li><a href="x.ui.animation.tween.bounce.html">x.ui.animation.tween.bounce</a></li><li><a href="x.ui.animation.tween.circ.html">x.ui.animation.tween.circ</a></li><li><a href="x.ui.animation.tween.cubic.html">x.ui.animation.tween.cubic</a></li><li><a href="x.ui.animation.tween.elastic.html">x.ui.animation.tween.elastic</a></li><li><a href="x.ui.animation.tween.expo.html">x.ui.animation.tween.expo</a></li><li><a href="x.ui.animation.tween.quad.html">x.ui.animation.tween.quad</a></li><li><a href="x.ui.animation.tween.quart.html">x.ui.animation.tween.quart</a></li><li><a href="x.ui.animation.tween.quint.html">x.ui.animation.tween.quint</a></li><li><a href="x.ui.animation.tween.sine.html">x.ui.animation.tween.sine</a></li><li><a href="x.ui.dialogs.html">x.ui.dialogs</a></li><li><a href="x.ui.drag.html">x.ui.drag</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.ui.pkg.html">x.ui.pkg</a></li><li><a href="x.ui.pkg.slide.html">x.ui.pkg.slide</a></li><li><a href="x.ui.pkg.tabs.html">x.ui.pkg.tabs</a></li><li><a href="x.ui.pkg.tree.html">x.ui.pkg.tree</a></li><li><a href="x.ui.tooltip.html">x.ui.tooltip</a></li><li><a href="x.ui.util.html">x.ui.util</a></li><li><a href="x.ui.windows.html">x.ui.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ui/core/x.ui.tooltip.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>﻿// -*- ecoding=utf-8 -*-
+
+/**
+* @namespace tooltip
+* @memberof x.ui
+* @description 工具提示
+*/
+x.ui.tooltip = {
+
+    /**
+    * 工具提示
+    * @description 工具提示
+    * @class Tooltip
+    * @constructor newTooltip
+    * @memberof x.ui.tooltip
+    * @param {object} options 选项
+    */
+    newTooltip: function(options)
+    {
+        // 设置默认选项参数
+        options = x.ext({
+            // 是否跟随
+            following: 1,
+            // 最大透明度(0～1)
+            maxOpacity: 0.85,
+            // 动画周期时间
+            maxDuration: 0.2,
+            // 默认样式
+            defaultCss: true,
+            // corner
+            corner: false,
+            // margin: "0px",
+            // padding: '6px 8px 4px 8px',
+            fontSize: '12px',
+            // color:'#fff',
+            // backgroundColor: 'transparent', // blue:#1e90ff | red:#ff1e53
+            // 增量
+            deltaX: 5,
+            deltaY: 5,
+            zIndex: 80
+        }, options || {});
+
+        var tip = {
+
+            create: function()
+            {
+                this.element = x.dom.query(options.element);
+
+                if (typeof (options.tooltip) !== 'undefined')
+                {
+                    // 直接绑定元素初始化 
+                }
+                else if (typeof (options.tooltip) === 'undefined' && typeof (this.element.attr('tooltip')) !== 'undefined')
+                {
+                    // 支持元素 tooltip 属性标签初始化
+                    options.message = this.element.attr('tooltip');
+                    options.tooltip = this.element[0].id + '$tooltip';
+
+                    if (x.dom.query(options.tooltip).size() === 0)
+                    {
+                        this.element.after('&lt;div id="' + options.tooltip + '" class="ajax-tooltip" style="display:none;" >&lt;span>' + options.message.replace(/\n/g, '&lt;br />') + '&lt;/span>&lt;div>&lt;image src="/resources/images/common/tooltip_bottom.gif" />&lt;/div>&lt;/div>');
+                    }
+
+                    x.dom.query(options.tooltip).find('span')[0].innerHTML = options.message.replace(/\n/g, '&lt;br />');
+                }
+                else if (typeof (options.message) !== 'undefined')
+                {
+                    // 支持函数 message 参数初始化
+                    options.tooltip = this.element[0].id + '$tooltip';
+
+                    if (x.dom.query(options.tooltip).size() === 0)
+                    {
+                        this.element.after('&lt;div id="' + options.tooltip + '" class="ajax-tooltip" style="display:none;" >&lt;span>' + options.message.replace(/\n/g, '&lt;br />') + '&lt;/span>&lt;div>&lt;image src="/resources/images/common/tooltip_bottom.gif" />&lt;/div>&lt;/div>');
+                    }
+
+                    x.dom.query(options.tooltip).find('span')[0].innerHTML = options.message.replace(/\n/g, '&lt;br />');
+                }
+                else
+                {
+                    // 默认初始化
+                    options.tooltip = this.element[0].id + '$tooltip';
+
+                    if (x.dom.query(options.tooltip).size() === 0)
+                    {
+                        this.element.after('&lt;div id="' + options.tooltip + '" class="ajax-tooltip" style="display:none;" >&lt;span>&lt;/span>&lt;div>&lt;image src="/resources/images/common/tooltip_bottom.gif" />&lt;/div>&lt;/div>');
+                    }
+                }
+
+                this.tooltip = x.dom.query(options.tooltip);
+
+                if (typeof (options.name) === 'undefined')
+                {
+                    this.name = this.element[0].id + '$' + this.tooltip[0].id + '$object';
+                }
+                else
+                {
+                    this.name = options.name;
+                }
+
+                // 如果存在相同名称的对象，则清除旧的对象和事件
+                if (typeof (window[this.name]) !== 'undefined')
+                {
+                    window[this.name].unregisterEvents();
+                    window[this.name] = undefined;
+                }
+
+                this.options = options;
+
+                this.tooltip.css({
+                    // margin:this.options.margin,
+                    // padding:this.options.padding,
+                    fontSize: this.options.fontSize,
+                    // color:this.options.color,
+                    // backgroundColor:this.options.backgroundColor,
+                    zIndex: this.options.zIndex,
+                    display: 'none'
+                });
+
+                if (this.options.corner)
+                {
+                    x.corners.round(this.tooltip);
+                }
+
+                // 设置光标样式
+                this.element.css('cursor', 'default');
+
+                this.element.attr('tooltipName', this.name);
+                this.element.attr('tooltipElementName', this.tooltip[0].id);
+
+                // 绑定事件
+                this.registerEvents();
+            },
+
+            registerEvents: function()
+            {
+                if (this.following === 1)
+                {
+                    this.element.bind('mousemove', this.follow);
+                }
+
+                this.element.bind('mouseover', this.show);
+                this.element.bind('mouseout', this.hide);
+            },
+
+            unregisterEvents: function()
+            {
+                this.element.unbind('mousemove');
+                this.element.unbind('mouseover');
+                this.element.unbind('mouseout');
+            },
+
+            getPosition: function(event)
+            {
+                if (this.following === 1)
+                {
+                    // get mouse position
+                    var mouseX = x.getEventPositionX(event);
+                    var mouseY = x.getEventPositionY(event);
+
+                    // decide if wee need to switch sides for the tooltip
+                    var range = x.page.getElementRange(this.tooltip[0]);
+                    var elementWidth = range.width;
+                    var elementHeight = range.height;
+
+                    if ((elementWidth + mouseX) >= (x.page.getViewWidth() - this.options.deltaX))
+                    {
+                        // too big for X
+                        mouseX = mouseX - elementWidth;
+                        // apply delta to make sure that the mouse is not on the tool-tip
+                        mouseX = mouseX - this.options.deltaX;
+                    }
+                    else
+                    {
+                        mouseX = mouseX + this.options.deltaX;
+                    }
+
+                    if ((elementHeight + mouseY) >= (x.page.getViewHeight() - this.options.deltaY))
+                    { // too big for Y
+                        mouseY = mouseY - elementHeight;
+                        // apply delta to make sure that the mouse is not on the tool-tip
+                        mouseY = mouseY - this.options.deltaY;
+                    }
+                    else
+                    {
+                        mouseY = mouseY + this.options.deltaY;
+                    }
+
+                    return { x: mouseX, y: mouseY };
+                }
+                else
+                {
+                    var tooltipX = x.page.getElementLeft(this.element[0]);
+                    var tooltipY = x.page.getElementTop(this.element[0]) - x.page.getElementRange(this.tooltip[0]).height;
+
+                    // x.debug.log('x:' + tooltipX + ', y:' + tooltipY + ', elementHeight:' + x.page.getElementTop(this.element[0]) + '|' + x.page.getElementRange(this.element[0]).height);
+
+                    return { x: tooltipX, y: tooltipY };
+                }
+            },
+
+            setPosition: function(x, y)
+            {
+                this.tooltip.css({
+                    position: 'absolute',
+                    top: y + "px",
+                    left: x + "px",
+                    zIndex: this.options.zIndex
+                });
+            },
+
+            follow: function(event)
+            {
+                var that = window[$(this).attr('tooltipName')];
+
+                var position = that.getPosition(event);
+
+                that.setPosition(position.x, position.y);
+            },
+
+            show: function(event)
+            {
+                // x.stopEventPropagation(event);
+
+                var that = window[$(this).attr('tooltipName')];
+
+                var position = that.getPosition(event);
+
+                that.setPosition(position.x, position.y);
+
+                // apply default theme if wanted
+                if (that.options.defaultCss)
+                {
+                    that.tooltip.css({
+                        //margin:this.options.margin,
+                        //padding:this.options.padding,
+                        //fontSize:this.options.fontSize,
+                        //color:this.options.color,
+                        zIndex: that.options.zIndex
+                    });
+                }
+
+                // finally show the Tooltip
+                that.tooltip.css({ display: '', opacity: 0.1 });
+
+                that.tooltip.fadeTo((that.options.maxDuration * 1000), that.options.maxOpacity, function()
+                {
+                    that.tooltip.css({ display: '' });
+                });
+            },
+
+            /**
+            * 隐藏提示框
+            */
+            hide: function(event)
+            {
+                var that = window[$(this).attr('tooltipName')];
+
+                that.tooltip.css({ display: 'none' });
+
+                that.tooltip.css({ display: '', opacity: that.options.maxOpacity });
+                that.tooltip.fadeOut((that.options.maxDuration * 1000), function()
+                {
+                    that.tooltip.css({ display: 'none' });
+                });
+            }
+        };
+
+        tip.create();
+
+        window[tip.name] = tip;
+
+        return tip;
+    },
+
+    /**
+    * 警告型工具提示
+    * @description 警告型工具提示对象
+    * @class WarnTooltip
+    * @constructor newWarnTooltip
+    * @memberof x.ui.tooltip
+    * @param {object} options 选项
+    */
+    newWarnTooltip: function(options)
+    {
+        // 移除旧的警告工具提示条
+        if (x.dom.query(options.element + '$tooltip').size() > 0)
+        {
+            x.dom.query(options.element + '$tooltip').remove();
+
+            if (typeof (window[options.element + '$' + options.element + '$tooltip$object']) !== 'undefined')
+            {
+                window[options.element + '$' + options.element + '$tooltip$object'].unregisterEvents();
+                window[options.element + '$' + options.element + '$tooltip$object'] = undefined;
+            }
+        }
+
+        var warnTooltip = x.ext(x.tooltip.newTooltip(options), {
+
+            changeEvents: function()
+            {
+                this.element.unbind('mousemove');
+                this.element.unbind('mouseover');
+                this.element.unbind('mouseout');
+
+                this.registerEvents();
+            },
+
+            registerEvents: function()
+            {
+                var that = this;
+
+                // 这段代码的效果，不支持IE6
+                $(document.body).bind('scroll', function(event)
+                {
+                    var position = that.getPosition(event);
+
+                    that.setPosition(position.x, position.y);
+                });
+
+                this.element.bind('blur', function()
+                {
+                    // x.debug.log('x.tooltip.blur()');
+                    x.customForm.checkDataInput(this, 1);
+                });
+            },
+
+            unregisterEvents: function()
+            {
+                var that = this;
+
+                $(document.body).unbind('scroll', function(event)
+                {
+                    var position = that.getPosition(event);
+
+                    that.setPosition(position.x, position.y);
+                });
+
+                this.element.unbind('blur');
+            },
+
+            warn: function()
+            {
+                var that = this;
+
+                var position = {
+                    x: x.page.getElementLeft(this.element[0]),
+                    y: x.page.getElementTop(this.element[0]) - x.page.getElementRange(this.tooltip[0]).height
+                };
+
+                that.setPosition(position.x, position.y);
+
+                // finally show the Tooltip
+                that.tooltip.css({ display: '', opacity: 0.1 });
+
+                that.tooltip.fadeTo((that.options.maxDuration * 1000), that.options.maxOpacity, function()
+                {
+                    that.tooltip.css({ display: '' });
+                });
+            }
+        });
+
+        // 修改绑定事件关系
+        warnTooltip.changeEvents();
+
+        if (options.hide === 0)
+        {
+            // 显示警告
+            warnTooltip.warn();
+        }
+
+        return warnTooltip;
+    }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:53.066Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

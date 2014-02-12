@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>名称空间(Namespace): randomText - 帮助手册</title>
+    <title>Source: ui/core/x.ui.util.js - 帮助手册</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -57,219 +57,73 @@
 
 <div id="main">
 
-    <h1 class="page-title">名称空间(Namespace): randomText</h1>
+    <h1 class="page-title">Source: ui/core/x.ui.util.js</h1>
 
     
 
 
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>// -*- ecoding=utf-8 -*-
 
-<section>
-    
-<header>
-    <h2>
-        <span class="ancestors"><a href="x.html">x</a>.</span>
-    
-    randomText
-    </h2>
-    
-</header>  
+/**
+* @namespace util
+* @memberof x.ui
+* @description 常用工具类库
+*/
+x.ui.util = {
+    /**
+    * 设置 Flash 元素
+    * @element	    : 元素
+    * @url			: Falsh的地址.
+    * @widht		: Falsh的宽度.
+    * @height		: Falsh的高度.
+    */
+    setFlash: function(element, url, width, height, summary)
+    {
+        var outString = '';
 
-<article>
-    <div class="container-overview">
-    
-    
-    
-        
-            <div class="description">随机文本</div>
-        
-        
-        
-<dl class="details">
-    
-        
-    
-    
-    
+        if (typeof (summary) === 'undefined') { summary = ''; }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!-- 不输出源码位置
-    <dt class="tag-source">源码(Source):</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1178">line 1178</a>
-    </li></ul></dd> -->
-    
-    
-    
-    
-    
-    
-    
-</dl>
+        outString += '&lt;object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" '
+			+ 'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=11" '
+			+ 'width="' + width + '" height="' + height + '" title="' + summary + '"> '
+			+ '&lt;param name="movie" value="' + url + '" />'
+			+ '&lt;param name="quality" value="high" />'
+			+ '&lt;embed src="' + url + '" quality="high" '
+			+ 'pluginspage="http://www.macromedia.com/go/getflashplayer" '
+			+ 'type="application/x-shockwave-flash" '
+			+ 'width="' + width + '" height="' + height + '">&lt;/embed>'
+			+ '&lt;/object>';
 
-        
-        
-    
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">方法(Methods)</h3>
-        
-        <dl>
-            
-<dt>
-    <h4 class="name" id="create"><span class="type-signature">&lt;static> </span>create<span class="signature">(length)</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        创建随机文本信息
-    </div>
-    
+        element.innerHTML = outString;
+    },
 
-    
-    
-    
-    
-    
-        <h5>参数(Parameters):</h5>
-        
+    /**
+    * 在页面上打开QQ链接
+    *
+    * @element 元素
+    * @param qq QQ 号码
+    * @param site 来源的站点信息
+    */
+    setQQ: function(element, qq, site)
+    {
+        var outString = '';
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>名称</th>
-		
-		
-		<th>类型</th>
-		
-		
-		
-		
-		
-		<th class="last">描述</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>length</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
+        if (!(qq === '' || qq === '0'))
+        {
+            outString += '&lt;a target="_blank" href="tencent://message/?uin=';
+            outString += qq + '&site=' + ((site) ? site : 'localhost');
+            outString += '&menu=yes" alt="QQ:' + qq + '" >' + qq + "&lt;/a>";
+        }
 
-
-            
-            </td>
-            
-            
-            
-            
-            
-            <td class="description last">返回的文本长度</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!-- 不输出源码位置
-    <dt class="tag-source">源码(Source):</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1185">line 1185</a>
-    </li></ul></dd> -->
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-        <h5>示例(Example)</h5>
-        
-    <pre class="prettyprint"><code>// 输出格式 00000000console.log(x.randomText.create(8));</code></pre>
-
-    
-</dd>
-
-        </dl>
-    
-    
-    
-    
-    
-</article>
-
-</section>  
+        $(element).html(outString);
+    }
+};
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -279,7 +133,7 @@
 <br clear="both">
 
 <footer>
-    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:55.691Z.
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:53.069Z.
 </footer>
 
 <script> prettyPrint(); </script>

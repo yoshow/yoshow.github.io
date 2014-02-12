@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>名称空间(Namespace): guid - 帮助手册</title>
+    <title>名称空间(Namespace): cookies - 帮助手册</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -57,7 +57,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">名称空间(Namespace): guid</h1>
+    <h1 class="page-title">名称空间(Namespace): cookies</h1>
 
     
 
@@ -69,7 +69,7 @@
     <h2>
         <span class="ancestors"><a href="x.html">x</a>.</span>
     
-    guid
+    cookies
     </h2>
     
 </header>  
@@ -80,7 +80,7 @@
     
     
         
-            <div class="description">Guid 格式文本</div>
+            <div class="description">Cookies 管理</div>
         
         
         
@@ -107,7 +107,7 @@
     <!-- 不输出源码位置
     <dt class="tag-source">源码(Source):</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1128">line 1128</a>
+        <a href="x.cookies.js.html">core/x.cookies.js</a>, <a href="x.cookies.js.html#line3">line 3</a>
     </li></ul></dd> -->
     
     
@@ -141,7 +141,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="create"><span class="type-signature">&lt;static> </span>create<span class="signature">(<span class="optional">format</span>, <span class="optional">isUpperCase</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="add"><span class="type-signature">&lt;static> </span>add<span class="signature">(name, value, <span class="optional">options</span>)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -149,7 +149,7 @@
     
     
     <div class="description">
-        创建 Guid 格式文本
+        新增 Cookie 的值
     </div>
     
 
@@ -185,7 +185,7 @@
 	
         <tr>
             
-                <td class="name"><code>format</code></td>
+                <td class="name"><code>name</code></td>
             
             
             <td class="type">
@@ -200,7 +200,36 @@
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">名称</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
                 
                     
                 
@@ -211,20 +240,20 @@
             
             
             
-            <td class="description last">分隔符格式(如果填空白字符串则不显示)</td>
+            <td class="description last">值</td>
         </tr>
 	
 	
 	
         <tr>
             
-                <td class="name"><code>isUpperCase</code></td>
+                <td class="name"><code>options</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">bool</span>
+<span class="param-type">object</span>
 
 
             
@@ -244,7 +273,7 @@
             
             
             
-            <td class="description last">是否是大写格式(true|false)</td>
+            <td class="description last">选项<br />可选键值范围: <table class="param-options" ><thead><tr><th>名称</th><th>类型</th><th class="last" >描述</th></tr></thead><tbody><tr><td class="name" >expire</td><td>string</td><td>过期时间</td></tr> <tr><td class="name" >path</td><td>string</td><td>所属的路径</td></tr><tr><td class="name" >domain</td><td>string</td><td>所属的域</td></tr></tbody></table></td>
         </tr>
 	
 	
@@ -276,7 +305,7 @@
     <!-- 不输出源码位置
     <dt class="tag-source">源码(Source):</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="x.js.html">core/x.js</a>, <a href="x.js.html#line1135">line 1135</a>
+        <a href="x.cookies.js.html">core/x.cookies.js</a>, <a href="x.cookies.js.html#line44">line 44</a>
     </li></ul></dd> -->
     
     
@@ -301,11 +330,299 @@
     
         <h5>示例(Examples)</h5>
         
-    <pre class="prettyprint"><code>// 输出格式 aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaaconsole.log(x.guid.create());</code></pre>
+    <pre class="prettyprint"><code>// 新增一条 Cookie 记录, // 名称为 CookieName1, 值为 CookieValue1x.cookie.add('CookieName1', 'CookieValue1');</code></pre>
 
-    <pre class="prettyprint"><code>// 输出格式 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaconsole.log(x.guid.create(''));</code></pre>
+    <pre class="prettyprint"><code>// 新增一条 Cookie 记录, // 名称为 CookieName2, 值为 CookieValue2, // 过期时间为 2050-1-1 10:30:00 x.cookie.add('cookieName2', 'cookieValue2', {'expire': new (2050, 1, 1, 10, 30, 00)});</code></pre>
 
-    <pre class="prettyprint"><code>// 输出格式 AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAAconsole.log(x.guid.create('-', true));</code></pre>
+    <pre class="prettyprint"><code>// 新增一条 Cookie 记录, // 名称为 CookieName3, 值为 CookieValue3, // 过期时间为 2050-1-1 10:30:00 , 所属路径为 /help/x.cookies.add('cookieName3', 'cookieValue3', {'expire': new (2050,1,1,10,30,00), path: '/help/'});</code></pre>
+
+    <pre class="prettyprint"><code>// 新增一条 Cookie 记录, // 名称为 CookieName4, 值为 CookieValue4, // 过期时间为 2050-1-1 10:30:00, 所属的域为 github.comx.cookies.add('cookieName4', 'cookieValue4', {'expire': new (2050,1,1,10,30,00), path: '/', domain: 'github.com');</code></pre>
+
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="query"><span class="type-signature">&lt;static> </span>query<span class="signature">(name)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        根据 Cookie 名称查找相关的值
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">名称</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- 不输出源码位置
+    <dt class="tag-source">源码(Source):</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.cookies.js.html">core/x.cookies.js</a>, <a href="x.cookies.js.html#line11">line 11</a>
+    </li></ul></dd> -->
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="remove"><span class="type-signature">&lt;static> </span>remove<span class="signature">(name, <span class="optional">options</span>)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        移除 Cookie 的值
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		<th>Argument</th>
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">名称</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">选项<br />可选键值范围: <table class="param-options" ><thead><tr><th>名称</th><th>类型</th><th class="last" >描述</th></tr></thead><tbody><tr><td class="name" >path</td><td>string</td><td>所属的路径</td></tr><tr><td class="name" >domain</td><td>string</td><td>所属的域</td></tr></tbody></table></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- 不输出源码位置
+    <dt class="tag-source">源码(Source):</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.cookies.js.html">core/x.cookies.js</a>, <a href="x.cookies.js.html#line94">line 94</a>
+    </li></ul></dd> -->
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>示例(Examples)</h5>
+        
+    <pre class="prettyprint"><code>// 移除一条 Cookie 记录, 名称为 CookieName1x.cookies.remove('CookieName1');</code></pre>
+
+    <pre class="prettyprint"><code>// 移除一条 Cookie 记录, 名称为 CookieName2x.cookies.remove('CookieName2', {path: '/help/'});</code></pre>
 
     
 </dd>
@@ -328,7 +645,7 @@
 <br clear="both">
 
 <footer>
-    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:55.064Z.
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:53.979Z.
 </footer>
 
 <script> prettyPrint(); </script>

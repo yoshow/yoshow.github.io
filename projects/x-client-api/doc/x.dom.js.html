@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: core/x.dom.js - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default-fixed.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="x.date.newTime.html">newTime</a></li><li><a href="x.date.newTimeSpan.html">newTimeSpan</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.ui.pkg.tabs.newTabs.html">newTabs</a></li><li><a href="x.ui.pkg.tree.newTreeView.html">newTreeView</a></li><li><a href="x.ui.tooltip.newTooltip.html">newTooltip</a></li><li><a href="x.ui.tooltip.newWarnTooltip.html">newWarnTooltip</a></li><li><a href="x.ui.tree.newTreeNode.html">newTreeNode</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.browser.html">x.browser</a></li><li><a href="x.browser.features.html">x.browser.features</a></li><li><a href="x.color.html">x.color</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.dom.html">x.dom</a></li><li><a href="x.encoding.html">x.encoding</a></li><li><a href="x.encoding.html.html">x.encoding.html</a></li><li><a href="x.encoding.unicode.html">x.encoding.unicode</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.net.request.html">x.net.request</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.html">x.ui</a></li><li><a href="x.ui.animation.html">x.ui.animation</a></li><li><a href="x.ui.animation.tween.html">x.ui.animation.tween</a></li><li><a href="x.ui.animation.tween.back.html">x.ui.animation.tween.back</a></li><li><a href="x.ui.animation.tween.bounce.html">x.ui.animation.tween.bounce</a></li><li><a href="x.ui.animation.tween.circ.html">x.ui.animation.tween.circ</a></li><li><a href="x.ui.animation.tween.cubic.html">x.ui.animation.tween.cubic</a></li><li><a href="x.ui.animation.tween.elastic.html">x.ui.animation.tween.elastic</a></li><li><a href="x.ui.animation.tween.expo.html">x.ui.animation.tween.expo</a></li><li><a href="x.ui.animation.tween.quad.html">x.ui.animation.tween.quad</a></li><li><a href="x.ui.animation.tween.quart.html">x.ui.animation.tween.quart</a></li><li><a href="x.ui.animation.tween.quint.html">x.ui.animation.tween.quint</a></li><li><a href="x.ui.animation.tween.sine.html">x.ui.animation.tween.sine</a></li><li><a href="x.ui.dialogs.html">x.ui.dialogs</a></li><li><a href="x.ui.drag.html">x.ui.drag</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.ui.pkg.html">x.ui.pkg</a></li><li><a href="x.ui.pkg.slide.html">x.ui.pkg.slide</a></li><li><a href="x.ui.pkg.tabs.html">x.ui.pkg.tabs</a></li><li><a href="x.ui.pkg.tree.html">x.ui.pkg.tree</a></li><li><a href="x.ui.tooltip.html">x.ui.tooltip</a></li><li><a href="x.ui.util.html">x.ui.util</a></li><li><a href="x.ui.windows.html">x.ui.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Source: core/x.dom.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>﻿// -*- ecoding=utf-8 -*-
+
+/**
+* @namespace dom
+* @memberof x
+* @description 页面元素管理
+*/
+x.dom = {
+
+    /*#region 函数:query(selector)*/
+    /**
+    * 精确查询单个表单元素，返回一个jQuery对象。
+    * @method query
+    * @memberof x.dom
+    * @param {string} selector 选择表达式
+    */
+    query: function(selector)
+    {
+        // 默认根据id查找元素
+        if (selector.indexOf('#') == -1 && selector.indexOf('.') == -1 && selector.indexOf(' ') == -1) { selector = '[id="' + selector + '"]'; }
+
+        var result = x.query(selector);
+
+        // $(null) 会返回 整个文档对象，所以定义一个特殊 __null__ 变量替代空值。
+        return result === null ? $('#__null__') : $(result);
+    },
+    /*#endregion*/
+
+    /*#region 函数:on(target, type, listener, useCapture)*/
+    /**
+    * 添加事件监听器 x.event.add 的别名
+    * @method add
+    * @memberof x
+    * @param {string} target 监听对象
+    * @param {string} type 监听事件
+    * @param {string} listener 处理函数
+    * @param {string} [useCapture] 监听顺序方式
+    */
+    on: function(target, type, listener, useCapture)
+    {
+        return x.event.add(target, type, listener, useCapture);
+    },
+    /*#endregion*/
+
+    /*#region 函数:off(target, type, listener, useCapture)*/
+    /**
+    * 移除事件监听器 x.event.remove 的别名
+    * @method add
+    * @memberof x
+    * @param {string} target 监听对象
+    * @param {string} type 监听事件
+    * @param {string} listener 处理函数
+    * @param {string} [useCapture] 监听顺序方式
+    */
+    off: function(target, type, listener, useCapture)
+    {
+        return x.event.add(target, type, listener, useCapture);
+    },
+    /*#endregion*/
+
+    /*#region 函数:attr(id, name, value)*/
+    /**
+    * 获取或设置元素的属性信息
+    * @method attr
+    * @memberof x.dom
+    * @param {string} id 元素 Id
+    */
+    attr: function(id, name, value)
+    {
+        var node = null;
+
+        if (x.type(arguments[0]).indexOf('html') == 0)
+        {
+            // Html 元素类型 直接返回
+            node = arguments[0];
+        }
+        else if (x.type(arguments[0]) == 'string')
+        {
+            node = document.getElementById(id);
+        }
+
+        if (node == null) { return null; }
+
+        if (x.isUndefined(value))
+        {
+            return node.getAttribute(name);
+        }
+        else
+        {
+            node.setAttribute(name, value);
+        }
+    },
+    /*#endregion*/
+
+    /*#region 函数:options(id)*/
+    /**
+    * 获取元素的选项配置信息
+    * @method options
+    * @memberof x.dom
+    * @param {string} id 元素 Id
+    */
+    options: function(id)
+    {
+        var value = x.dom.attr(id, 'x-dom-options');
+
+        return (x.isUndefined(value) || value == null || value == '') ? {} : x.toJSON(value);
+    },
+    /*#endregion*/
+
+    /*#region 函数:swap(options)*/
+    /**
+    * 交换控件的数据
+    * @method swap
+    * @memberof x.dom
+    * @param {object} options 选项
+    */
+    swap: function(options)
+    {
+        var fromInput = x.dom.query(options.from);
+        var toInput = x.dom.query(options.to);
+
+        x.each(options.attributes, function(index, node)
+        {
+            if (fromInput.attr(node))
+            {
+                toInput.attr(node, fromInput.attr(node));
+
+                fromInput.removeAttr(node);
+            }
+        });
+    },
+    /*#endregion*/
+
+    /*#region 函数:fixed(selector, pointX, pointY)*/
+    /**
+    * 设置元素的位置
+    * @method fixed
+    * @memberof x.dom
+    * @param {string} selector 选择表达式
+    * @param {number} pointX X坐标
+    * @param {number} pointY Y坐标
+    */
+    fixed: function(selector, pointX, pointY)
+    {
+        x.css.style(selector, {
+            'position': 'fixed',
+            'left': pointX + 'px',
+            'top': pointY + 'px'
+        });
+    },
+    /*#endregion*/
+
+    /*#region 函数:setAlpha(selector, value)*/
+    /**
+    * 设置容器的透明度
+    * @method setAlpha
+    * @memberof x.dom
+    * @param {string} selector 选择表达式
+    * @param {number} value 透明度范围(0.00 ~ 1.00)
+    */
+    setAlpha: function(selector, value)
+    {
+        var element = x.dom.query(selector);
+
+        if (x.browser.ie)
+        {
+            // IE
+            element.style.filter = 'alpha(opacity:' + (value * 100) + ')';
+        }
+        else
+        {
+            //其他浏览器
+            element.style.MozOpacity = value;
+        }
+    },
+    /*#endregion*/
+
+    utils: {},
+
+    features: {
+
+        /**
+        * 默认配置信息
+        */
+        defaults: {
+            // 特性属性名称
+            scope: 'input,textarea,div,span',
+            // 脚本文件夹位置
+            featureScriptFilePath: '',
+            // 特性属性名称
+            featureAttributeName: 'x-dom-feature',
+            // 特性是否已加载标识属性名称
+            featureLoadedAttributeName: 'x-dom-feature-loaded',
+            // 监听函数, 参数 element 页面元素
+            listen: null
+        },
+
+        /**
+        * 绑定客户端控件
+        */
+        bind: function(options)
+        {
+            options = x.ext(x.dom.features.defaults, options || {});
+
+            if (x.isUndefined || options.featureScriptPath == '')
+            {
+                options.featureScriptPath = x.dir() + 'dom/features/';
+            }
+
+            var tags = options.scope.split(',');
+
+            x.each(tags, function(index, node)
+            {
+                var list = document.getElementsByTagName(node);
+
+                for (var i = 0; i &lt; list.length; i++)
+                {
+                    if (x.isFunction(options.listen))
+                    {
+                        options.listen(list[i]);
+                    }
+
+                    /*
+                    try
+                    {
+                    if ($(list[i]).hasClass('custom-forms-data-required') || $(list[i]).hasClass('custom-forms-data-regexp'))
+                    {
+                    if (options.tooltip)
+                    {
+                    // x.ui.tooltip.newWarnTooltip({ element: list[i].id, hide: 1 });
+                    }
+                    }
+                    }
+                    catch (ex)
+                    {
+                    x.debug.error(ex);
+                    }
+                    */
+                    try
+                    {
+                        if (x.isUndefined(list[i].id) || list[i].id === '')
+                        {
+                            continue;
+                        }
+
+                        var feature = x.dom.query(list[i].id).attr(options.featureAttributeName);
+
+                        if (feature != null && x.dom.query(list[i].id).attr(options.featureLoadedAttributeName) != '1')
+                        {
+                            x.require({
+                                id: 'x-dom-feature-' + feature + '-script',
+                                path: options.featureScriptPath + 'x.dom.features.' + feature + '.js',
+                                data: { target: list[i], feature: feature },
+                                callback: function(context)
+                                {
+                                    // x.debug.log('feature:' + feature + ',' + response.data.feature);
+                                    var data = context.data;
+
+                                    // 加载完毕后, 加个 featureLoaded 标识, 避免重复加载效果.
+                                    x.dom.query(data.target.id).attr(options.featureLoadedAttributeName, '1');
+
+                                    if (x.isUndefined(x.dom.features[data.feature]))
+                                    {
+                                        x.debug.error('x.dom.features.bind() 异常:系统加载表单元素特性【' + data.feature + '】失败，请检查相关配置。');
+                                    }
+
+                                    x.dom.features[data.feature].bind(data.target.id);
+                                }
+                            });
+
+                            /*
+                            // 加载完毕后, 加个 featureLoaded 标识, 避免重复加载效果.
+                            x.dom.query(list[i].id).attr(options.featureLoadedAttributeName, '1');
+
+                            if (x.isUndefined(x.dom.features[feature]))
+                            {
+                            x.debug.error('x.dom.features.bind() 异常:系统加载表单元素特性【' + feature + '】失败，请检查相关配置。');
+                            continue;
+                            }
+
+                            x.dom.features[feature].bind(list[i].id);
+                            */
+                        }
+                    }
+                    catch (ex)
+                    {
+                        x.debug.error(ex)
+                    }
+                }
+            });
+        }
+    }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:52.873Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

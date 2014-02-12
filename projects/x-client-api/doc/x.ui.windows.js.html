@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: ui/core/x.ui.windows.js - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default-fixed.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="x.date.newTime.html">newTime</a></li><li><a href="x.date.newTimeSpan.html">newTimeSpan</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.ui.pkg.tabs.newTabs.html">newTabs</a></li><li><a href="x.ui.pkg.tree.newTreeView.html">newTreeView</a></li><li><a href="x.ui.tooltip.newTooltip.html">newTooltip</a></li><li><a href="x.ui.tooltip.newWarnTooltip.html">newWarnTooltip</a></li><li><a href="x.ui.tree.newTreeNode.html">newTreeNode</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.browser.html">x.browser</a></li><li><a href="x.browser.features.html">x.browser.features</a></li><li><a href="x.color.html">x.color</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.dom.html">x.dom</a></li><li><a href="x.encoding.html">x.encoding</a></li><li><a href="x.encoding.html.html">x.encoding.html</a></li><li><a href="x.encoding.unicode.html">x.encoding.unicode</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.net.request.html">x.net.request</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.html">x.ui</a></li><li><a href="x.ui.animation.html">x.ui.animation</a></li><li><a href="x.ui.animation.tween.html">x.ui.animation.tween</a></li><li><a href="x.ui.animation.tween.back.html">x.ui.animation.tween.back</a></li><li><a href="x.ui.animation.tween.bounce.html">x.ui.animation.tween.bounce</a></li><li><a href="x.ui.animation.tween.circ.html">x.ui.animation.tween.circ</a></li><li><a href="x.ui.animation.tween.cubic.html">x.ui.animation.tween.cubic</a></li><li><a href="x.ui.animation.tween.elastic.html">x.ui.animation.tween.elastic</a></li><li><a href="x.ui.animation.tween.expo.html">x.ui.animation.tween.expo</a></li><li><a href="x.ui.animation.tween.quad.html">x.ui.animation.tween.quad</a></li><li><a href="x.ui.animation.tween.quart.html">x.ui.animation.tween.quart</a></li><li><a href="x.ui.animation.tween.quint.html">x.ui.animation.tween.quint</a></li><li><a href="x.ui.animation.tween.sine.html">x.ui.animation.tween.sine</a></li><li><a href="x.ui.dialogs.html">x.ui.dialogs</a></li><li><a href="x.ui.drag.html">x.ui.drag</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.ui.pkg.html">x.ui.pkg</a></li><li><a href="x.ui.pkg.slide.html">x.ui.pkg.slide</a></li><li><a href="x.ui.pkg.tabs.html">x.ui.pkg.tabs</a></li><li><a href="x.ui.pkg.tree.html">x.ui.pkg.tree</a></li><li><a href="x.ui.tooltip.html">x.ui.tooltip</a></li><li><a href="x.ui.util.html">x.ui.util</a></li><li><a href="x.ui.windows.html">x.ui.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ui/core/x.ui.windows.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>// -*- ecoding=utf-8 -*-
+
+/**
+* ����
+* @namespace windows
+* @memberof x.ui
+*/
+x.ui.windows = {
+    /*#region ����:newWindow(name, options)*/
+    newWindow: function(name, options)
+    {
+        var internalWindow = {
+            // ���
+            name: name,
+            // ѡ��
+            options: options,
+
+            /*#region ����:open()*/
+            open: function()
+            {
+                document.getElementById(name).style.display = '';
+            },
+            /*#endregion*/
+
+            /*#region ����:close()*/
+            close: function()
+            {
+                document.getElementById(name).style.display = 'none';
+            },
+            /*#endregion*/
+
+            /*#region ����:create()*/
+            create: function()
+            {
+                var outString = '';
+
+                var opts = this.options;
+
+                outString = '&lt;div id="' + this.name + '" style="';
+                outString += 'position: fixed; display:none;'
+                outString += 'z-index: ' + opts.zIndex + ';'
+                outString += 'border: ' + opts.border + ';'
+                outString += 'width: ' + opts.width + ';'
+                outString += 'height: ' + opts.height + ';'
+                outString += 'top: ' + opts.top + ';'
+                outString += 'right:' + opts.right + ';'
+                outString += 'bottom: ' + opts.bottom + ';'
+                outString += 'left: ' + opts.left + ';'
+                outString += '" >' + opts.content + '&lt;/div>';
+
+                return outString;
+            },
+            /*#endregion*/
+
+            /*#region ����:destroy()*/
+            /**
+            * ��ٶ���
+            */
+            destroy: function()
+            {
+                $(document.getElementById(name)).remove();
+            },
+            /*#endregion*/
+
+            /*#region ����:bindOptions(options)*/
+            bindOptions: function(options)
+            {
+                // ����Ĭ��ѡ�����
+                this.options = x.ext({
+                    zIndex: 999,                    // Z�����
+                    height: '100px',                // �߶�
+                    width: '100px',                 // ���
+                    top: 'auto',                    // ��
+                    right: 'auto',                  // ��
+                    bottom: 'auto',                 // ��
+                    left: 'auto'                    // ��
+                }, options || {});
+            },
+            /*#endregion*/
+
+            load: function(options)
+            {
+                // ��֤����ѡ����Ϣ
+                this.bindOptions(options);
+
+                // ������д��Ĵ�������
+                if (!x.isUndefined(options.create))
+                {
+                    this.create = options.create;
+                }
+
+                // �������ֺ�ҳ������
+                $(document.body).append(this.create());
+
+                if (this.options.bindingFeature)
+                {
+                    x.dom.features.bind();
+                }
+            }
+        };
+
+        return internalWindow;
+    },
+    /*#endregion*/
+
+    /*#region ����:getWindow(name, options)*/
+    /**
+    * ��ȡ���ڶ���
+    */
+    getWindow: function(name, options)
+    {
+        var name = x.getFriendlyName(location.pathname + '$window$' + name);
+
+        var internalWindow = x.windows.newWindow(name, options);
+
+        // ���ؽ��桢��ݡ��¼�
+        internalWindow.load(options);
+
+        // �󶨵�Window����
+        window[name] = internalWindow;
+
+        return internalWindow;
+    },
+    /*#endregion*/
+
+    /*#region ����:getDialog(url, width, height, style)*/
+    /**
+    * �򿪶Ի��´���, �ô�������Ļ����.
+    */
+    getDialog: function(url, width, height, style)
+    {
+        // ��ʽ����
+        // resizable        �����С
+        // location         ��ַ��
+
+        if (typeof (style) === 'undefined')
+        {
+            style = 'resizable=1,directories=0,location=0,menubar=1,scrollbars=1,status=0,titlebar=0,toolbar=0';
+            //
+            //style = 'resizable=1,directories=1,location=1,menubar=1,scrollbars=1,status=1,titlebar=1,toolbar=1';
+            //
+            //style = 'resizable=1,directories=0,location=0,menubar=0,scrollbars=1,status=0,titlebar=0,toolbar=0';
+        }
+
+        if (typeof (width) === 'undefined')
+        {
+            style = "width=" + screen.availWidth + "," + style;
+            var left = Math.round((screen.availWidth - width) / 2);
+            style = "left=" + left + "," + style;
+        }
+        else
+        {
+            style = "width=" + width + "," + style;
+            var left = Math.round((screen.availWidth - width) / 2);
+            style = "left=" + left + "," + style;
+        }
+
+        if (typeof (height) === 'undefined')
+        {
+            style = "height=" + screen.availHeight + "," + style;
+            var top = Math.round((screen.availHeight - height) / 2);
+            style = "top=" + top + "," + style;
+        }
+        else
+        {
+            style = "height=" + height + "," + style;
+            var top = Math.round((screen.availHeight - height) / 2);
+            style = "top=" + top + "," + style;
+        }
+
+        return window.open(url, '', style);
+    },
+    /*#endregion*/
+
+    /*#region ����:getModalDialog(url, width, height, style)*/
+    /**
+    * ��ģ̬����, �ô�������Ļ����.
+    */
+    getModalDialog: function(url, width, height, style)
+    {
+        if (typeof (style) === 'undefined')
+        {
+            style = 'toolbar=no; location=no; directories=no; status=no; menubar=no; center=yes; help=0; resizable=yes; status=0;';
+        }
+
+        if (typeof (width) === 'undefined')
+        {
+            var left = Math.round((screen.availWidth - width) / 2);
+            style = 'dialogWidth=' + width + 'px,left=' + left + ',' + style;
+        }
+        else
+        {
+            style = "dialogWidth=" + width + "px," + style;
+            var left = Math.round((screen.availWidth - width) / 2);
+            style = "left=" + left + "," + style;
+        }
+
+        if (typeof (height) === 'undefined')
+        {
+            var top = Math.round((screen.availHeight - height) / 2);
+            style = 'dialogHeight=' + height + 'px,top=' + top + ',' + style;
+        }
+        else
+        {
+            style = "dialogHeight=" + height + "px," + style;
+            var top = Math.round((screen.availHeight - height) / 2);
+            style = "top=" + top + "," + style;
+        }
+
+        return window.showModalDialog(url, window, style);
+    }
+    /*#endregion*/
+}
+    </code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-07-31T01:23:53.076Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
