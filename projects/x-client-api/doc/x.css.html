@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>名称空间(Namespace): css - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="Array.html">Array</a></li><li><a href="Object.html">Object</a></li><li><a href="String.html">String</a></li><li><a href="x.browser.html">browser</a></li><li><a href="x.browserFeatures.html">browserFeatures</a></li><li><a href="x.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.net.request.html">request</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.mask.html">x.mask</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.util.html">x.util</a></li><li><a href="x.windows.html">x.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">名称空间(Namespace): css</h1>
+
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="x.html">x</a>.</span>
+    
+    css
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+            <div class="description">CSS</div>
+        
+        
+        
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.css.js.html">D:/GitHub/x-client-api/bin/x.css.js</a>, <a href="x.css.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+        
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">方法(Methods)</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="add"><span class="type-signature">&lt;static> </span>add<span class="signature">(element, className)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        添加元素对象的 className
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">元素对象</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>className</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">CSS类名称</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.css.js.html">D:/GitHub/x-client-api/bin/x.css.js</a>, <a href="x.css.js.html#line72">line 72</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="check"><span class="type-signature">&lt;static> </span>check<span class="signature">(element, className)</span><span class="type-signature"> &rarr; {bool}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        检测元素对象的 className 是否存在
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">元素对象</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>className</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">CSS类名称</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.css.js.html">D:/GitHub/x-client-api/bin/x.css.js</a>, <a href="x.css.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>返回值(Returns):</h5>
+    
+            ﻿
+
+
+<dl>
+	<dt>
+		类型(Type)
+	</dt>
+	<dd>
+		
+<span class="param-type">bool</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="remove"><span class="type-signature">&lt;static> </span>remove<span class="signature">(element, className)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        移除元素对象的 className
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">元素对象</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>className</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">CSS类名称</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.css.js.html">D:/GitHub/x-client-api/bin/x.css.js</a>, <a href="x.css.js.html#line90">line 90</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="style"><span class="type-signature">&lt;static> </span>style<span class="signature">(element)</span><span class="type-signature"> &rarr; {CSSStyleDeclaration}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        获取元素对象的样式信息
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">元素对象</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.css.js.html">D:/GitHub/x-client-api/bin/x.css.js</a>, <a href="x.css.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>返回值(Returns):</h5>
+    
+            ﻿
+
+
+<dl>
+	<dt>
+		类型(Type)
+	</dt>
+	<dd>
+		
+<span class="param-type">CSSStyleDeclaration</span>
+
+
+	</dd>
+</dl>
+
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="swap"><span class="type-signature">&lt;static> </span>swap<span class="signature">(element, classNameA, classNameB)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        替换元素对象的 className
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">元素对象</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>classNameA</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">CSS类名称</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>classNameB</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last">CSS类名称</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.css.js.html">D:/GitHub/x-client-api/bin/x.css.js</a>, <a href="x.css.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-01-25T06:50:02.629Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

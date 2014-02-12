@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>名称空间(Namespace): guid - 帮助手册</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script >
+    window.onload = function()
+    {
+        var div = document.getElementById('main');
+        if(div)
+        {
+            var windowWidth = null;
+
+            if (window.innerWidth)
+            {
+                // all except Explorer
+                if (document.documentElement.clientWidth)
+                {
+                    windowWidth = document.documentElement.clientWidth;
+                }
+                else
+                {
+                    windowWidth = window.innerWidth;
+                }
+            }
+            else if (document.documentElement && document.documentElement.clientWidth)
+            {
+                // IE
+                windowWidth = document.documentElement.clientWidth;
+            }
+            else if (document.body)
+            {
+                // other Explorers
+                windowWidth = document.body.clientWidth;
+            }
+
+            div.style.width = (windowWidth - 260) + 'px';
+        }
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<nav>
+    <h2><a href="index.html">首页</a></h2><h3>类<br />Classes</h3><ul><li><a href="Array.html">Array</a></li><li><a href="Object.html">Object</a></li><li><a href="String.html">String</a></li><li><a href="x.browser.html">browser</a></li><li><a href="x.browserFeatures.html">browserFeatures</a></li><li><a href="x.mask.newMaskWrapper.html">newMaskWrapper</a></li><li><a href="x.net.request.html">request</a></li><li><a href="x.newHashTable.html">newHashTable</a></li><li><a href="x.newQueue.html">newQueue</a></li><li><a href="x.newStack.html">newStack</a></li><li><a href="x.newStringBuilder.html">newStringBuilder</a></li><li><a href="x.newTimer.html">newTimer</a></li><li><a href="x.ui.mask.newMaskWrapper.html">newMaskWrapper</a></li></ul><h3>名称空间<br />Namespaces</h3><ul><li><a href="x.html">x</a></li><li><a href="x.cookies.html">x.cookies</a></li><li><a href="x.css.html">x.css</a></li><li><a href="x.date.html">x.date</a></li><li><a href="x.debug.html">x.debug</a></li><li><a href="x.expressions.html">x.expressions</a></li><li><a href="x.guid.html">x.guid</a></li><li><a href="x.mask.html">x.mask</a></li><li><a href="x.net.html">x.net</a></li><li><a href="x.page.html">x.page</a></li><li><a href="x.randomText.html">x.randomText</a></li><li><a href="x.string.html">x.string</a></li><li><a href="x.ui.mask.html">x.ui.mask</a></li><li><a href="x.util.html">x.util</a></li><li><a href="x.windows.html">x.windows</a></li></ul>
+</nav>
+
+<div id="main">
+
+    <h1 class="page-title">名称空间(Namespace): guid</h1>
+
+    
+
+
+
+<section>
+    
+<header>
+    <h2>
+        <span class="ancestors"><a href="x.html">x</a>.</span>
+    
+    guid
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+            <div class="description">Gui格式文本</div>
+        
+        
+        
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.js.html">D:/GitHub/x-client-api/bin/x.js</a>, <a href="x.js.html#line1080">line 1080</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+        
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">方法(Methods)</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="create"><span class="type-signature">&lt;static> </span>create<span class="signature">(<span class="optional">format</span>, <span class="optional">isUpperCase</span>)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        创建 Guid 格式文本
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>参数(Parameters):</h5>
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>名称</th>
+		
+		
+		<th>类型</th>
+		
+		
+		<th>Argument</th>
+		
+		
+		
+		
+		<th class="last">描述</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>format</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">分隔符格式(如果填空白字符串则不显示)</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>isUpperCase</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">bool</span>
+
+
+            
+            </td>
+            
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+                    
+                
+                    
+                
+                </td>
+            
+            
+            
+            
+            <td class="description last">是否是大写格式(true|false)</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="x.js.html">D:/GitHub/x-client-api/bin/x.js</a>, <a href="x.js.html#line1087">line 1087</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>示例(Examples)</h5>
+        
+    <pre class="prettyprint"><code>// 输出格式 aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+console.log(x.guid.create());</code></pre>
+
+    <pre class="prettyprint"><code>// 输出格式 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+console.log(x.guid.create(''));</code></pre>
+
+    <pre class="prettyprint"><code>// 输出格式 AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA
+console.log(x.guid.create('-', true));</code></pre>
+
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<footer>
+    文档生成工具 <a href="https://github.com/jsdoc3/jsdoc">JSDoc</a> , 生成时间 2014-01-25T06:50:03.009Z.
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
