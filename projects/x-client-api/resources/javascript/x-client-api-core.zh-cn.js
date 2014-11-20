@@ -2,7 +2,7 @@
 // Name     : x-client-api 
 // Version  : 1.0.0 
 // Author   : ruanyu@live.com
-// Date     : 2014-11-15
+// Date     : 2014-11-20
 (function(global, factory) 
 {
     if (typeof module === "object" && typeof module.exports === "object") 
@@ -4044,7 +4044,7 @@
             fileType: 'javascipt',
             id: 'JSONP' + Number(new Date()),
             jsonp: 'callback',
-            jsonpCallback: 'jsonpCallbackCallback'
+            jsonpCallback: 'jsonpCallback'
         }, options);
     
         options.path = options.url + ((options.url.indexOf('?') == -1) ? '?' : '&') + options.jsonp + '=' + options.jsonpCallback;
