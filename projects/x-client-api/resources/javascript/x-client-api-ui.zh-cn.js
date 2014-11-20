@@ -2599,15 +2599,17 @@ x.ui.dialogs = {
     defaults: {
         id: '',
         title: '标题',
-        content: "text:内容",
-        width: "300",
-        height: "200",
-        titleClass: "boxTitle",
+        content: 'text:内容',
+        width: "280",
+        height: "140",
+        titleClass: "box-title",
         closeID: "",
         triggerID: "",
-        boxBdColor: "#E9F3FD",
+        // 对话框边框颜色 #E9F3FD eeeeee
+        // boxBdColor: "#eeeeee",
         boxBdOpacity: "1",
-        boxWrapBdColor: "#A6C9E1",
+        // 对话框包围边框颜色 #A6C9E1
+        boxWrapBdColor: "#cccccc",
         windowBgColor: "#000000",
         windowBgOpacity: "0.5",
         time: "",
@@ -2642,10 +2644,10 @@ x.ui.dialogs = {
             id: null,
             container: null,
 
-            getID: function()
-            {
-                return thisID = BOXID.boxID;
-            },
+            //            getID: function()
+            //            {
+            //                return thisID = BOXID.boxID;
+            //            },
 
             //构造弹出层
             show: function()
@@ -2658,11 +2660,11 @@ x.ui.dialogs = {
 				$height = parseInt(options.height) > 550 ? 550 : parseInt(options.height);
                 var $boxDom = "<div id=\"" + options.id + "\" class=\"x-ui-dialogs\">";
                 $boxDom += "<div class=\"boxWrap\">";
-                $boxDom += "<div class=\"boxTitle\"><h3></h3><span class=\"closeBox\">关闭</span></div>";
+                $boxDom += "<div class=\"box-title\"><h3></h3><span class=\"box-close-btn\">关闭</span></div>";
                 $boxDom += "<div class=\"boxContent\"></div>";
-                $boxDom += "<div class=\"boxDialog\"></div>";
+                $boxDom += "<div class=\"box-dialog\"></div>";
                 $boxDom += "</div>";
-                $boxDom += "<div class=\"boxBd\"></div>";
+                $boxDom += "<div class=\"box-bd\"></div>";
                 $boxDom += "<iframe src=\"about:blank\" style=\"position:absolute;left:0;top:0;filter:alpha(opacity=0);opacity:0;scrolling=no;z-index:10714\"></iframe>";
                 $boxDom += "</div>";
                 $($boxDom).appendTo("body");
@@ -2700,7 +2702,7 @@ x.ui.dialogs = {
                     overflow: "auto",
                     backgroundColor: "#fff"
                 });
-                var $boxDialog = $(".boxDialog", $box);
+                var $boxDialog = $(".box-dialog", $box);
                 $boxDialog.css({
                     width: $width + "px",
                     height: $boxDialogHeight + "px",
@@ -2710,7 +2712,7 @@ x.ui.dialogs = {
                     borderTop: "none",
                     textAlign: "right"
                 });
-                var $boxBg = $(".boxBd", $box);
+                var $boxBg = $(".box-bd", $box);
                 $boxBg.css({
                     position: "absolute",
                     width: $width + 12 + "px",
@@ -2742,7 +2744,7 @@ x.ui.dialogs = {
                 if (options.showTitle != true) { $(".boxTitle", $box).remove(); }
                 if (options.showBoxbg != true)
                 {
-                    $(".boxBd", $box).remove();
+                    $(".box-bd", $box).remove();
                     $box.css({
                         width: $width + 2 + "px",
                         height: $height + $titleHeight + $boxDialogHeight + 1 + "px"
@@ -2759,36 +2761,36 @@ x.ui.dialogs = {
                 {
                     switch ($location)
                     {
-                        case ("left-top"): //左上角
+                        case ("left-top"):      //左上角
                             $location = { left: "0px", top: "0px" + est };
                             TOP = 0;
                             break;
-                        case ("left-bottom"): //左下角
+                        case ("left-bottom"):   //左下角
                             $location = { left: "0px", bottom: "0px" };
                             break;
-                        case ("right-top"): //右上角
+                        case ("right-top"):     //右上角
                             $location = { right: "0px", top: "0px" + est };
                             TOP = 0;
                             break;
-                        case ("right-bottom"): //右下角
+                        case ("right-bottom"):  //右下角
                             $location = { right: "0px", bottom: "0px" };
                             break;
-                        case ("middle-top"): //居中置顶
+                        case ("middle-top"):    //居中置顶
                             $location = { left: "50%", marginLeft: -parseInt($box.width() / 2) + "px", top: "0px" + est };
                             TOP = 0;
                             break;
                         case ("middle-bottom"): //居中置低
                             $location = { left: "50%", marginLeft: -parseInt($box.width() / 2) + "px", bottom: "0px" };
                             break;
-                        case ("left-middle"): //左边居中
+                        case ("left-middle"):   //左边居中
                             $location = { left: "0px", top: "50%" + est, marginTop: -parseInt($box.height() / 2) + "px" + est };
                             TOP = $getPageSize[1] / 2 - $box.height() / 2;
                             break;
-                        case ("right-middle"): //右边居中
+                        case ("right-middle"):  //右边居中
                             $location = { right: "0px", top: "50%" + est, marginTop: -parseInt($box.height() / 2) + "px" + est };
                             TOP = $getPageSize[1] / 2 - $box.height() / 2;
                             break;
-                        default: //默认为居中
+                        default:                //默认为居中
                             $location = { left: "50%", marginLeft: -parseInt($box.width() / 2) + "px", top: "50%" + est, marginTop: -parseInt($box.height() / 2) + "px" + est };
                             TOP = $getPageSize[1] / 2 - $box.height() / 2;
                             break;
@@ -2876,6 +2878,7 @@ x.ui.dialogs = {
                     $box.appendTo($wrap);
                 };
             },
+
             // 装载弹出层内容
             setContent: function()
             {
@@ -2970,11 +2973,12 @@ x.ui.dialogs = {
                         });
                 };
             },
+
             //对话模式
             ask: function()
             {
                 var $box = $("#" + options.id);
-                $boxDialog = $(".boxDialog", $box);
+                $boxDialog = $(".box-dialog", $box);
                 if (options.button != "")
                 {
                     var map = {}, answerStrings = [];
@@ -3048,7 +3052,7 @@ x.ui.dialogs = {
                 });
             },
 
-            //写入CSS样式
+            // 写入CSS样式
             addStyle: function(s)
             {
                 var T = this.style;
@@ -3060,7 +3064,8 @@ x.ui.dialogs = {
                 };
                 T.styleSheet && (T.styleSheet.cssText += s) || T.appendChild(document.createTextNode(s));
             },
-            //绑定拖拽
+
+            // 绑定拖拽
             drag: function()
             {
                 var $moveX = 0, $moveY = 0,
@@ -3085,7 +3090,7 @@ x.ui.dialogs = {
                         if (options.boxBdOpacity != "1")
                         {
                             $ID.children("div").css("opacity", options.dragBoxOpacity);
-                            $ID.children("div.boxBd").css("opacity", options.boxBdOpacity);
+                            $ID.children("div.box-bd").css("opacity", options.box - bdOpacity);
                         } else
                         {
                             $ID.children("div").css("opacity", options.dragBoxOpacity);
@@ -3117,7 +3122,7 @@ x.ui.dialogs = {
                             if (options.boxBdOpacity != "1")
                             {
                                 $ID.children("div").css("opacity", "1");
-                                $ID.children("div.boxBd").css("opacity", options.boxBdOpacity);
+                                $ID.children("div.box-bd").css("opacity", options.box - bdOpacity);
                             } else
                             {
                                 $ID.children("div").css("opacity", "1");
@@ -3130,7 +3135,7 @@ x.ui.dialogs = {
             remove: function()
             {
                 var $box = $("#" + this.id);
-                var $boxbg = $("#XYTipsWindowBg");
+                var $boxbg = $("#x-ui-dialogs-window-bg");
                 if ($box != null || $boxbg != null)
                 {
                     var $contentID = $(".boxContent", $box);
@@ -3204,7 +3209,7 @@ x.ui.dialogs = {
 
                 this.box = x.query("#" + this.id);
 
-                x.dom.on(x.query(".closeBox", this.box), "click", function()
+                x.dom.on(x.query(".box-close-btn", this.box), "click", function()
                 {
                     me.remove();
                 });
@@ -3221,14 +3226,14 @@ x.ui.dialogs = {
 
                 if (options.time != "")
                 {
-                    setTimeout(this.remove, options.time);
+                    setTimeout(function() { me.remove(); }, options.time);
                 };
 
                 if (options.showbg != "" && options.showbg == true)
                 {
-                    x.dom.append(document.body, "<div id=\"XYTipsWindowBg\" style=\"position:absolute;background:" + options.windowBgColor + ";filter:alpha(opacity=0);opacity:0;width:100%;left:0;top:0;z-index:870618\"><iframe src=\"about:blank\" style=\"width=100%;height:" + $(document).height() + "px;filter:alpha(opacity=0);opacity:0;scrolling=no;z-index:870610\"></iframe></div>");
+                    x.dom.append(document.body, "<div id=\"x-ui-dialogs-window-bg\" style=\"position:absolute;background:" + options.windowBgColor + ";filter:alpha(opacity=0);opacity:0;width:100%;left:0;top:0;z-index:870618\"><iframe src=\"about:blank\" style=\"width=100%;height:" + $(document).height() + "px;filter:alpha(opacity=0);opacity:0;scrolling=no;z-index:870610\"></iframe></div>");
 
-                    // var $boxBgDom = "<div id=\"XYTipsWindowBg\" style=\"position:absolute;background:" + options.windowBgColor + ";filter:alpha(opacity=0);opacity:0;width:100%;left:0;top:0;z-index:870618\"><iframe src=\"about:blank\" style=\"width=100%;height:" + $(document).height() + "px;filter:alpha(opacity=0);opacity:0;scrolling=no;z-index:870610\"></iframe></div>";
+                    // var $boxBgDom = "<div id=\"x-ui-dialogs-window-bg\" style=\"position:absolute;background:" + options.windowBgColor + ";filter:alpha(opacity=0);opacity:0;width:100%;left:0;top:0;z-index:870618\"><iframe src=\"about:blank\" style=\"width=100%;height:" + $(document).height() + "px;filter:alpha(opacity=0);opacity:0;scrolling=no;z-index:870610\"></iframe></div>";
                     // $($boxBgDom).appendTo("body").animate({ opacity: options.windowBgOpacity }, 200);
                 };
                 if (options.drag != "")
